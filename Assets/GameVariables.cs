@@ -16,6 +16,8 @@ public class GameVariables : MonoBehaviour {
 
     public bool blinkWhenTeleporting;
 
+    public bool freeMovement;
+
     public static GameVariables instance;
 
     void Awake()

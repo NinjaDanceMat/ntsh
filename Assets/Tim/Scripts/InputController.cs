@@ -64,12 +64,11 @@ public class InputController : MonoBehaviour
     {
         if (MovingToPoint)
         {
-            if (Vector3.Distance(robotAgent.transform.position,currentMovePoint.transform.position) < 0.1)
+            if (Vector3.Distance(robotAgent.transform.position, currentMovePoint.transform.position) < 0.1)
             {
                 MovingToPoint = false;
             }
         }
-
 
         if (GameVariables.instance.throwEye)
         {
@@ -97,86 +96,67 @@ public class InputController : MonoBehaviour
             }
         }
         RaycastHit hit;
-        if (GameVariables.instance.useHeadForAimingToWall)
+        Vector3 forward = new Vector3();
+        Vector3 position = new Vector3();
+        
+        optic.SetActive(false);
+        if (currentMode == CameraMode.Robot)
         {
-            if (currentMode == CameraMode.Robot)
+            if (GameVariables.instance.useHeadForAimingToWall)
             {
-                if (Physics.Raycast(head.transform.position, head.transform.forward, out hit, 100f, validWalls) && !GameVariables.instance.throwEye)
-                {
-                    optic.SetActive(true);
-                    optic.transform.position = hit.point;
-                }
-                else
-                {
-                    optic.SetActive(false);
-                }
+                position = head.transform.position;
+                forward = head.transform.forward;
+
             }
             else
             {
-                if (GameVariables.instance.freeMovement)
+                position = rightController.transform.position;
+                forward = rightController.transform.forward;
+            }
+            if (Physics.Raycast(position, forward, out hit, 100f) && !GameVariables.instance.throwEye)
+            {
+                if (validWalls == (validWalls | (1 << hit.collider.gameObject.layer)))
                 {
-                    if (Physics.Raycast(head.transform.position, head.transform.forward, out hit, 100f, validFloors))
-                    {
-                        optic.SetActive(true);
-                        optic.transform.position = hit.point;
-                    }
-                    else
-                    {
-                        optic.SetActive(false);
-                    }
-                }
-                else
-                {
-                   
-                    if (Physics.Raycast(head.transform.position, head.transform.forward, out hit, 100f, validMovePoint))
-                    {
-                        //Highlight Point
-                    }
-                    Physics.Raycast(head.transform.position, head.transform.forward, out hit, 100f, validFloors);
-                    optic.transform.position = hit.point;
                     optic.SetActive(true);
-
+                    optic.transform.position = hit.point;
                 }
             }
         }
         else
         {
-            if (currentMode == CameraMode.Robot)
+            if (GameVariables.instance.useHeadForAimingToMoveRobot)
             {
-                if (Physics.Raycast(rightController.transform.position, rightController.transform.forward, out hit, 100f, validWalls) && !GameVariables.instance.throwEye)
-                {
-                    optic.SetActive(true);
-                    optic.transform.position = hit.point;
-                }
-                else
-                {
-                    optic.SetActive(false);
-                }
+                position = head.transform.position;
+                forward = head.transform.forward;
             }
             else
             {
-                if (GameVariables.instance.freeMovement)
+                position = rightController.transform.position;
+                forward = rightController.transform.forward;
+            }
+            if (GameVariables.instance.freeMovement)
+            {
+                if (Physics.Raycast(position, forward, out hit, 100f))
                 {
-                    if (Physics.Raycast(rightController.transform.position, rightController.transform.forward, out hit, 100f, validFloors))
+                    if (validFloors == (validFloors | (1 << hit.collider.gameObject.layer)))
                     {
                         optic.SetActive(true);
                         optic.transform.position = hit.point;
                     }
-                    else
-                    {
-                        optic.SetActive(false);
-                    }
                 }
-                else
+            }
+            else
+            {
+
+                if (Physics.Raycast(position, forward, out hit, 100f, validMovePoint))
                 {
-                    if (Physics.Raycast(rightController.transform.position, rightController.transform.forward, out hit, 100f, validMovePoint))
-                    {
-                        //Highlight Point
-                    }
-                    Physics.Raycast(rightController.transform.position, rightController.transform.forward, out hit, 100f, validFloors);
+                    //Highlight Point
+                }
+                Physics.Raycast(position, forward, out hit, 100f);
+                if (validFloors == (validFloors | (1 << hit.collider.gameObject.layer)))
+                {
                     optic.transform.position = hit.point;
                     optic.SetActive(true);
-
                 }
             }
         }
@@ -263,6 +243,13 @@ public class InputController : MonoBehaviour
             else
             {
                 Recall();
+            }
+        }
+        else
+        {
+            if (eyeThrown)
+            {
+                RecallEye();
             }
         }
 
@@ -366,9 +353,13 @@ public class InputController : MonoBehaviour
             newRigRot *= Quaternion.Inverse(headRotOffset);
             newRigRot = Quaternion.Euler(0, newRigRot.eulerAngles.y, 0);
         }
+        Quaternion oldRigRot = cameraRig.transform.rotation;
+        cameraRig.transform.rotation = newRigRot;
 
         Vector3 vectorNeededToMoveHeadToPoint = hitPoint - head.transform.position;
         newRigPos += vectorNeededToMoveHeadToPoint;
+
+        cameraRig.transform.rotation = oldRigRot;
 
         FadeAndMove(newRigPos, newRigRot);
     }
@@ -377,7 +368,6 @@ public class InputController : MonoBehaviour
     {
         if (!MovingToPoint)
         {
-
             Debug.Log("Recall");
             eyeOnWall = false;
 
@@ -396,7 +386,6 @@ public class InputController : MonoBehaviour
             currentMode = CameraMode.Robot;
             newRigPos = new Vector3(newRigPos.x, 0f, newRigPos.z);
             FadeAndMove(newRigPos, newRigRot);
-
 
             RecallEye();
         }
@@ -418,6 +407,9 @@ public class InputController : MonoBehaviour
         clutchingEye = false;
         eyeThrown = false;
         throwingEyeModel.transform.localPosition = Vector3.zero;
+
+        onWallEyeModel.SetActive(false);
+        eyeOnWall = false;
     }
 
 

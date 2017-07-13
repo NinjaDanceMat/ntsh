@@ -5,6 +5,7 @@ using UnityEngine.AI;
 
 public class InputController : MonoBehaviour
 {
+    public Vector3 chestOffset;
 
     public bool isInSlingShot;
 
@@ -25,6 +26,8 @@ public class InputController : MonoBehaviour
     public GameObject clutchingEyeModel;
     public GameObject onWallEyeModel;
 
+    public GameObject chestModel;
+
     //public Vector3 robotPosition;
     public Quaternion robotRotation;
 
@@ -36,6 +39,26 @@ public class InputController : MonoBehaviour
 
     public MovePoint currentMovePoint;
     public bool MovingToPoint;
+
+    public GameObject currentLeftHandModel;
+    public GameObject currentRightHandModel;
+
+    public GameObject leftHandModelSpawnPoint;
+    public GameObject rightHandModelSpawnPoint;
+
+    public GameObject lHandDefault;
+    public GameObject lHandGrab;
+    public GameObject lHandHold;
+    public GameObject lHandPoint;
+    public GameObject lHandRecall;
+
+    public GameObject rHandDefault;
+    public GameObject rHandGrab;
+    public GameObject rHandHold;
+    public GameObject rHandPoint;
+    public GameObject rHandRecall;
+
+    public bool recallingEye;
 
     public enum CameraMode
     {
@@ -53,6 +76,9 @@ public class InputController : MonoBehaviour
         if (InputController.instance == null)
         {
             InputController.instance = this;
+
+            currentLeftHandModel = Instantiate(lHandDefault, leftHandModelSpawnPoint.transform);
+            currentRightHandModel = Instantiate(rHandDefault, rightHandModelSpawnPoint.transform);
         }
         else
         {
@@ -62,6 +88,27 @@ public class InputController : MonoBehaviour
 
     private void Update()
     {
+        if (recallingEye)
+        {
+            if (Vector3.Distance(throwingEyeModel.transform.position, rightController.transform.position) < 0.5f)
+            {
+                eyeThrown = false;
+                clutchingEyeModel.SetActive(true);
+                clutchingEye = true;
+                recallingEye = false;
+                rightHandTransforms.Clear();
+
+                throwingEyeModel.transform.parent = rightController.transform;
+                throwingEyeModel.SetActive(false);
+                throwingEyeModel.transform.localPosition = Vector3.zero;
+            }
+            else
+            {
+                Vector3 fromThrowingBallToController = rightController.transform.position - throwingEyeModel.transform.position;
+                throwingEyeModel.GetComponent<Rigidbody>().velocity = (fromThrowingBallToController.normalized * GameVariables.instance.recallSpeed);
+            }
+        }
+
         if (MovingToPoint)
         {
             if (Vector3.Distance(robotAgent.transform.position, currentMovePoint.transform.position) < 0.1)
@@ -72,20 +119,6 @@ public class InputController : MonoBehaviour
 
         if (GameVariables.instance.throwEye)
         {
-            if (eyeThrown)
-            {
-                if (!eyeOnWall)
-                {
-                    if (eyeRecallTimer < 3)
-                    {
-                        eyeRecallTimer += Time.deltaTime;
-                    }
-                    else
-                    {
-                        RecallEye();
-                    }
-                }
-            }
             if (clutchingEye)
             {
                 rightHandTransforms.Add(rightController.transform.position);
@@ -102,11 +135,13 @@ public class InputController : MonoBehaviour
         optic.SetActive(false);
         if (currentMode == CameraMode.Robot)
         {
+
+            
+
             if (GameVariables.instance.useHeadForAimingToWall)
             {
                 position = head.transform.position;
                 forward = head.transform.forward;
-
             }
             else
             {
@@ -120,6 +155,62 @@ public class InputController : MonoBehaviour
                     optic.SetActive(true);
                     optic.transform.position = hit.point;
                 }
+            }
+            Destroy(currentRightHandModel);
+            bool hasChangedModel = false;
+
+            if (clutchingEye)
+            {
+                hasChangedModel = true;
+                currentRightHandModel = Instantiate(rHandHold, rightHandModelSpawnPoint.transform);
+            }
+            if (!hasChangedModel)
+            {
+                if (eyeOnWall || eyeThrown)
+                {
+                    GameObject eyeModel = null;
+                    if (eyeOnWall)
+                    {
+                        eyeModel = onWallEyeModel;
+                    }
+                    else
+                    {
+                        eyeModel = throwingEyeModel;
+                    }
+                    Vector3 fromControllerToEyeOnWall = eyeModel.transform.position - rightController.transform.position;
+
+                    Vector3 openHandVector = -rightController.transform.up;
+                    if (Vector3.Angle(openHandVector, fromControllerToEyeOnWall) < GameVariables.instance.recallAngle)
+                    {
+                        hasChangedModel = true;
+                        currentRightHandModel = Instantiate(rHandRecall, rightHandModelSpawnPoint.transform);
+                    }
+                }
+            }
+            if (!hasChangedModel && !eyeOnWall && !eyeThrown)
+            {
+                bool controllerInArea = false;
+
+                Collider[] colliders = Physics.OverlapCapsule(chestModel.transform.position + new Vector3(0, 0.15f, 0), chestModel.transform.position + new Vector3(0, -0.2f, 0), 0.1f);
+                foreach (Collider collider in colliders)
+                {
+                    if (collider.tag == "RightController")
+                    {
+                        controllerInArea = true;
+                        break;
+                    }
+                }
+
+                if (controllerInArea)
+                {
+                    hasChangedModel = true;
+                    currentRightHandModel = Instantiate(rHandGrab, rightHandModelSpawnPoint.transform);
+                }
+            }
+            if (!hasChangedModel)
+            {
+                hasChangedModel = true;
+                currentRightHandModel = Instantiate(rHandDefault, rightHandModelSpawnPoint.transform);
             }
         }
         else
@@ -160,36 +251,71 @@ public class InputController : MonoBehaviour
                 }
             }
         }
+        //chestModel.transform.parent = head.transform;
+        chestModel.transform.position = head.transform.position;
+
+        Vector3 headFacing = head.transform.forward;
+        Vector3 backwardsFromHead = -headFacing;
+
+        backwardsFromHead = new Vector3(backwardsFromHead.x, 0, backwardsFromHead.z);
+
+        chestModel.transform.Translate(backwardsFromHead.normalized * chestOffset.x);
+
+        chestModel.transform.Translate(new Vector3(0,chestOffset.y,0));
+        //chestModel.transform.parent = null;
+
+        //chestModel.transform.position
     }
 
     public void TriggerReleased()
     {
+        recallingEye = false;
         if (GameVariables.instance.throwEye)
         {
             if (clutchingEye)
             {
-                throwingEyeModel.transform.parent = null;
-                throwingEyeModel.SetActive(true);
-                clutchingEye = false;
-                clutchingEyeModel.SetActive(false);
-                eyeThrown = true;
-                eyeRecallTimer = 0;
-                eyeOnWall = false;
 
-                if (GameVariables.instance.canSlingShotEye && isInSlingShot)
+                bool controllerInArea = false;
+                Collider[] colliders = Physics.OverlapCapsule(chestModel.transform.position + new Vector3(0, 0.15f, 0), chestModel.transform.position + new Vector3(0, -0.2f, 0), 0.1f);
+                foreach (Collider collider in colliders)
                 {
-                    isInSlingShot = false;
-                    throwingEyeModel.GetComponent<Rigidbody>().velocity =  (leftController.transform.position- rightController.transform.position) * GameVariables.instance.slingshotVelocity;
+                    if (collider.tag == "RightController")
+                    {
+                        controllerInArea = true;
+                        break;
+                    }
                 }
+
+                if (controllerInArea)
+                {
+                    RecallEye();                    
+                }
+
                 else
                 {
-                    Vector3 average = new Vector3();
-                    for (int i = 1; i < rightHandTransforms.Count; i++)
+                    throwingEyeModel.transform.parent = null;
+                    throwingEyeModel.SetActive(true);
+                    clutchingEye = false;
+                    clutchingEyeModel.SetActive(false);
+                    eyeThrown = true;
+                    eyeRecallTimer = 0;
+                    eyeOnWall = false;
+
+                    if (GameVariables.instance.canSlingShotEye && isInSlingShot)
                     {
-                        average += (rightHandTransforms[i] - rightHandTransforms[i - 1]);
+                        isInSlingShot = false;
+                        throwingEyeModel.GetComponent<Rigidbody>().velocity = (leftController.transform.position - rightController.transform.position) * GameVariables.instance.slingshotVelocity;
                     }
-                    average /= rightHandTransforms.Count - 1;
-                    throwingEyeModel.GetComponent<Rigidbody>().velocity = average * GameVariables.instance.throwingVelocity;
+                    else
+                    {
+                        Vector3 average = new Vector3();
+                        for (int i = 1; i < rightHandTransforms.Count; i++)
+                        {
+                            average += (rightHandTransforms[i] - rightHandTransforms[i - 1]);
+                        }
+                        average /= rightHandTransforms.Count - 1;
+                        throwingEyeModel.GetComponent<Rigidbody>().velocity = average * GameVariables.instance.throwingVelocity;
+                    }
                 }
             }
         }
@@ -205,18 +331,27 @@ public class InputController : MonoBehaviour
             }
             else
             {
-                if (eyeOnWall)
+                if (!eyeThrown && !eyeOnWall)
                 {
-                    ShootToTarget(onWallEyeModel.transform.position);
+                    bool controllerInArea = false;
+
+                    Collider[] colliders = Physics.OverlapCapsule(chestModel.transform.position + new Vector3(0, 0.15f, 0), chestModel.transform.position + new Vector3(0, -0.2f, 0), 0.1f);
+                    foreach (Collider collider in colliders)
+                    {
+                        if (collider.tag == "RightController")
+                        {
+                            controllerInArea = true;
+                            break;
+                        }
+                    }
+
+                    if (controllerInArea)
+                    {
+                        clutchingEyeModel.SetActive(true);
+                        clutchingEye = true;
+                        rightHandTransforms.Clear();
+                    }
                 }
-                else
-                {
-                    RecallEye();
-                    clutchingEyeModel.SetActive(true);
-                    clutchingEye = true;
-                    rightHandTransforms.Clear();
-                }
-                
             }
         }
         else
@@ -228,6 +363,42 @@ public class InputController : MonoBehaviour
             else
             {
                 MoveRobot();
+            }
+        }
+    }
+
+    public void TriggerHeld()
+    {
+        if (currentMode == CameraMode.Robot)
+        {
+            if (GameVariables.instance.throwEye)
+            {
+                if (eyeOnWall || eyeThrown)
+                {
+                    GameObject eyeModel = null;
+                    if (eyeOnWall)
+                    {
+                        eyeModel = onWallEyeModel;
+                    }
+                    else
+                    {
+                        eyeModel = throwingEyeModel;
+                    }
+                    Vector3 fromControllerToEyeOnWall = eyeModel.transform.position - rightController.transform.position;
+
+                    Vector3 openHandVector = -rightController.transform.up;
+                    if (Vector3.Angle(openHandVector, fromControllerToEyeOnWall) < GameVariables.instance.recallAngle)
+                    {
+                        recallingEye = true;
+                        if (eyeOnWall)
+                        {
+                            throwingEyeModel.transform.position = onWallEyeModel.transform.position;
+                            onWallEyeModel.SetActive(false);
+                            throwingEyeModel.SetActive(true);
+                            eyeOnWall = false;
+                        }
+                    }
+                }
             }
         }
     }
@@ -405,6 +576,7 @@ public class InputController : MonoBehaviour
         throwingEyeModel.SetActive(false);
 
         clutchingEye = false;
+        clutchingEyeModel.SetActive(false);
         eyeThrown = false;
         throwingEyeModel.transform.localPosition = Vector3.zero;
 

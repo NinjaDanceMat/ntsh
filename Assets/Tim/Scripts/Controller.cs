@@ -14,6 +14,14 @@ public class Controller : MonoBehaviour {
         _controller.PadClicked += HandlePadClicked;
     }
 
+    public void Update()
+    {
+        if (_controller.triggerPressed)
+        {
+            HandleTriggerHeld();
+        }
+    }
+
     public void HandleTriggerReleased(object sender, ClickedEventArgs e)
     {
         InputController.instance.TriggerReleased();
@@ -28,4 +36,9 @@ public class Controller : MonoBehaviour {
     {
         InputController.instance.ButtonBoop();
     }
+    public void HandleTriggerHeld()
+    {
+        InputController.instance.TriggerHeld();
+    }
+
 }

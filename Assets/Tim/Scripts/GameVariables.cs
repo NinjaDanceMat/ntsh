@@ -23,6 +23,9 @@ public class GameVariables : MonoBehaviour {
 
     public static GameVariables instance;
 
+    public float recallAngle;
+    public float recallSpeed;
+
     void Awake()
     {
         if (GameVariables.instance == null)

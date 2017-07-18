@@ -58,6 +58,8 @@ public class InputController : MonoBehaviour
     public GameObject rHandPoint;
     public GameObject rHandRecall;
 
+    public GameObject armButton;
+
     public bool recallingEye;
 
     public enum CameraMode
@@ -135,9 +137,6 @@ public class InputController : MonoBehaviour
         optic.SetActive(false);
         if (currentMode == CameraMode.Robot)
         {
-
-            
-
             if (GameVariables.instance.useHeadForAimingToWall)
             {
                 position = head.transform.position;
@@ -187,6 +186,16 @@ public class InputController : MonoBehaviour
                     }
                 }
             }
+            if (!hasChangedModel && eyeOnWall)
+            {
+                
+                if (Vector3.Distance(rightController.transform.position,armButton.transform.position) < 0.1f)
+                {
+                    hasChangedModel = true;
+                    currentRightHandModel = Instantiate(rHandPoint, rightHandModelSpawnPoint.transform);
+                }
+            }
+
             if (!hasChangedModel && !eyeOnWall && !eyeThrown)
             {
                 bool controllerInArea = false;
@@ -207,47 +216,76 @@ public class InputController : MonoBehaviour
                     currentRightHandModel = Instantiate(rHandGrab, rightHandModelSpawnPoint.transform);
                 }
             }
+            
             if (!hasChangedModel)
             {
                 hasChangedModel = true;
                 currentRightHandModel = Instantiate(rHandDefault, rightHandModelSpawnPoint.transform);
             }
+
+            Destroy(currentLeftHandModel);
+            if (isInSlingShot && !eyeThrown)
+            {
+                currentLeftHandModel = Instantiate(lHandRecall, leftHandModelSpawnPoint.transform);
+            }
+            else
+            {
+                currentLeftHandModel = Instantiate(lHandDefault, leftHandModelSpawnPoint.transform);
+            }
         }
         else
         {
-            if (GameVariables.instance.useHeadForAimingToMoveRobot)
+
+            Destroy(currentRightHandModel);
+            bool pointingAtButton = false;
+
+            if (Vector3.Distance(rightController.transform.position, armButton.transform.position) < 0.1f)
             {
-                position = head.transform.position;
-                forward = head.transform.forward;
+                pointingAtButton = true;
+                currentRightHandModel = Instantiate(rHandPoint, rightHandModelSpawnPoint.transform);
             }
+
             else
             {
-                position = rightController.transform.position;
-                forward = rightController.transform.forward;
+                currentRightHandModel = Instantiate(rHandDefault, rightHandModelSpawnPoint.transform);
             }
-            if (GameVariables.instance.freeMovement)
+            optic.SetActive(false);
+            if (!pointingAtButton)
             {
-                if (Physics.Raycast(position, forward, out hit, 100f))
+                if (GameVariables.instance.useHeadForAimingToMoveRobot)
                 {
-                    if (validFloors == (validFloors | (1 << hit.collider.gameObject.layer)))
+                    position = head.transform.position;
+                    forward = head.transform.forward;
+                }
+                else
+                {
+                    position = rightController.transform.position;
+                    forward = rightController.transform.forward;
+                }
+                if (GameVariables.instance.freeMovement)
+                {
+                    if (Physics.Raycast(position, forward, out hit, 100f))
                     {
-                        optic.SetActive(true);
-                        optic.transform.position = hit.point;
+                        if (validFloors == (validFloors | (1 << hit.collider.gameObject.layer)))
+                        {
+                            optic.SetActive(true);
+                            optic.transform.position = hit.point;
+                        }
                     }
                 }
-            }
-            else
-            {
+                else
+                {
 
-                if (Physics.Raycast(position, forward, out hit, 100f, validMovePoint))
-                {
-                    //Highlight Point
-                }
-                Physics.Raycast(position, forward, out hit, 100f);
-                if (validFloors == (validFloors | (1 << hit.collider.gameObject.layer)))
-                {
-                    optic.transform.position = hit.point;
-                    optic.SetActive(true);
+                    if (Physics.Raycast(position, forward, out hit, 100f, validMovePoint))
+                    {
+                        //Highlight Point
+                    }
+                    Physics.Raycast(position, forward, out hit, 100f);
+                    if (validFloors == (validFloors | (1 << hit.collider.gameObject.layer)))
+                    {
+                        optic.transform.position = hit.point;
+                        optic.SetActive(true);
+                    }
                 }
             }
         }
@@ -352,11 +390,19 @@ public class InputController : MonoBehaviour
                         rightHandTransforms.Clear();
                     }
                 }
+                else if (eyeOnWall)
+                {
+                    if (Vector3.Distance(rightController.transform.position, armButton.transform.position) < 0.1f)
+                    {
+                        ShootToTarget(onWallEyeModel.transform.position);
+                    }
+                }
             }
         }
         else
         {
-            if (!GameVariables.instance.useTriggerForRobotMovement)
+
+            if (Vector3.Distance(rightController.transform.position, armButton.transform.position) < 0.1f)
             {
                 Recall();
             }
@@ -418,7 +464,11 @@ public class InputController : MonoBehaviour
         }
         else
         {
-            if (eyeThrown)
+            if (eyeOnWall)
+            {
+                ShootToTarget(onWallEyeModel.transform.position);
+            }
+            else if (eyeThrown)
             {
                 RecallEye();
             }

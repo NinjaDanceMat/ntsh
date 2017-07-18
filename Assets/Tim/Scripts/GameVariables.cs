@@ -26,6 +26,9 @@ public class GameVariables : MonoBehaviour {
     public float recallAngle;
     public float recallSpeed;
 
+    public float AISightAngle;
+    public float AISightDistance;
+
     void Awake()
     {
         if (GameVariables.instance == null)

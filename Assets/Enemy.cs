@@ -43,7 +43,7 @@ public class Enemy : MonoBehaviour {
             bool spotted = false;
             if (!Physics.Linecast(transform.position + new Vector3(0, 0.5f, 0), playerRobot.transform.position + new Vector3(0, 0.5f, 0), blockLineOfSightLayerMask))
             {
-                if (Vector3.Angle(transform.forward, playerRobot.transform.position - transform.position) < GameVariables.instance.AISightAngle)
+                if (Vector3.Distance(playerRobot.transform.position, transform.position) < 1f || Vector3.Angle(transform.forward, playerRobot.transform.position - transform.position) < GameVariables.instance.AISightAngle)
                 {
                     if (Vector3.Distance(playerRobot.transform.position, transform.position) < GameVariables.instance.AISightDistance)
                     {
@@ -103,7 +103,7 @@ public class Enemy : MonoBehaviour {
         {
             if (!Physics.Linecast(transform.position + new Vector3(0, 0.5f, 0), playerRobot.transform.position + new Vector3(0, 0.5f, 0), blockLineOfSightLayerMask))
             {
-                if (Vector3.Angle(transform.forward, playerRobot.transform.position - transform.position) < GameVariables.instance.AISightAngle)
+                if (Vector3.Distance(playerRobot.transform.position, transform.position) < 1f || Vector3.Angle(transform.forward, playerRobot.transform.position - transform.position) < GameVariables.instance.AISightAngle)
                 {
                     if (Vector3.Distance(playerRobot.transform.position, transform.position) < GameVariables.instance.AISightDistance)
                     {

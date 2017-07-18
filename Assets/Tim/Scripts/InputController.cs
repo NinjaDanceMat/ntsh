@@ -15,6 +15,7 @@ public class InputController : MonoBehaviour
     public GameObject head;
     public GameObject cameraRig;
     public GameObject robotModel;
+    public Animator robotAnimator;
     public GameObject rightController;
     public GameObject leftController;
     public NavMeshAgent robotAgent;
@@ -235,6 +236,8 @@ public class InputController : MonoBehaviour
         }
         else
         {
+            robotAnimator.SetFloat("WalkingBlend",robotAgent.velocity.magnitude/robotAgent.speed);
+
 
             Destroy(currentRightHandModel);
             bool pointingAtButton = false;

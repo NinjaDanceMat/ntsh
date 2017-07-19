@@ -411,7 +411,14 @@ public class InputController : MonoBehaviour
             }
             else
             {
-                MoveRobot();
+                RaycastHit hit;
+                if (Physics.Raycast(rightController.transform.position, rightController.transform.forward, out hit, 100f))
+                {
+                    if (validFloors == (validFloors | (1 << hit.collider.gameObject.layer)))
+                    {
+                        MoveRobot();
+                    }
+                }
             }
         }
     }
@@ -447,6 +454,22 @@ public class InputController : MonoBehaviour
                             eyeOnWall = false;
                         }
                     }
+                }
+            }
+        }
+        else
+        {
+            if (Vector3.Distance(rightController.transform.position, armButton.transform.position) < 0.1f)
+            {
+
+            }
+
+            RaycastHit hit;
+            if (Physics.Raycast(rightController.transform.position, rightController.transform.forward, out hit, 100f))
+            {
+                if (validFloors == (validFloors | (1 << hit.collider.gameObject.layer)))
+                {
+                    MoveRobot();
                 }
             }
         }

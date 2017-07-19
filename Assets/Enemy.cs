@@ -51,9 +51,11 @@ public class Enemy : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
+        agent.speed = GameVariables.instance.AIChasingSpeed;
         bool spotted = false;
         if (currentAIMode != AIMode.Chasing)
         {
+            agent.speed = GameVariables.instance.AIDefaultSpeed;
 
             if (!Physics.Linecast(transform.position + new Vector3(0, 0.5f, 0), playerRobot.transform.position + new Vector3(0, 0.5f, 0), blockLineOfSightLayerMask))
             {
@@ -61,6 +63,8 @@ public class Enemy : MonoBehaviour {
                 {
                     if (Vector3.Distance(playerRobot.transform.position, transform.position) < GameVariables.instance.AISightDistance)
                     {
+                        agent.isStopped = false;
+
                         currentAIMode = AIMode.Chasing;
                         lastKnownPlyerLocation = playerRobot.transform.position;
                         lastKnownPlyerVector = playerRobotAgent.desiredVelocity;
@@ -143,10 +147,25 @@ public class Enemy : MonoBehaviour {
         {
             if (waitTimer >= GameVariables.instance.AIWaitTime)
             {
+                agent.isStopped = false;
+                agent.destination = transform.position;
                 currentAIMode = AIMode.Searching;
             }
             else
             {
+                if (waitTimer == 0)
+                {
+                    agent.isStopped = true;
+                   
+                }
+                if (waitTimer <= GameVariables.instance.AIWaitTime/2)
+                {
+                    transform.Rotate(0.0f, -70.0f*Time.deltaTime, 0.0f);
+                }
+                else
+                {
+                    transform.Rotate(0.0f, 140.0f * Time.deltaTime, 0.0f);
+                }
                 waitTimer += Time.deltaTime;
             }
         }
@@ -180,20 +199,20 @@ public class Enemy : MonoBehaviour {
                         }
                         if (angle > 0)
                         {
-                            agent.destination = transform.position + (transform.right * 3f);
+                            agent.destination = transform.position + (transform.right * 2f);
                             justWaited = false;
                             searchIndex += 1;
                         }
                         else
                         {
-                            agent.destination = transform.position + (-transform.right * 3f);
+                            agent.destination = transform.position + (-transform.right * 2f);
                             justWaited = false;
                             searchIndex += 1;
                         }
                     }
                     else if (searchIndex == 2)
                     {
-                        agent.destination = transform.position + (-transform.forward * 6f);
+                        agent.destination = transform.position + (-transform.forward * 2f);
                         justWaited = false;
                         searchIndex += 1;
                     }

@@ -29,6 +29,8 @@ public class GameVariables : MonoBehaviour {
     public float AISightAngle;
     public float AISightDistance;
 
+    public float AIWaitTime;
+
     void Awake()
     {
         if (GameVariables.instance == null)

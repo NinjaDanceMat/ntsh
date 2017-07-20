@@ -41,12 +41,31 @@ public class Enemy : MonoBehaviour {
 
     public bool justWaited;
 
+    public Vector3 spawnPoint;
+    public Quaternion spawnRot;
+
     // Use this for initialization
     void Start () {
-        agent.destination = path[currentPathIndex].transform.position;
-	}
+        playerRobotAgent = InputController.instance.robotAgent;
+        playerRobot = InputController.instance.robotAgent.gameObject;
+        InputController.instance.enemies.Add(this);
+        agent = GetComponent<NavMeshAgent>();
 
-    public bool searchRightFirst;
+        agent.destination = path[currentPathIndex].transform.position;
+
+        spawnPoint = transform.position;
+        spawnRot = transform.rotation;
+
+    }
+
+    public void Respawn()
+    {
+        agent.Warp (spawnPoint);
+        transform.rotation = spawnRot;
+        currentAIMode = AIMode.Patroling;
+        currentPathIndex = 0;
+        agent.destination = path[currentPathIndex].transform.position;
+    }
 
     // Update is called once per frame
     void Update()
@@ -139,6 +158,11 @@ public class Enemy : MonoBehaviour {
                         lastKnownPlyerLocation = playerRobot.transform.position;
                         lastKnownPlyerVector = playerRobot.transform.forward;
                         agent.destination = lastKnownPlyerLocation;
+
+                        if (Vector3.Distance(playerRobot.transform.position, transform.position) < GameVariables.instance.AIMeleeRange)
+                        {
+                            InputController.instance.PlayerKilled();
+                        }
                     }
                 }
             }

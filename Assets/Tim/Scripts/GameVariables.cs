@@ -34,6 +34,8 @@ public class GameVariables : MonoBehaviour {
     public float AIDefaultSpeed;
     public float AIChasingSpeed;
 
+    public float AIMeleeRange;
+
     void Awake()
     {
         if (GameVariables.instance == null)

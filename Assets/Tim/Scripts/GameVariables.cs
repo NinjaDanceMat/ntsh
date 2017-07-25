@@ -25,6 +25,7 @@ public class GameVariables : MonoBehaviour {
 
     public float recallAngle;
     public float recallSpeed;
+    public float eyeToHandSpeed;
 
     public float AISightAngle;
     public float AISightDistance;
@@ -35,7 +36,7 @@ public class GameVariables : MonoBehaviour {
     public float AIChasingSpeed;
 
     public float AIMeleeRange;
-
+    public float chestAreaRadius;
     void Awake()
     {
         if (GameVariables.instance == null)
@@ -47,6 +48,4 @@ public class GameVariables : MonoBehaviour {
             Destroy(this);
         }
     }
-
-
 }

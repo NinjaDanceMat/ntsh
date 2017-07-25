@@ -13,6 +13,7 @@ public class InputController : MonoBehaviour
 
     public LayerMask validWalls;
     public LayerMask validFloors;
+    public LayerMask defaultLayerMask;
     public LayerMask validMovePoint;
     public GameObject head;
     public GameObject cameraRig;
@@ -73,6 +74,9 @@ public class InputController : MonoBehaviour
 
     public List<Checkpoint> checkpoints = new List<Checkpoint>();
 
+    public List<Vector3> thrownEyeTransforms = new List<Vector3>();
+    public int currentRecallEyeTransform = 0;
+
     public enum CameraMode
     {
         Robot,
@@ -121,8 +125,19 @@ public class InputController : MonoBehaviour
                 }
                 else
                 {
-                    Vector3 fromThrowingBallToController = rightController.transform.position - throwingEyeModel.transform.position;
-                    throwingEyeModel.GetComponent<Rigidbody>().velocity = (fromThrowingBallToController.normalized * GameVariables.instance.recallSpeed);
+                    if (!Physics.Linecast(throwingEyeModel.transform.position, rightController.transform.position, defaultLayerMask))
+                    {
+                        Vector3 fromThrowingBallToController = rightController.transform.position - throwingEyeModel.transform.position;
+                        throwingEyeModel.GetComponent<Rigidbody>().velocity = (fromThrowingBallToController.normalized * GameVariables.instance.recallSpeed);
+                    }
+                    else
+                    {
+                        currentRecallEyeTransform -= 1;
+                        throwingEyeModel.transform.position = thrownEyeTransforms[currentRecallEyeTransform];
+                        thrownEyeTransforms.RemoveAt(thrownEyeTransforms.Count -1);
+                        throwingEyeModel.GetComponent<Rigidbody>().velocity = Vector3.zero;
+
+                    }
                 }
             }
 
@@ -247,6 +262,27 @@ public class InputController : MonoBehaviour
                 {
                     currentLeftHandModel = Instantiate(lHandDefault, leftHandModelSpawnPoint.transform);
                 }
+                
+                if (eyeThrown && !recallingEye)
+                {
+                    bool addIt = false;
+                    if (thrownEyeTransforms.Count <= 1)
+                    {
+                        addIt = true;
+                    }
+                    else
+                    {
+                        if (Vector3.Distance(thrownEyeTransforms[currentRecallEyeTransform-1], throwingEyeModel.transform.position) > 0.2f)
+                        {
+                            addIt = true;
+                        }
+                    }
+                    if (addIt)
+                    {
+                        thrownEyeTransforms.Add(throwingEyeModel.transform.position);
+                        currentRecallEyeTransform += 1;
+                    }
+                }
             }
             else
             {
@@ -335,12 +371,16 @@ public class InputController : MonoBehaviour
     {
         if (!dead)
         {
+            if (recallingEye)
+            {
+                throwingEyeModel.GetComponent<Rigidbody>().velocity = throwingEyeModel.GetComponent<Rigidbody>().velocity.normalized;
+            }
             recallingEye = false;
+
             if (GameVariables.instance.throwEye)
             {
                 if (clutchingEye)
                 {
-
                     bool controllerInArea = false;
                     Collider[] colliders = Physics.OverlapCapsule(chestModel.transform.position + new Vector3(0, 0.15f, 0), chestModel.transform.position + new Vector3(0, -0.2f, 0), 0.1f);
                     foreach (Collider collider in colliders)
@@ -366,6 +406,9 @@ public class InputController : MonoBehaviour
                         eyeThrown = true;
                         eyeRecallTimer = 0;
                         eyeOnWall = false;
+
+                        currentRecallEyeTransform = 0;
+                        thrownEyeTransforms.Clear();
 
                         if (GameVariables.instance.canSlingShotEye && isInSlingShot)
                         {

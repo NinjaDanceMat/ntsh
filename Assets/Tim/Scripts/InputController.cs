@@ -255,8 +255,15 @@ public class InputController : MonoBehaviour
 
                     if (controllerInArea)
                     {
-                        hasChangedModel = true;
-                        currentRightHandModel = Instantiate(rHandGrab, rightHandModelSpawnPoint.transform);
+                        Vector3 fromControllerToEyeInChest = chestModel.transform.position - rightController.transform.position;
+
+                        Vector3 openHandVector = -rightController.transform.up;
+                        if (Vector3.Angle(openHandVector, fromControllerToEyeInChest) < GameVariables.instance.recallAngle)
+                        {
+                            hasChangedModel = true;
+                            currentRightHandModel = Instantiate(rHandGrab, rightHandModelSpawnPoint.transform);
+
+                        }
                     }
                 }
 
@@ -395,6 +402,7 @@ public class InputController : MonoBehaviour
             {
                 if (clutchingEye)
                 {
+                    /*
                     bool controllerInArea = false;
                     Collider[] colliders = Physics.OverlapCapsule(chestModel.transform.position + new Vector3(0, 0.15f, 0), chestModel.transform.position + new Vector3(0, -0.2f, 0), 0.15f);
                     foreach (Collider collider in colliders)
@@ -410,36 +418,35 @@ public class InputController : MonoBehaviour
                     {
                         RecallEye();
                     }
+                    */
 
+                    throwingEyeModel.transform.parent = null;
+                    throwingEyeModel.SetActive(true);
+                    clutchingEye = false;
+                    clutchingEyeModel.SetActive(false);
+                    eyeThrown = true;
+                    eyeRecallTimer = 0;
+                    eyeOnWall = false;
+
+                    currentRecallEyeTransform = 0;
+                    thrownEyeTransforms.Clear();
+
+                    if (GameVariables.instance.canSlingShotEye && isInSlingShot)
+                    {
+                        isInSlingShot = false;
+                        throwingEyeModel.GetComponent<Rigidbody>().velocity = (leftController.transform.position - rightController.transform.position) * GameVariables.instance.slingshotVelocity;
+                    }
                     else
                     {
-                        throwingEyeModel.transform.parent = null;
-                        throwingEyeModel.SetActive(true);
-                        clutchingEye = false;
-                        clutchingEyeModel.SetActive(false);
-                        eyeThrown = true;
-                        eyeRecallTimer = 0;
-                        eyeOnWall = false;
-
-                        currentRecallEyeTransform = 0;
-                        thrownEyeTransforms.Clear();
-
-                        if (GameVariables.instance.canSlingShotEye && isInSlingShot)
+                        Vector3 average = new Vector3();
+                        for (int i = 1; i < rightHandTransforms.Count; i++)
                         {
-                            isInSlingShot = false;
-                            throwingEyeModel.GetComponent<Rigidbody>().velocity = (leftController.transform.position - rightController.transform.position) * GameVariables.instance.slingshotVelocity;
+                            average += (rightHandTransforms[i] - rightHandTransforms[i - 1]);
                         }
-                        else
-                        {
-                            Vector3 average = new Vector3();
-                            for (int i = 1; i < rightHandTransforms.Count; i++)
-                            {
-                                average += (rightHandTransforms[i] - rightHandTransforms[i - 1]);
-                            }
-                            average /= rightHandTransforms.Count - 1;
-                            throwingEyeModel.GetComponent<Rigidbody>().velocity = average * GameVariables.instance.throwingVelocity;
-                        }
+                        average /= rightHandTransforms.Count - 1;
+                        throwingEyeModel.GetComponent<Rigidbody>().velocity = average * GameVariables.instance.throwingVelocity;
                     }
+
                 }
             }
         }
@@ -483,6 +490,7 @@ public class InputController : MonoBehaviour
                             MoveRobot();
                         }
                     }
+                    Debug.Log(hit.collider.gameObject);
                 }
             }
         }
@@ -606,7 +614,7 @@ public class InputController : MonoBehaviour
 
     public void MoveRobot()
     {
-            if (!MovingToPoint)
+        if (!MovingToPoint)
         {
             if (GameVariables.instance.freeMovement)
             {

@@ -79,6 +79,8 @@ public class InputController : MonoBehaviour
 
     public bool eyeFromChest;
 
+    public LayerMask cantMoveRobotThroughLayerMask;
+
     public enum CameraMode
     {
         Robot,
@@ -328,7 +330,7 @@ public class InputController : MonoBehaviour
                     }
                     if (GameVariables.instance.freeMovement)
                     {
-                        if (Physics.Raycast(position, forward, out hit, 100f))
+                        if (Physics.Raycast(position, forward, out hit, 100f, cantMoveRobotThroughLayerMask))
                         {
                             if (validFloors == (validFloors | (1 << hit.collider.gameObject.layer)))
                             {
@@ -344,7 +346,7 @@ public class InputController : MonoBehaviour
                         {
                             //Highlight Point
                         }
-                        Physics.Raycast(position, forward, out hit, 100f);
+                        Physics.Raycast(position, forward, out hit, 100f, cantMoveRobotThroughLayerMask);
                         if (validFloors == (validFloors | (1 << hit.collider.gameObject.layer)))
                         {
                             optic.transform.position = hit.point;
@@ -474,7 +476,7 @@ public class InputController : MonoBehaviour
                 else
                 {
                     RaycastHit hit;
-                    if (Physics.Raycast(rightController.transform.position, rightController.transform.forward, out hit, 100f))
+                    if (Physics.Raycast(rightController.transform.position, rightController.transform.forward, out hit, 100f, cantMoveRobotThroughLayerMask))
                     {
                         if (validFloors == (validFloors | (1 << hit.collider.gameObject.layer)))
                         {
@@ -562,7 +564,7 @@ public class InputController : MonoBehaviour
             else
             {
                 RaycastHit hit;
-                if (Physics.Raycast(rightController.transform.position, rightController.transform.forward, out hit, 100f))
+                if (Physics.Raycast(rightController.transform.position, rightController.transform.forward, out hit, 100f, cantMoveRobotThroughLayerMask))
                 {
                     if (validFloors == (validFloors | (1 << hit.collider.gameObject.layer)))
                     {

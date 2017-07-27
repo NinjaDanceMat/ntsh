@@ -21,6 +21,12 @@ public class InputController : MonoBehaviour
     public Animator robotAnimator;
     public GameObject rightController;
     public GameObject leftController;
+    public GameObject dominantController;
+    public GameObject weakController;
+    public GameObject weakStuff;
+    public GameObject dominantStuff;
+
+
     public NavMeshAgent robotAgent;
 
     public GameObject optic;
@@ -39,7 +45,7 @@ public class InputController : MonoBehaviour
 
     public float eyeRecallTimer;
 
-    public List<Vector3> rightHandTransforms = new List<Vector3>();
+    public List<Vector3> dominantHandTransforms = new List<Vector3>();
 
     public MovePoint currentMovePoint;
     public bool MovingToPoint;
@@ -91,6 +97,8 @@ public class InputController : MonoBehaviour
     public static InputController instance;
     public bool eyeOnWall;
 
+    public bool oldLeftHandMode;
+
     // Use this for initialization
     void Awake()
     {
@@ -107,10 +115,43 @@ public class InputController : MonoBehaviour
         }
         rigCheckpointPos = cameraRig.transform.position;
         rigCheckpointRot = cameraRig.transform.rotation;
+
+        ChangeHandMode(GameVariables.instance.leftHandMode);
+    }
+
+    public void ChangeHandMode(bool leftHand)
+    {
+        if (leftHand)
+        {
+            dominantController = leftController;
+            weakController = rightController;
+        }
+        else
+        {
+            dominantController = rightController;
+            weakController = leftController;
+        }
+
+        weakStuff.transform.parent = weakController.transform;
+        weakStuff.transform.localPosition = Vector3.zero;
+        weakStuff.transform.localRotation = Quaternion.identity;
+        dominantStuff.transform.parent = dominantController.transform;
+        dominantStuff.transform.localPosition = Vector3.zero;
+        dominantStuff.transform.localRotation = Quaternion.identity;
+
+       oldLeftHandMode = GameVariables.instance.leftHandMode;
     }
 
     private void Update()
     {
+        if (oldLeftHandMode != GameVariables.instance.leftHandMode)
+        {
+            ChangeHandMode(GameVariables.instance.leftHandMode);
+        }
+        Destroy(currentLeftHandModel);
+        Destroy(currentRightHandModel);
+        bool hasChangedDominantHandModel = false;
+
         if (!dead)
         {
             if (recallingEye)
@@ -119,29 +160,29 @@ public class InputController : MonoBehaviour
                 if (!eyeFromChest)
                 {
                     speed = GameVariables.instance.recallSpeed;
-                    if (Vector3.Distance(throwingEyeModel.transform.position, rightController.transform.position) < 0.5f)
+                    if (Vector3.Distance(throwingEyeModel.transform.position, dominantController.transform.position) < 0.5f)
                     {
-                        throwingEyeModel.transform.position = rightController.transform.position;
+                        throwingEyeModel.transform.position = dominantController.transform.position;
                     }
                 }
-                if (Vector3.Distance(throwingEyeModel.transform.position, rightController.transform.position) < 0.05f)
+                if (Vector3.Distance(throwingEyeModel.transform.position, dominantController.transform.position) < 0.05f)
                 {
                     eyeFromChest = false;
                     eyeThrown = false;
                     clutchingEyeModel.SetActive(true);
                     clutchingEye = true;
                     recallingEye = false;
-                    rightHandTransforms.Clear();
+                    dominantHandTransforms.Clear();
 
-                    throwingEyeModel.transform.parent = rightController.transform;
+                    throwingEyeModel.transform.parent = dominantStuff.transform;
                     throwingEyeModel.SetActive(false);
                     throwingEyeModel.transform.localPosition = Vector3.zero;
                 }
                 else
                 {
-                    if (!Physics.Linecast(throwingEyeModel.transform.position, rightController.transform.position, defaultLayerMask))
+                    if (!Physics.Linecast(throwingEyeModel.transform.position, dominantController.transform.position, defaultLayerMask))
                     {
-                        Vector3 fromThrowingBallToController = rightController.transform.position - throwingEyeModel.transform.position;
+                        Vector3 fromThrowingBallToController = dominantController.transform.position - throwingEyeModel.transform.position;
                         throwingEyeModel.GetComponent<Rigidbody>().velocity = (fromThrowingBallToController.normalized * speed);
                     }
                     else
@@ -166,10 +207,10 @@ public class InputController : MonoBehaviour
             {
                 if (clutchingEye)
                 {
-                    rightHandTransforms.Add(rightController.transform.position);
-                    if (rightHandTransforms.Count > GameVariables.instance.numberOfFramesForVelocity)
+                    dominantHandTransforms.Add(dominantController.transform.position);
+                    if (dominantHandTransforms.Count > GameVariables.instance.numberOfFramesForVelocity)
                     {
-                        rightHandTransforms.RemoveAt(0);
+                        dominantHandTransforms.RemoveAt(0);
                     }
                 }
             }
@@ -187,8 +228,8 @@ public class InputController : MonoBehaviour
                 }
                 else
                 {
-                    position = rightController.transform.position;
-                    forward = rightController.transform.forward;
+                    position = dominantController.transform.position;
+                    forward = dominantController.transform.forward;
                 }
                 if (Physics.Raycast(position, forward, out hit, 100f) && !GameVariables.instance.throwEye)
                 {
@@ -198,15 +239,20 @@ public class InputController : MonoBehaviour
                         optic.transform.position = hit.point;
                     }
                 }
-                Destroy(currentRightHandModel);
-                bool hasChangedModel = false;
 
                 if (clutchingEye)
-                {
-                    hasChangedModel = true;
-                    currentRightHandModel = Instantiate(rHandHold, rightHandModelSpawnPoint.transform);
+                { 
+                    if (GameVariables.instance.leftHandMode)
+                    {
+                        currentLeftHandModel = Instantiate(lHandHold, leftHandModelSpawnPoint.transform);
+                    }
+                    else
+                    {
+                        currentRightHandModel = Instantiate(rHandHold, rightHandModelSpawnPoint.transform);
+                    }
+                    hasChangedDominantHandModel = true;
                 }
-                if (!hasChangedModel)
+                if (!hasChangedDominantHandModel)
                 {
                     if (eyeOnWall || eyeThrown)
                     {
@@ -219,68 +265,122 @@ public class InputController : MonoBehaviour
                         {
                             eyeModel = throwingEyeModel;
                         }
-                        Vector3 fromControllerToEyeOnWall = eyeModel.transform.position - rightController.transform.position;
+                        Vector3 fromControllerToEyeOnWall = eyeModel.transform.position - dominantController.transform.position;
 
-                        Vector3 openHandVector = -rightController.transform.up;
+                        Vector3 openHandVector = -dominantController.transform.up;
                         if (Vector3.Angle(openHandVector, fromControllerToEyeOnWall) < GameVariables.instance.recallAngle)
                         {
-                            hasChangedModel = true;
-                            currentRightHandModel = Instantiate(rHandRecall, rightHandModelSpawnPoint.transform);
+                            if (GameVariables.instance.leftHandMode)
+                            {
+                                currentLeftHandModel = Instantiate(lHandRecall, leftHandModelSpawnPoint.transform);
+                            }
+                            else
+                            {
+                                currentRightHandModel = Instantiate(rHandRecall, rightHandModelSpawnPoint.transform);
+                            }
+                            hasChangedDominantHandModel = true;
                         }
                     }
                 }
-                if (!hasChangedModel && eyeOnWall)
+                if (!hasChangedDominantHandModel)
                 {
-
-                    if (Vector3.Distance(rightController.transform.position, armButton.transform.position) < 0.1f)
+                    if (eyeOnWall)
                     {
-                        hasChangedModel = true;
-                        currentRightHandModel = Instantiate(rHandPoint, rightHandModelSpawnPoint.transform);
-                    }
-                }
-
-                if (!hasChangedModel && !eyeOnWall && !eyeThrown)
-                {
-                    bool controllerInArea = false;
-
-                    Collider[] colliders = Physics.OverlapCapsule(chestModel.transform.position + new Vector3(0, 0.15f, 0), chestModel.transform.position + new Vector3(0, -0.2f, 0), GameVariables.instance.chestAreaRadius);
-                    foreach (Collider collider in colliders)
-                    {
-                        if (collider.tag == "RightController")
+                        if (Vector3.Distance(dominantController.transform.position, armButton.transform.position) < 0.1f)
                         {
-                            controllerInArea = true;
-                            break;
-                        }
-                    }
-
-                    if (controllerInArea)
-                    {
-                        Vector3 fromControllerToEyeInChest = chestModel.transform.position - rightController.transform.position;
-
-                        Vector3 openHandVector = -rightController.transform.up;
-                        if (Vector3.Angle(openHandVector, fromControllerToEyeInChest) < GameVariables.instance.recallAngle)
-                        {
-                            hasChangedModel = true;
-                            currentRightHandModel = Instantiate(rHandGrab, rightHandModelSpawnPoint.transform);
-
+                            if (GameVariables.instance.leftHandMode)
+                            {
+                                currentLeftHandModel = Instantiate(lHandPoint, leftHandModelSpawnPoint.transform);
+                            }
+                            else
+                            {
+                                currentRightHandModel = Instantiate(rHandPoint, rightHandModelSpawnPoint.transform);
+                            }
+                            hasChangedDominantHandModel = true;
                         }
                     }
                 }
-
-                if (!hasChangedModel)
+                if (!hasChangedDominantHandModel)
                 {
-                    hasChangedModel = true;
-                    currentRightHandModel = Instantiate(rHandDefault, rightHandModelSpawnPoint.transform);
+                    if (!eyeOnWall && !eyeThrown)
+                    {
+                        bool controllerInArea = false;
+
+                        Collider[] colliders = Physics.OverlapCapsule(chestModel.transform.position + new Vector3(0, 0.15f, 0), chestModel.transform.position + new Vector3(0, -0.2f, 0), GameVariables.instance.chestAreaRadius);
+                        foreach (Collider collider in colliders)
+                        {
+                            if (GameVariables.instance.leftHandMode)
+                            {
+                                if (collider.tag == "LeftController")
+                                {
+                                    controllerInArea = true;
+                                    break;
+                                }
+                            }
+                            else
+                            {
+                                if (collider.tag == "RightController")
+                                {
+                                    controllerInArea = true;
+                                    break;
+                                }
+                            }
+                        }
+
+                        if (controllerInArea)
+                        {
+                            Vector3 fromControllerToEyeInChest = chestModel.transform.position - dominantController.transform.position;
+
+                            Vector3 openHandVector = -dominantController.transform.up;
+                            if (Vector3.Angle(openHandVector, fromControllerToEyeInChest) < GameVariables.instance.recallAngle)
+                            {
+                                if (GameVariables.instance.leftHandMode)
+                                {
+                                    currentLeftHandModel = Instantiate(lHandGrab, leftHandModelSpawnPoint.transform);
+                                }
+                                else
+                                {
+                                    currentRightHandModel = Instantiate(rHandGrab, rightHandModelSpawnPoint.transform);
+                                }
+                                hasChangedDominantHandModel = true;
+                            }
+                        }
+                    }
+                }
+                if (!hasChangedDominantHandModel)
+                {
+                    hasChangedDominantHandModel = true;
+                    if (GameVariables.instance.leftHandMode)
+                    {
+                        currentLeftHandModel = Instantiate(lHandDefault, leftHandModelSpawnPoint.transform);
+                    }
+                    else
+                    {
+                        currentRightHandModel = Instantiate(rHandDefault, rightHandModelSpawnPoint.transform);
+                    }
                 }
 
-                Destroy(currentLeftHandModel);
                 if (isInSlingShot && !eyeThrown)
                 {
-                    currentLeftHandModel = Instantiate(lHandRecall, leftHandModelSpawnPoint.transform);
+                    if (!GameVariables.instance.leftHandMode)
+                    {
+                        currentLeftHandModel = Instantiate(lHandRecall, leftHandModelSpawnPoint.transform);
+                    }
+                    else
+                    {
+                        currentRightHandModel = Instantiate(rHandRecall, rightHandModelSpawnPoint.transform);
+                    }
                 }
                 else
                 {
-                    currentLeftHandModel = Instantiate(lHandDefault, leftHandModelSpawnPoint.transform);
+                    if (!GameVariables.instance.leftHandMode)
+                    {
+                        currentLeftHandModel = Instantiate(lHandDefault, leftHandModelSpawnPoint.transform);
+                    }
+                    else
+                    {
+                        currentRightHandModel = Instantiate(rHandDefault, rightHandModelSpawnPoint.transform);
+                    }
                 }
                 
                 if (eyeThrown && !recallingEye)
@@ -306,21 +406,43 @@ public class InputController : MonoBehaviour
             }
             else
             {
+
+                if (!GameVariables.instance.leftHandMode)
+                {
+                    currentLeftHandModel = Instantiate(lHandDefault, leftHandModelSpawnPoint.transform);
+                }
+                else
+                {
+                    currentRightHandModel = Instantiate(rHandDefault, rightHandModelSpawnPoint.transform);
+                }
+
                 robotAnimator.SetFloat("WalkingBlend", robotAgent.velocity.magnitude / robotAgent.speed);
 
-
-                Destroy(currentRightHandModel);
                 bool pointingAtButton = false;
 
-                if (Vector3.Distance(rightController.transform.position, armButton.transform.position) < 0.1f)
+                if (Vector3.Distance(dominantController.transform.position, armButton.transform.position) < 0.1f)
                 {
                     pointingAtButton = true;
-                    currentRightHandModel = Instantiate(rHandPoint, rightHandModelSpawnPoint.transform);
+                    if (GameVariables.instance.leftHandMode)
+                    {
+                        currentLeftHandModel = Instantiate(lHandPoint, leftHandModelSpawnPoint.transform);
+                    }
+                    else
+                    {
+                        currentRightHandModel = Instantiate(rHandPoint, rightHandModelSpawnPoint.transform);
+                    }
                 }
 
                 else
                 {
-                    currentRightHandModel = Instantiate(rHandDefault, rightHandModelSpawnPoint.transform);
+                    if (GameVariables.instance.leftHandMode)
+                    {
+                        currentLeftHandModel = Instantiate(lHandDefault, leftHandModelSpawnPoint.transform);
+                    }
+                    else
+                    {
+                        currentRightHandModel = Instantiate(rHandDefault, rightHandModelSpawnPoint.transform);
+                    }
                 }
                 optic.SetActive(false);
                 if (!pointingAtButton)
@@ -332,8 +454,8 @@ public class InputController : MonoBehaviour
                     }
                     else
                     {
-                        position = rightController.transform.position;
-                        forward = rightController.transform.forward;
+                        position = dominantController.transform.position;
+                        forward = dominantController.transform.forward;
                     }
                     if (GameVariables.instance.freeMovement)
                     {
@@ -434,16 +556,16 @@ public class InputController : MonoBehaviour
                     if (GameVariables.instance.canSlingShotEye && isInSlingShot)
                     {
                         isInSlingShot = false;
-                        throwingEyeModel.GetComponent<Rigidbody>().velocity = (leftController.transform.position - rightController.transform.position) * GameVariables.instance.slingshotVelocity;
+                        throwingEyeModel.GetComponent<Rigidbody>().velocity = (weakController.transform.position - dominantController.transform.position) * GameVariables.instance.slingshotVelocity;
                     }
                     else
                     {
                         Vector3 average = new Vector3();
-                        for (int i = 1; i < rightHandTransforms.Count; i++)
+                        for (int i = 1; i < dominantHandTransforms.Count; i++)
                         {
-                            average += (rightHandTransforms[i] - rightHandTransforms[i - 1]);
+                            average += (dominantHandTransforms[i] - dominantHandTransforms[i - 1]);
                         }
-                        average /= rightHandTransforms.Count - 1;
+                        average /= dominantHandTransforms.Count - 1;
                         throwingEyeModel.GetComponent<Rigidbody>().velocity = average * GameVariables.instance.throwingVelocity;
                     }
 
@@ -466,7 +588,7 @@ public class InputController : MonoBehaviour
                 {
                     if (eyeOnWall)
                     {
-                        if (Vector3.Distance(rightController.transform.position, armButton.transform.position) < 0.1f)
+                        if (Vector3.Distance(dominantController.transform.position, armButton.transform.position) < 0.1f)
                         {
                             ShootToTarget(onWallEyeModel.transform.position);
                         }
@@ -476,14 +598,14 @@ public class InputController : MonoBehaviour
             else
             {
 
-                if (Vector3.Distance(rightController.transform.position, armButton.transform.position) < 0.1f)
+                if (Vector3.Distance(dominantController.transform.position, armButton.transform.position) < 0.1f)
                 {
                     Recall();
                 }
                 else
                 {
                     RaycastHit hit;
-                    if (Physics.Raycast(rightController.transform.position, rightController.transform.forward, out hit, 100f, cantMoveRobotThroughLayerMask))
+                    if (Physics.Raycast(dominantController.transform.position, dominantController.transform.forward, out hit, 100f, cantMoveRobotThroughLayerMask))
                     {
                         if (validFloors == (validFloors | (1 << hit.collider.gameObject.layer)))
                         {
@@ -515,9 +637,9 @@ public class InputController : MonoBehaviour
                         {
                             eyeModel = throwingEyeModel;
                         }
-                        Vector3 fromControllerToEyeOnWall = eyeModel.transform.position - rightController.transform.position;
+                        Vector3 fromControllerToEyeOnWall = eyeModel.transform.position - dominantController.transform.position;
 
-                        Vector3 openHandVector = -rightController.transform.up;
+                        Vector3 openHandVector = -dominantController.transform.up;
                         if (Vector3.Angle(openHandVector, fromControllerToEyeOnWall) < GameVariables.instance.recallAngle)
                         {
                             recallingEye = true;
@@ -538,18 +660,29 @@ public class InputController : MonoBehaviour
                     Collider[] colliders = Physics.OverlapCapsule(chestModel.transform.position + new Vector3(0, 0.15f, 0), chestModel.transform.position + new Vector3(0, -0.2f, 0), GameVariables.instance.chestAreaRadius);
                     foreach (Collider collider in colliders)
                     {
-                        if (collider.tag == "RightController")
+                        if (GameVariables.instance.leftHandMode)
                         {
-                            controllerInArea = true;
-                            break;
+                            if (collider.tag == "LeftController")
+                            {
+                                controllerInArea = true;
+                                break;
+                            }
+                        }
+                        else
+                        {
+                            if (collider.tag == "RightController")
+                            {
+                                controllerInArea = true;
+                                break;
+                            }
                         }
                     }
 
                     if (controllerInArea)
                     {
-                        Vector3 fromControllerToEyeInChest = chestModel.transform.position - rightController.transform.position;
+                        Vector3 fromControllerToEyeInChest = chestModel.transform.position - dominantController.transform.position;
 
-                        Vector3 openHandVector = -rightController.transform.up;
+                        Vector3 openHandVector = -dominantController.transform.up;
                         if (Vector3.Angle(openHandVector, fromControllerToEyeInChest) < GameVariables.instance.recallAngle)
                         {
                             if (!recallingEye)
@@ -572,7 +705,7 @@ public class InputController : MonoBehaviour
             else
             {
                 RaycastHit hit;
-                if (Physics.Raycast(rightController.transform.position, rightController.transform.forward, out hit, 100f, cantMoveRobotThroughLayerMask))
+                if (Physics.Raycast(dominantController.transform.position, dominantController.transform.forward, out hit, 100f, cantMoveRobotThroughLayerMask))
                 {
                     if (validFloors == (validFloors | (1 << hit.collider.gameObject.layer)))
                     {
@@ -628,7 +761,7 @@ public class InputController : MonoBehaviour
                 }
                 else
                 {
-                    if (Physics.Raycast(rightController.transform.position, rightController.transform.forward, out hit, 100f, validFloors))
+                    if (Physics.Raycast(dominantController.transform.position, dominantController.transform.forward, out hit, 100f, validFloors))
                     {
                         robotAgent.destination = hit.point;
                     }
@@ -651,7 +784,7 @@ public class InputController : MonoBehaviour
                 }
                 else
                 {
-                    if (Physics.Raycast(rightController.transform.position, rightController.transform.forward, out hit, 100f, validMovePoint))
+                    if (Physics.Raycast(dominantController.transform.position, dominantController.transform.forward, out hit, 100f, validMovePoint))
                     {
                         if (currentMovePoint.connections.Contains(hit.collider.GetComponent<MovePoint>()))
                         {
@@ -679,7 +812,7 @@ public class InputController : MonoBehaviour
         }
         else
         {
-            if (Physics.Raycast(rightController.transform.position, rightController.transform.forward, out hit, 100f, validWalls))
+            if (Physics.Raycast(dominantController.transform.position, dominantController.transform.forward, out hit, 100f, validWalls))
             {
                 validShot = true;
             }
@@ -695,7 +828,7 @@ public class InputController : MonoBehaviour
         onWallEyeModel.SetActive(false);
 
         robotModel.SetActive(true);
-        robotAgent.isStopped = false;// = false;
+        robotAgent.isStopped = false;
 
         currentMode = CameraMode.Wall;
 
@@ -728,7 +861,8 @@ public class InputController : MonoBehaviour
             Debug.Log("Recall");
             eyeOnWall = false;
 
-            robotAgent.isStopped = false;// = true;
+            robotAgent.destination = robotAgent.transform.position;
+            robotAgent.isStopped = true;// = true;
             robotModel.SetActive(false);
 
 
@@ -770,7 +904,7 @@ public class InputController : MonoBehaviour
 
     public void RecallEye()
     {
-        throwingEyeModel.transform.parent = rightController.transform;
+        throwingEyeModel.transform.parent = dominantStuff.transform;
         throwingEyeModel.SetActive(false);
 
         clutchingEye = false;

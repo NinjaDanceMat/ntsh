@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class GameVariables : MonoBehaviour {
 
+    public bool leftHandMode;  
+
     public bool rotatePlayerWhenRobotToWall;
     public bool rotatePlayerWhenWallToRobot;
     public bool useHeadForAimingToWall;

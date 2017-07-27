@@ -212,7 +212,6 @@ public class Enemy : MonoBehaviour {
                 }
                 else
                 {
-
                     if (searchIndex == 1)
                     {
                         float angle = Vector3.Angle(lastKnownPlayerThisFoward, lastKnownPlyerVector);

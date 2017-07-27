@@ -6,6 +6,8 @@ public class Controller : MonoBehaviour {
 
     private SteamVR_TrackedController _controller;
 
+    public bool isLeft;
+
     private void Awake()
     {
         _controller = GetComponent<SteamVR_TrackedController>();
@@ -24,21 +26,37 @@ public class Controller : MonoBehaviour {
 
     public void HandleTriggerReleased(object sender, ClickedEventArgs e)
     {
-        InputController.instance.TriggerReleased();
+        if (!isLeft && !GameVariables.instance.leftHandMode ||
+            (isLeft && GameVariables.instance.leftHandMode))
+        {
+            InputController.instance.TriggerReleased();
+        }
+       
     }
 
     public void HandleTriggerClicked(object sender, ClickedEventArgs e)
     {
-        InputController.instance.TriggerShoot();
+        if (!isLeft && !GameVariables.instance.leftHandMode ||
+            (isLeft && GameVariables.instance.leftHandMode))
+        {
+            InputController.instance.TriggerShoot();
+        }
     }
 
     public void HandlePadClicked(object sender, ClickedEventArgs e)
     {
-        InputController.instance.ButtonBoop();
+        if (!isLeft && !GameVariables.instance.leftHandMode ||
+             (isLeft && GameVariables.instance.leftHandMode))
+        {
+            InputController.instance.ButtonBoop();
+        }
     }
     public void HandleTriggerHeld()
     {
-        InputController.instance.TriggerHeld();
+        if (!isLeft && !GameVariables.instance.leftHandMode ||
+            (isLeft && GameVariables.instance.leftHandMode))
+        {
+            InputController.instance.TriggerHeld();
+        }
     }
-
 }

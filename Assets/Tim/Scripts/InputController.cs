@@ -53,6 +53,9 @@ public class InputController : MonoBehaviour
     public GameObject currentLeftHandModel;
     public GameObject currentRightHandModel;
 
+    public Controller leftHandInputController;
+    public Controller rightHandInputController;
+
     public GameObject leftHandModelSpawnPoint;
     public GameObject rightHandModelSpawnPoint;
 
@@ -99,6 +102,8 @@ public class InputController : MonoBehaviour
 
     public bool oldLeftHandMode;
 
+    public bool transitioning;
+
     // Use this for initialization
     void Awake()
     {
@@ -139,7 +144,7 @@ public class InputController : MonoBehaviour
         dominantStuff.transform.localPosition = Vector3.zero;
         dominantStuff.transform.localRotation = Quaternion.identity;
 
-       oldLeftHandMode = GameVariables.instance.leftHandMode;
+        oldLeftHandMode = GameVariables.instance.leftHandMode;
     }
 
     private void Update()
@@ -167,6 +172,8 @@ public class InputController : MonoBehaviour
                 }
                 if (Vector3.Distance(throwingEyeModel.transform.position, dominantController.transform.position) < 0.05f)
                 {
+                    vibrate(true, 0.06f, 3000);
+
                     eyeFromChest = false;
                     eyeThrown = false;
                     clutchingEyeModel.SetActive(true);
@@ -189,7 +196,7 @@ public class InputController : MonoBehaviour
                     {
                         currentRecallEyeTransform -= 1;
                         throwingEyeModel.transform.position = thrownEyeTransforms[currentRecallEyeTransform];
-                        thrownEyeTransforms.RemoveAt(thrownEyeTransforms.Count -1);
+                        thrownEyeTransforms.RemoveAt(thrownEyeTransforms.Count - 1);
                         throwingEyeModel.GetComponent<Rigidbody>().velocity = Vector3.zero;
                     }
                 }
@@ -241,7 +248,7 @@ public class InputController : MonoBehaviour
                 }
 
                 if (clutchingEye)
-                { 
+                {
                     if (GameVariables.instance.leftHandMode)
                     {
                         currentLeftHandModel = Instantiate(lHandHold, leftHandModelSpawnPoint.transform);
@@ -332,18 +339,17 @@ public class InputController : MonoBehaviour
                             Vector3 fromControllerToEyeInChest = chestModel.transform.position - dominantController.transform.position;
 
                             Vector3 openHandVector = -dominantController.transform.up;
-                            if (Vector3.Angle(openHandVector, fromControllerToEyeInChest) < GameVariables.instance.recallAngle)
+
+                            if (GameVariables.instance.leftHandMode)
                             {
-                                if (GameVariables.instance.leftHandMode)
-                                {
-                                    currentLeftHandModel = Instantiate(lHandGrab, leftHandModelSpawnPoint.transform);
-                                }
-                                else
-                                {
-                                    currentRightHandModel = Instantiate(rHandGrab, rightHandModelSpawnPoint.transform);
-                                }
-                                hasChangedDominantHandModel = true;
+                                currentLeftHandModel = Instantiate(lHandGrab, leftHandModelSpawnPoint.transform);
                             }
+                            else
+                            {
+                                currentRightHandModel = Instantiate(rHandGrab, rightHandModelSpawnPoint.transform);
+                            }
+                            hasChangedDominantHandModel = true;
+
                         }
                     }
                 }
@@ -382,7 +388,7 @@ public class InputController : MonoBehaviour
                         currentRightHandModel = Instantiate(rHandDefault, rightHandModelSpawnPoint.transform);
                     }
                 }
-                
+
                 if (eyeThrown && !recallingEye)
                 {
                     bool addIt = false;
@@ -392,7 +398,7 @@ public class InputController : MonoBehaviour
                     }
                     else
                     {
-                        if (Vector3.Distance(thrownEyeTransforms[currentRecallEyeTransform-1], throwingEyeModel.transform.position) > 0.2f)
+                        if (Vector3.Distance(thrownEyeTransforms[currentRecallEyeTransform - 1], throwingEyeModel.transform.position) > 0.2f)
                         {
                             addIt = true;
                         }
@@ -583,14 +589,16 @@ public class InputController : MonoBehaviour
                 if (!GameVariables.instance.throwEye)
                 {
                     ShootToWall();
+                    vibrate(true, 0.06f, 750);
                 }
                 else
                 {
                     if (eyeOnWall)
                     {
-                        if (Vector3.Distance(dominantController.transform.position, armButton.transform.position) < 0.1f)
+                        if (!transitioning && Vector3.Distance(dominantController.transform.position, armButton.transform.position) < 0.1f)
                         {
                             ShootToTarget(onWallEyeModel.transform.position);
+                            vibrate(true, 0.06f, 750);
                         }
                     }
                 }
@@ -600,6 +608,7 @@ public class InputController : MonoBehaviour
 
                 if (Vector3.Distance(dominantController.transform.position, armButton.transform.position) < 0.1f)
                 {
+                    vibrate(true, 0.06f, 750);
                     Recall();
                 }
                 else
@@ -610,6 +619,7 @@ public class InputController : MonoBehaviour
                         if (validFloors == (validFloors | (1 << hit.collider.gameObject.layer)))
                         {
                             MoveRobot();
+                            
                         }
                     }
                     Debug.Log(hit.collider.gameObject);
@@ -622,7 +632,7 @@ public class InputController : MonoBehaviour
     {
         if (!dead)
         {
-            if (currentMode == CameraMode.Robot)
+            if (currentMode == CameraMode.Robot && !transitioning)
             {
                 if (GameVariables.instance.throwEye)
                 {
@@ -683,22 +693,21 @@ public class InputController : MonoBehaviour
                         Vector3 fromControllerToEyeInChest = chestModel.transform.position - dominantController.transform.position;
 
                         Vector3 openHandVector = -dominantController.transform.up;
-                        if (Vector3.Angle(openHandVector, fromControllerToEyeInChest) < GameVariables.instance.recallAngle)
-                        {
-                            if (!recallingEye)
-                            {
-                                eyeThrown = true;
-                                throwingEyeModel.transform.parent = null;
-                                throwingEyeModel.transform.position = chestModel.transform.position;
-                                onWallEyeModel.SetActive(false);
-                                clutchingEyeModel.SetActive(false);
-                                throwingEyeModel.SetActive(true);
-                                eyeOnWall = false;
-                                recallingEye = true;
 
-                                eyeFromChest = true;
-                            }
+                        if (!recallingEye)
+                        {
+                            eyeThrown = true;
+                            throwingEyeModel.transform.parent = null;
+                            throwingEyeModel.transform.position = chestModel.transform.position;
+                            onWallEyeModel.SetActive(false);
+                            clutchingEyeModel.SetActive(false);
+                            throwingEyeModel.SetActive(true);
+                            eyeOnWall = false;
+                            recallingEye = true;
+
+                            eyeFromChest = true;
                         }
+
                     }
                 }
             }
@@ -757,6 +766,7 @@ public class InputController : MonoBehaviour
                     if (Physics.Raycast(head.transform.position, head.transform.forward, out hit, 100f, validFloors))
                     {
                         robotAgent.destination = hit.point;
+                        vibrate(true, 0.06f, 750);
                     }
                 }
                 else
@@ -764,6 +774,7 @@ public class InputController : MonoBehaviour
                     if (Physics.Raycast(dominantController.transform.position, dominantController.transform.forward, out hit, 100f, validFloors))
                     {
                         robotAgent.destination = hit.point;
+                        vibrate(true, 0.06f, 750);
                     }
                 }
             }
@@ -778,6 +789,7 @@ public class InputController : MonoBehaviour
                         {
                             currentMovePoint = hit.collider.GetComponent<MovePoint>();
                             robotAgent.destination = hit.collider.transform.position;
+                            vibrate(true, 0.06f, 750);
                             MovingToPoint = true;
                         }
                     }
@@ -790,6 +802,7 @@ public class InputController : MonoBehaviour
                         {
                             currentMovePoint = hit.collider.GetComponent<MovePoint>();
                             robotAgent.destination = hit.collider.transform.position;
+                            vibrate(true, 0.06f, 750);
                             MovingToPoint = true;
                         }
                     }
@@ -825,9 +838,7 @@ public class InputController : MonoBehaviour
 
     public void ShootToTarget(Vector3 hitPoint)
     {
-        onWallEyeModel.SetActive(false);
 
-        robotModel.SetActive(true);
         robotAgent.isStopped = false;
 
         currentMode = CameraMode.Wall;
@@ -863,7 +874,6 @@ public class InputController : MonoBehaviour
 
             robotAgent.destination = robotAgent.transform.position;
             robotAgent.isStopped = true;// = true;
-            robotModel.SetActive(false);
 
 
             Vector3 newRigPos = cameraRig.transform.position;
@@ -896,10 +906,37 @@ public class InputController : MonoBehaviour
 
     public void eyeCollidedWithValidWall()
     {
-        throwingEyeModel.SetActive(false);
-        onWallEyeModel.SetActive(true);
-        onWallEyeModel.transform.position = throwingEyeModel.transform.position;
-        eyeOnWall = true;
+        if (!recallingEye)
+        {
+            throwingEyeModel.SetActive(false);
+            onWallEyeModel.SetActive(true);
+            onWallEyeModel.transform.position = throwingEyeModel.transform.position;
+            eyeOnWall = true;
+        }
+        vibrate(true, 0.06f, 3000);
+    }
+
+    public void eyeCollidedWithNonValidWall()
+    {
+        vibrate(true, 0.01f, 750);
+    }
+
+    public void vibrate(bool dominantController, float time, float strength)
+    {
+        if (dominantController && GameVariables.instance.leftHandMode || !dominantController && !GameVariables.instance.leftHandMode)
+        {
+            if (rightHandInputController != null)
+            {
+                StartCoroutine(LongVibration(SteamVR_Controller.Input((int)leftHandInputController.controller.controllerIndex), time, strength));
+            }
+        }
+        else
+        {
+            if (leftHandInputController != null)
+            {
+                StartCoroutine(LongVibration(SteamVR_Controller.Input((int)rightHandInputController.controller.controllerIndex), time, strength));
+            }
+        }
     }
 
     public void RecallEye()
@@ -916,11 +953,11 @@ public class InputController : MonoBehaviour
         eyeOnWall = false;
     }
 
-
     private float _fadeDuration = 0.5f;
 
     private void FadeAndMove(Vector3 newRigPos, Quaternion newRigRot)
     {
+        transitioning = true;
         FadeToWhite();
         StartCoroutine(FadeFromWhite(newRigPos, newRigRot,_fadeDuration));
     }
@@ -941,7 +978,22 @@ public class InputController : MonoBehaviour
         //set start color
         SteamVR_Fade.Start(Color.black, 0f);
         //set and start fade to
+
         SteamVR_Fade.Start(Color.clear, _fadeDuration);
+
+        transitioning = false;
+
+
+        if (currentMode == CameraMode.Wall)
+        {
+            onWallEyeModel.SetActive(false);
+
+            robotModel.SetActive(true);
+        }
+        else
+        {
+            robotModel.SetActive(false);
+        }
     }
 
     public void inSlingShot()
@@ -991,5 +1043,14 @@ public class InputController : MonoBehaviour
         eyeFromChest = false;
 
         RecallEye();
+    }
+
+    IEnumerator LongVibration(SteamVR_Controller.Device device, float length, float strength)
+    {
+        for (float i = 0; i < length; i += Time.deltaTime)
+        {
+            device.TriggerHapticPulse((ushort)Mathf.Lerp(0, 3999, strength));
+            yield return null;
+        }
     }
 }

@@ -4,21 +4,31 @@ using UnityEngine;
 
 public class Controller : MonoBehaviour {
 
-    private SteamVR_TrackedController _controller;
+    public SteamVR_TrackedController controller;
 
     public bool isLeft;
 
     private void Awake()
     {
-        _controller = GetComponent<SteamVR_TrackedController>();
-        _controller.TriggerClicked += HandleTriggerClicked;
-        _controller.TriggerUnclicked += HandleTriggerReleased;
-        _controller.PadClicked += HandlePadClicked;
+        controller = GetComponent<SteamVR_TrackedController>();
+        controller.TriggerClicked += HandleTriggerClicked;
+        controller.TriggerUnclicked += HandleTriggerReleased;
+        controller.PadClicked += HandlePadClicked;
+
+        if (isLeft)
+        {
+            InputController.instance.leftHandInputController = this;
+        }
+        else
+        {
+
+            InputController.instance.rightHandInputController = this;
+        }
     }
 
     public void Update()
     {
-        if (_controller.triggerPressed)
+        if (controller.triggerPressed)
         {
             HandleTriggerHeld();
         }

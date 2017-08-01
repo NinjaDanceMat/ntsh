@@ -10,7 +10,13 @@ public class eye : MonoBehaviour
     {
         if (col.gameObject.layer == 8)
         {
-            InputController.instance.eyeCollidedWithValidWall();
+            
+                InputController.instance.eyeCollidedWithValidWall();
+            
+        }
+        else
+        {
+            InputController.instance.eyeCollidedWithNonValidWall();
         }
     }
 

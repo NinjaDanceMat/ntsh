@@ -149,6 +149,10 @@ public class InputController : MonoBehaviour
 
     private void Update()
     {
+        if (Vector3.Distance(robotAgent.destination,robotAgent.transform.position) < 0.1f)
+        {
+            robotAgent.destination = robotAgent.transform.position;
+        }
         if (oldLeftHandMode != GameVariables.instance.leftHandMode)
         {
             ChangeHandMode(GameVariables.instance.leftHandMode);
@@ -618,7 +622,7 @@ public class InputController : MonoBehaviour
                     {
                         if (validFloors == (validFloors | (1 << hit.collider.gameObject.layer)))
                         {
-                            MoveRobot();
+                            MoveRobot(true);
                             
                         }
                     }
@@ -754,7 +758,7 @@ public class InputController : MonoBehaviour
         }
     }
 
-    public void MoveRobot()
+    public void MoveRobot(bool canVibrate = false)
     {
         if (!MovingToPoint)
         {
@@ -766,7 +770,10 @@ public class InputController : MonoBehaviour
                     if (Physics.Raycast(head.transform.position, head.transform.forward, out hit, 100f, validFloors))
                     {
                         robotAgent.destination = hit.point;
-                        vibrate(true, 0.06f, 750);
+                        if (canVibrate)
+                        {
+                            vibrate(true, 0.06f, 750);
+                        }
                     }
                 }
                 else
@@ -774,7 +781,10 @@ public class InputController : MonoBehaviour
                     if (Physics.Raycast(dominantController.transform.position, dominantController.transform.forward, out hit, 100f, validFloors))
                     {
                         robotAgent.destination = hit.point;
-                        vibrate(true, 0.06f, 750);
+                        if (canVibrate)
+                        {
+                            vibrate(true, 0.06f, 750);
+                        }
                     }
                 }
             }
@@ -789,7 +799,10 @@ public class InputController : MonoBehaviour
                         {
                             currentMovePoint = hit.collider.GetComponent<MovePoint>();
                             robotAgent.destination = hit.collider.transform.position;
-                            vibrate(true, 0.06f, 750);
+                            if (canVibrate)
+                            {
+                                vibrate(true, 0.06f, 750);
+                            }
                             MovingToPoint = true;
                         }
                     }
@@ -802,7 +815,10 @@ public class InputController : MonoBehaviour
                         {
                             currentMovePoint = hit.collider.GetComponent<MovePoint>();
                             robotAgent.destination = hit.collider.transform.position;
-                            vibrate(true, 0.06f, 750);
+                            if (canVibrate)
+                            {
+                                vibrate(true, 0.06f, 750);
+                            }
                             MovingToPoint = true;
                         }
                     }

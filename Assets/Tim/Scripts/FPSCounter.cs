@@ -27,37 +27,33 @@ public class FPSCounter : MonoBehaviour
     private string sFPS = ""; // The fps formatted into a string.
     private GUIStyle style; // The style the text will be displayed at, based en defaultSkin.label.
 
+
+     
+    float deltaTime = 0.0f;
+
     void Start()
     {
         QualitySettings.vSyncCount = 0; 
-        Application.targetFrameRate = 45;
-        StartCoroutine(FPS());
+        Application.targetFrameRate = 20;
+
+
     }
 
     void Update()
     {
+        QualitySettings.vSyncCount = 1;
+        Application.targetFrameRate = 20;
+
         accum += Time.timeScale / Time.deltaTime;
         ++frames;
+
+        deltaTime += (Time.deltaTime - deltaTime) * 0.1f;
+        float fps = 1.0f / deltaTime;
+
+        sFPS = fps.ToString(); // assign that value to any UI or 3D Text.
+
     }
 
-    IEnumerator FPS()
-    {
-        // Infinite loop executed every "frenquency" secondes.
-        while (true)
-        {
-            // Update the FPS
-            float fps = accum / frames;
-            sFPS = fps.ToString("f" + Mathf.Clamp(nbDecimal, 0, 10));
-
-            //Update the color
-            color = (fps >= 30) ? Color.green : ((fps > 10) ? Color.red : Color.yellow);
-
-            accum = 0.0F;
-            frames = 0;
-
-            yield return new WaitForSeconds(frequency);
-        }
-    }
 
     void OnGUI()
     {

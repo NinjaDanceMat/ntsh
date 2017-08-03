@@ -161,7 +161,10 @@ public class Enemy : MonoBehaviour {
 
                         if (Vector3.Distance(playerRobot.transform.position, transform.position) < GameVariables.instance.AIMeleeRange)
                         {
-                            InputController.instance.PlayerKilled();
+                            if (Vector3.Angle(transform.forward, playerRobot.transform.position - transform.position) < GameVariables.instance.AISightAngle)
+                            {
+                                InputController.instance.PlayerKilled();
+                            }
                         }
                     }
                 }

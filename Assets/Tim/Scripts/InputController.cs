@@ -165,6 +165,11 @@ public class InputController : MonoBehaviour
         {
             if (recallingEye)
             {
+                if (!SoundManager.instance.soundEffects[5].source.isPlaying)
+                {
+                    SoundManager.instance.TriggerClip(5);
+                }
+
                 float speed = GameVariables.instance.eyeToHandSpeed;
                 if (!eyeFromChest)
                 {
@@ -188,6 +193,8 @@ public class InputController : MonoBehaviour
                     throwingEyeModel.transform.parent = dominantStuff.transform;
                     throwingEyeModel.SetActive(false);
                     throwingEyeModel.transform.localPosition = Vector3.zero;
+
+                    SoundManager.instance.TriggerClip(6);
                 }
                 else
                 {
@@ -203,6 +210,14 @@ public class InputController : MonoBehaviour
                         thrownEyeTransforms.RemoveAt(thrownEyeTransforms.Count - 1);
                         throwingEyeModel.GetComponent<Rigidbody>().velocity = Vector3.zero;
                     }
+                }
+            }
+
+            else
+            {
+                if (SoundManager.instance.soundEffects[5].source.isPlaying)
+                {
+                    SoundManager.instance.soundEffects[5].source.Stop();
                 }
             }
 
@@ -563,6 +578,8 @@ public class InputController : MonoBehaviour
                     currentRecallEyeTransform = 0;
                     thrownEyeTransforms.Clear();
 
+                    SoundManager.instance.TriggerClip(4);
+
                     if (GameVariables.instance.canSlingShotEye && isInSlingShot)
                     {
                         isInSlingShot = false;
@@ -623,10 +640,8 @@ public class InputController : MonoBehaviour
                         if (validFloors == (validFloors | (1 << hit.collider.gameObject.layer)))
                         {
                             MoveRobot(true);
-                            
                         }
                     }
-                    Debug.Log(hit.collider.gameObject);
                 }
             }
         }
@@ -710,6 +725,8 @@ public class InputController : MonoBehaviour
                             recallingEye = true;
 
                             eyeFromChest = true;
+
+                            SoundManager.instance.TriggerClip(3);
                         }
 
                     }

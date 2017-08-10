@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: a41eb7ed51612de43aa319a2625e8dde
-timeCreated: 1502101813
+guid: ba5cd2ce398c1ca45b507d90bd0473ce
+timeCreated: 1502288771
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
@@ -9,7 +9,7 @@ ModelImporter:
     400000: //RootNode
     2300000: //RootNode
     3300000: //RootNode
-    4300000: polySurface436
+    4300000: balconyWalls
     9500000: //RootNode
   materials:
     importMaterials: 1

@@ -104,6 +104,8 @@ public class InputController : MonoBehaviour
 
     public bool transitioning;
 
+    public bool newRobotDestination;
+
     // Use this for initialization
     void Awake()
     {
@@ -149,9 +151,14 @@ public class InputController : MonoBehaviour
 
     private void Update()
     {
-        if (Vector3.Distance(robotAgent.destination,robotAgent.transform.position) < 0.1f)
+        if (newRobotDestination)
         {
-            robotAgent.destination = robotAgent.transform.position;
+            if (Vector3.Distance(robotAgent.destination, robotAgent.transform.position) < 0.1f)
+            {
+                robotAgent.destination = robotAgent.transform.position;
+                SoundManager.instance.TriggerClip(9);
+                newRobotDestination = false;
+            }
         }
         if (oldLeftHandMode != GameVariables.instance.leftHandMode)
         {
@@ -620,16 +627,17 @@ public class InputController : MonoBehaviour
                         {
                             ShootToTarget(onWallEyeModel.transform.position);
                             vibrate(true, 0.06f, 750);
+                            SoundManager.instance.TriggerClip(7);
                         }
                     }
                 }
             }
             else
             {
-
                 if (Vector3.Distance(dominantController.transform.position, armButton.transform.position) < 0.1f)
                 {
                     vibrate(true, 0.06f, 750);
+                    SoundManager.instance.TriggerClip(7);
                     Recall();
                 }
                 else
@@ -640,6 +648,7 @@ public class InputController : MonoBehaviour
                         if (validFloors == (validFloors | (1 << hit.collider.gameObject.layer)))
                         {
                             MoveRobot(true);
+                            SoundManager.instance.TriggerClip(8);
                         }
                     }
                 }
@@ -786,9 +795,11 @@ public class InputController : MonoBehaviour
                 {
                     if (Physics.Raycast(head.transform.position, head.transform.forward, out hit, 100f, validFloors))
                     {
+                        
                         robotAgent.destination = hit.point;
                         if (canVibrate)
                         {
+                            newRobotDestination = true;
                             vibrate(true, 0.06f, 750);
                         }
                     }
@@ -800,6 +811,7 @@ public class InputController : MonoBehaviour
                         robotAgent.destination = hit.point;
                         if (canVibrate)
                         {
+                            newRobotDestination = true;
                             vibrate(true, 0.06f, 750);
                         }
                     }
@@ -815,9 +827,11 @@ public class InputController : MonoBehaviour
                         if (currentMovePoint.connections.Contains(hit.collider.GetComponent<MovePoint>()))
                         {
                             currentMovePoint = hit.collider.GetComponent<MovePoint>();
+                            
                             robotAgent.destination = hit.collider.transform.position;
                             if (canVibrate)
                             {
+                                newRobotDestination = true;
                                 vibrate(true, 0.06f, 750);
                             }
                             MovingToPoint = true;
@@ -831,9 +845,11 @@ public class InputController : MonoBehaviour
                         if (currentMovePoint.connections.Contains(hit.collider.GetComponent<MovePoint>()))
                         {
                             currentMovePoint = hit.collider.GetComponent<MovePoint>();
+                            
                             robotAgent.destination = hit.collider.transform.position;
                             if (canVibrate)
                             {
+                                newRobotDestination = true;
                                 vibrate(true, 0.06f, 750);
                             }
                             MovingToPoint = true;
@@ -1039,6 +1055,7 @@ public class InputController : MonoBehaviour
     {
         if (!dead)
         {
+            SoundManager.instance.TriggerClip(10);
             robotAnimator.SetBool("Dead", true);
             deathText.SetActive(true);
             dead = true;

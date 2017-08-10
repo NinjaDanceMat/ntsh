@@ -14,6 +14,14 @@ public enum AIMode
 
 public class Enemy : MonoBehaviour {
 
+    public AudioClip constant;
+    public AudioClip alerted;
+    public AudioClip searching;
+    public AudioClip attack;
+
+    public AudioSource constantS;
+    public AudioSource onceS;
+
     public List<GameObject> path = new List<GameObject>();
 
     public int currentPathIndex;
@@ -46,6 +54,10 @@ public class Enemy : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+        constantS.clip = constant;
+        constantS.loop = true;
+        constantS.Play();
+
         playerRobotAgent = InputController.instance.robotAgent;
         playerRobot = InputController.instance.robotAgent.gameObject;
         InputController.instance.enemies.Add(this);
@@ -90,6 +102,9 @@ public class Enemy : MonoBehaviour {
                         agent.destination = lastKnownPlyerLocation;
 
                         lastKnownPlayerThisFoward = transform.forward;
+
+                        onceS.clip = alerted;
+                        onceS.Play();
                     }
                 }
             }
@@ -163,7 +178,12 @@ public class Enemy : MonoBehaviour {
                         {
                             if (Vector3.Angle(transform.forward, playerRobot.transform.position - transform.position) < GameVariables.instance.AISightAngle)
                             {
-                                InputController.instance.PlayerKilled();
+                                if (!InputController.instance.dead)
+                                {
+                                    onceS.clip = attack;
+                                    onceS.Play();
+                                    InputController.instance.PlayerKilled();
+                                }
                             }
                         }
                     }
@@ -183,7 +203,8 @@ public class Enemy : MonoBehaviour {
                 if (waitTimer == 0)
                 {
                     agent.isStopped = true;
-                   
+                    onceS.clip = searching;
+                    onceS.Play();
                 }
                 if (waitTimer <= GameVariables.instance.AIWaitTime/2)
                 {

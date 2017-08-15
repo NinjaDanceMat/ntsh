@@ -202,6 +202,10 @@ public class InputController : MonoBehaviour
                     throwingEyeModel.transform.localPosition = Vector3.zero;
 
                     SoundManager.instance.TriggerClip(6);
+
+                    
+                    TutorialManager.instance.SetTutorial(1);
+                    
                 }
                 else
                 {
@@ -536,6 +540,13 @@ public class InputController : MonoBehaviour
                 if (Vector3.Distance(point.transform.position, robotAgent.transform.position) < point.GetComponent<SphereCollider>().radius)
                 {
                     rigCheckpointPos = point.transform.position;
+                    if (point.isTutorialProgeression)
+                    {
+                        if (TutorialManager.instance.currentTutorial == 5)
+                        {
+                            TutorialManager.instance.SetTutorial(6);
+                        }
+                    }
                 }
             }
         }
@@ -547,6 +558,10 @@ public class InputController : MonoBehaviour
         {
             if (recallingEye)
             {
+
+                TutorialManager.instance.SetTutorial(3);
+
+
                 eyeFromChest = false;
                 throwingEyeModel.GetComponent<Rigidbody>().velocity = throwingEyeModel.GetComponent<Rigidbody>().velocity.normalized;
             }
@@ -573,6 +588,10 @@ public class InputController : MonoBehaviour
                         RecallEye();
                     }
                     */
+
+                    
+                    TutorialManager.instance.SetTutorial(3);
+                    
 
                     throwingEyeModel.transform.parent = null;
                     throwingEyeModel.SetActive(true);
@@ -628,6 +647,8 @@ public class InputController : MonoBehaviour
                             ShootToTarget(onWallEyeModel.transform.position);
                             vibrate(true, 0.06f, 750);
                             SoundManager.instance.TriggerClip(7);
+
+                            TutorialManager.instance.SetTutorial(5);
                         }
                     }
                 }
@@ -638,6 +659,7 @@ public class InputController : MonoBehaviour
                 {
                     vibrate(true, 0.06f, 750);
                     SoundManager.instance.TriggerClip(7);
+                    TutorialManager.instance.SetTutorial(0);
                     Recall();
                 }
                 else
@@ -736,6 +758,10 @@ public class InputController : MonoBehaviour
                             eyeFromChest = true;
 
                             SoundManager.instance.TriggerClip(3);
+
+                            
+                            TutorialManager.instance.SetTutorial(1);
+                            
                         }
 
                     }
@@ -961,6 +987,8 @@ public class InputController : MonoBehaviour
             onWallEyeModel.SetActive(true);
             onWallEyeModel.transform.position = throwingEyeModel.transform.position;
             eyeOnWall = true;
+
+            TutorialManager.instance.SetTutorial(4);
         }
         vibrate(true, 0.06f, 3000);
     }

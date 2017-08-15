@@ -11,6 +11,7 @@ public class SlingShotStartPoint : MonoBehaviour {
             if (InputController.instance.clutchingEye)
             {
                 InputController.instance.inSlingShot();
+                Debug.Log("Collided");
             }
         }
     }

@@ -23,7 +23,9 @@ public class SoundManager : MonoBehaviour
     public void TriggerClip(int index)
     {
         soundEffects[index].source.clip = soundEffects[index].clip;
+        soundEffects[index].source.volume = soundEffects[index].volume;
         soundEffects[index].source.Play();
+        
     }
 }
 
@@ -32,4 +34,5 @@ public class SoundEffect
 {
     public AudioSource source;
     public AudioClip clip;
+    public float volume;
 }

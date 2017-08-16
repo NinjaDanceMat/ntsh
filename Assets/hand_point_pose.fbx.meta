@@ -1,0 +1,266 @@
+fileFormatVersion: 2
+guid: 9871400156e5d334b965e122219e0c12
+timeCreated: 1502897829
+licenseType: Free
+ModelImporter:
+  serializedVersion: 21
+  fileIDToRecycleName:
+    100000: Dummy_Global_A1
+    100002: //RootNode
+    100004: model01
+    100006: polySurface6
+    100008: R_index1
+    100010: R_index2
+    100012: R_index3
+    100014: R_Index_A01_BJNT
+    100016: R_Index_A01_DRV1
+    100018: R_Index_B01_BJNT
+    100020: R_Index_B01_DRV
+    100022: R_Index_C01_BJNT
+    100024: R_Index_C01_DRV
+    100026: R_Index_End
+    100028: R_little1
+    100030: R_little2
+    100032: R_little3
+    100034: R_Mid_A01_BJNT
+    100036: R_Mid_A01_DRV1
+    100038: R_Mid_B01_BJNT
+    100040: R_Mid_B01_DRV
+    100042: R_Mid_C01_BJNT
+    100044: R_Mid_C01_DRV
+    100046: R_Mid_End
+    100048: R_middle1
+    100050: R_middle2
+    100052: R_middle3
+    100054: R_palm
+    100056: R_Pinky_A01_BJNT
+    100058: R_Pinky_A01_DRV1
+    100060: R_Pinky_B01_BJNT
+    100062: R_Pinky_B01_DRV
+    100064: R_Pinky_C01_BJNT
+    100066: R_Pinky_C01_DRV
+    100068: R_Pinky_End
+    100070: R_ring1
+    100072: R_ring2
+    100074: R_ring3
+    100076: R_Ring_A01_BJNT
+    100078: R_Ring_A01_DRV1
+    100080: R_Ring_B01_BJNT
+    100082: R_Ring_B01_DRV
+    100084: R_Ring_C01_BJNT
+    100086: R_Ring_C01_DRV
+    100088: R_Ring_End
+    100090: R_thumb1
+    100092: R_thumb2
+    100094: R_thumb3
+    100096: R_thumb_A01_BJNT
+    100098: R_thumb_B01_BJNT
+    100100: R_thumb_Ball_BJNT1
+    100102: R_thumb_C01_BJNT
+    100104: R_thumb_End
+    100106: R_wrist
+    100108: R_wrist_B_BJNT
+    100110: R_wrist_BE
+    100112: R_wrist_BJNT1
+    100114: robot_geo
+    100116: thumb_end
+    400000: Dummy_Global_A1
+    400002: //RootNode
+    400004: model01
+    400006: polySurface6
+    400008: R_index1
+    400010: R_index2
+    400012: R_index3
+    400014: R_Index_A01_BJNT
+    400016: R_Index_A01_DRV1
+    400018: R_Index_B01_BJNT
+    400020: R_Index_B01_DRV
+    400022: R_Index_C01_BJNT
+    400024: R_Index_C01_DRV
+    400026: R_Index_End
+    400028: R_little1
+    400030: R_little2
+    400032: R_little3
+    400034: R_Mid_A01_BJNT
+    400036: R_Mid_A01_DRV1
+    400038: R_Mid_B01_BJNT
+    400040: R_Mid_B01_DRV
+    400042: R_Mid_C01_BJNT
+    400044: R_Mid_C01_DRV
+    400046: R_Mid_End
+    400048: R_middle1
+    400050: R_middle2
+    400052: R_middle3
+    400054: R_palm
+    400056: R_Pinky_A01_BJNT
+    400058: R_Pinky_A01_DRV1
+    400060: R_Pinky_B01_BJNT
+    400062: R_Pinky_B01_DRV
+    400064: R_Pinky_C01_BJNT
+    400066: R_Pinky_C01_DRV
+    400068: R_Pinky_End
+    400070: R_ring1
+    400072: R_ring2
+    400074: R_ring3
+    400076: R_Ring_A01_BJNT
+    400078: R_Ring_A01_DRV1
+    400080: R_Ring_B01_BJNT
+    400082: R_Ring_B01_DRV
+    400084: R_Ring_C01_BJNT
+    400086: R_Ring_C01_DRV
+    400088: R_Ring_End
+    400090: R_thumb1
+    400092: R_thumb2
+    400094: R_thumb3
+    400096: R_thumb_A01_BJNT
+    400098: R_thumb_B01_BJNT
+    400100: R_thumb_Ball_BJNT1
+    400102: R_thumb_C01_BJNT
+    400104: R_thumb_End
+    400106: R_wrist
+    400108: R_wrist_B_BJNT
+    400110: R_wrist_BE
+    400112: R_wrist_BJNT1
+    400114: robot_geo
+    400116: thumb_end
+    4300000: R_middle3
+    4300002: R_ring2
+    4300004: R_index1
+    4300006: R_middle1
+    4300008: R_middle2
+    4300010: R_little1
+    4300012: R_little2
+    4300014: R_little3
+    4300016: R_palm
+    4300018: R_index3
+    4300020: R_ring1
+    4300022: R_ring3
+    4300024: R_wrist
+    4300026: R_index2
+    4300028: thumb_end
+    4300030: R_thumb2
+    4300032: R_thumb1
+    4300034: polySurface6
+    7400000: hand_point_pose
+    9500000: //RootNode
+    13700000: polySurface6
+    13700002: R_index1
+    13700004: R_index2
+    13700006: R_index3
+    13700008: R_little1
+    13700010: R_little2
+    13700012: R_little3
+    13700014: R_middle1
+    13700016: R_middle2
+    13700018: R_middle3
+    13700020: R_palm
+    13700022: R_ring1
+    13700024: R_ring2
+    13700026: R_ring3
+    13700028: R_thumb1
+    13700030: R_thumb2
+    13700032: R_wrist
+    13700034: thumb_end
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: hand_point_pose
+      takeName: Take 001
+      firstFrame: 38
+      lastFrame: 58
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -14,7 +14,7 @@ public class eye : MonoBehaviour
             SoundManager.instance.TriggerClip(2);
         }
         else
-        {           
+        {
             InputController.instance.eyeCollidedWithNonValidWall();
             if (col.gameObject.layer != 2)
             {
@@ -29,5 +29,65 @@ public class eye : MonoBehaviour
             }
         }
     }
+    bool Blinking;
+    Vector3 oldTransform;
+    Vector3 oldoldTransform;
+    public GameObject visual;
 
+    public float speed;
+
+    public void OnEnable()
+    {
+        Blinking = false;
+        visual.transform.localScale = new Vector3(0,0,0);
+    }
+    public void OnDisable()
+    {
+        Blinking = false;
+        visual.transform.localScale = new Vector3(0, 0, 0);
+    }
+
+    bool blinkingUp;
+    public void Update()
+    {
+
+        if (Vector3.Distance(oldoldTransform, transform.position) < 0.02f)
+        {
+            Blinking = true;
+
+        }
+        else
+        {
+        }
+        if (Blinking == true)
+        {
+            if (InputController.instance.recallingEye)
+            {
+                Blinking = false;
+                visual.transform.localScale = new Vector3(0, 0, 0);
+            }
+        }
+        if (Blinking)
+        {
+            if (visual.transform.localScale.magnitude > 10 && blinkingUp)
+            {
+                blinkingUp = false;
+            }
+            if (visual.transform.localScale.magnitude <= 1.5f && !blinkingUp)
+            {
+                blinkingUp = true;
+            }
+
+            if (blinkingUp)
+            {
+                visual.transform.localScale += new Vector3(speed, speed, speed);
+            }
+            else
+            {
+                visual.transform.localScale -= new Vector3(speed, speed, speed);
+            }
+        }
+        oldoldTransform = oldTransform;
+        oldTransform = transform.position;
+    }
 }

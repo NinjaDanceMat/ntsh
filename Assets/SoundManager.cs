@@ -24,15 +24,22 @@ public class SoundManager : MonoBehaviour
     {
         soundEffects[index].source.clip = soundEffects[index].clip;
         soundEffects[index].source.volume = soundEffects[index].volume;
+        soundEffects[index].source.pitch = Random.Range(1- soundEffects[index].pitchVariation,1+ soundEffects[index].pitchVariation);
         soundEffects[index].source.Play();
         
     }
+
+
 }
 
 [System.Serializable]
 public class SoundEffect
 {
+
     public AudioSource source;
     public AudioClip clip;
     public float volume;
+    public float pitchVariation;
 }
+
+

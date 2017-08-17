@@ -5,6 +5,9 @@ using UnityEngine.AI;
 
 public class InputController : MonoBehaviour
 {
+
+    public GameObject slingshotPoint;
+
     public Vector3 chestOffset;
 
     public bool isInSlingShot;
@@ -561,7 +564,7 @@ public class InputController : MonoBehaviour
                     if (GameVariables.instance.canSlingShotEye && isInSlingShot)
                     {
                         isInSlingShot = false;
-                        throwingEyeModel.GetComponent<Rigidbody>().velocity = (weakController.transform.position - dominantController.transform.position) * GameVariables.instance.slingshotVelocity;
+                        throwingEyeModel.GetComponent<Rigidbody>().velocity = (slingshotPoint.transform.position - dominantController.transform.position) * GameVariables.instance.slingshotVelocity;
                     }
                     else
                     {
@@ -1097,10 +1100,21 @@ public class InputController : MonoBehaviour
         {
             currentAnimator = currentLeftHandAnimator;
         }
-        currentAnimator.SetBool("idle", false);
-        currentAnimator.SetBool("recall", false);
-        currentAnimator.SetBool("clutch", false);
-        currentAnimator.SetBool("point", false);
-        currentAnimator.SetBool(model, true);
+        if (currentAnimator.isActiveAndEnabled)
+        {
+            if (dominantHand)
+            {
+                currentAnimator.SetBool("idle", false);
+                currentAnimator.SetBool("recall", false);
+                currentAnimator.SetBool("clutch", false);
+                currentAnimator.SetBool("point", false);
+            }
+            else
+            {
+                currentAnimator.SetBool("idle", false);
+                currentAnimator.SetBool("recall", false);
+            }
+            currentAnimator.SetBool(model, true);
+        }
     }
 }

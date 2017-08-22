@@ -111,7 +111,13 @@ public class InputController : MonoBehaviour
         rigCheckpointPos = cameraRig.transform.position;
         rigCheckpointRot = cameraRig.transform.rotation;
 
+        
+    }
+
+    public void Start()
+    {
         ChangeHandMode(GameVariables.instance.leftHandMode);
+
     }
 
     public void ChangeHandMode(bool leftHand)

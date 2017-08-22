@@ -30,6 +30,9 @@ public class InputController : MonoBehaviour
     public GameObject dominantStuff;
 
 
+
+    public ParticleSystem sparksForEye;
+
     public NavMeshAgent robotAgent;
 
     public GameObject optic;
@@ -154,7 +157,7 @@ public class InputController : MonoBehaviour
 
         if (!dead)
         {
-            if (Vector3.Distance(dominantController.transform.position, armButton.transform.position) > 0.1f)
+            if (Vector3.Distance(dominantController.transform.position, armButton.transform.position) > 0.15f)
             {
                 usedPointer = false;
             }
@@ -334,7 +337,7 @@ public class InputController : MonoBehaviour
                 {
                     if (eyeOnWall)
                     {
-                        if (Vector3.Distance(dominantController.transform.position, armButton.transform.position) < 0.1f)
+                        if (Vector3.Distance(dominantController.transform.position, armButton.transform.position) < 0.15f)
                         {
                             SetHand(true, "point");
                             hasChangedDominantHandModel = true;
@@ -425,7 +428,7 @@ public class InputController : MonoBehaviour
 
                 bool pointingAtButton = false;
 
-                if (Vector3.Distance(dominantController.transform.position, armButton.transform.position) < 0.1f)
+                if (Vector3.Distance(dominantController.transform.position, armButton.transform.position) < 0.15f)
                 {
                     pointingAtButton = true;
                     SetHand(true, "point");
@@ -475,7 +478,7 @@ public class InputController : MonoBehaviour
                     }
                 }
             }
-            //chestModel.transform.parent = head.transform;
+
             chestModel.transform.position = head.transform.position;
 
             Vector3 headFacing = head.transform.forward;
@@ -486,9 +489,9 @@ public class InputController : MonoBehaviour
             chestModel.transform.Translate(backwardsFromHead.normalized * chestOffset.x);
 
             chestModel.transform.Translate(new Vector3(0, chestOffset.y, 0));
-            //chestModel.transform.parent = null;
 
-            //chestModel.transform.position
+            chestModel.transform.rotation = head.transform.rotation;
+
 
             foreach (Checkpoint point in checkpoints)
             {
@@ -716,7 +719,8 @@ public class InputController : MonoBehaviour
 
                             
                             TutorialManager.instance.SetTutorial(1);
-                            
+
+                            sparksForEye.Play();
                         }
 
                     }

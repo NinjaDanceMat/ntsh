@@ -10,7 +10,7 @@ public class TutorialManager : MonoBehaviour
     public List<bool> hasBeenSeen = new List<bool>();
 
     public Text text;
-
+    public GameObject scaler;
     public int currentTutorial;
 
     public static TutorialManager instance;
@@ -53,5 +53,18 @@ public class TutorialManager : MonoBehaviour
     {
         yield return new WaitForSeconds(1f);
         SoundManager.instance.TriggerClip(11);
+    }
+
+    public void Update()
+    {
+        if (Vector3.Angle(InputController.instance.head.transform.forward, scaler.transform.position - InputController.instance.head.transform.position) < 30)
+        {
+            scaler.transform.localScale = new Vector3(2.5f,2.5f,2.5f);
+        }
+        else
+        {
+            scaler.transform.localScale = new Vector3(1, 1, 1);
+        }
+
     }
 }

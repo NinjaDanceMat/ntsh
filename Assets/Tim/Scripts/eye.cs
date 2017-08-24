@@ -69,7 +69,7 @@ public class eye : MonoBehaviour
         }
         if (Blinking)
         {
-            if (visual.transform.localScale.magnitude > 10 && blinkingUp)
+            if (visual.transform.localScale.magnitude > 3*Vector3.Distance(transform.position,InputController.instance.head.transform.position) && blinkingUp)
             {
                 blinkingUp = false;
             }
@@ -77,14 +77,14 @@ public class eye : MonoBehaviour
             {
                 blinkingUp = true;
             }
-
+            float speedA = speed*Vector3.Distance(transform.position, InputController.instance.head.transform.position);
             if (blinkingUp)
             {
-                visual.transform.localScale += new Vector3(speed, speed, speed);
+                visual.transform.localScale += new Vector3(speedA, speedA, speedA);
             }
             else
             {
-                visual.transform.localScale -= new Vector3(speed, speed, speed);
+                visual.transform.localScale -= new Vector3(speedA, speedA, speedA);
             }
         }
         oldoldTransform = oldTransform;

@@ -11,7 +11,14 @@ public class TutorialManager : MonoBehaviour
 
     public Text text;
     public GameObject scaler;
+    public GameObject scalerPos;
     public int currentTutorial;
+
+    public bool slingshotInsteadOfThrow;
+    public bool tutorialEnd;
+
+    public float smoothTime = 0.3F;
+    private Vector3 velocity = Vector3.zero;
 
     public static TutorialManager instance;
     void Awake()
@@ -25,28 +32,43 @@ public class TutorialManager : MonoBehaviour
             Destroy(this);
         }
     }
-
+    
     public int numberOfTimesThrown;
 
     public void SetTutorial(int index)
     {
-        if (index == 1)
+        if (!tutorialEnd)
         {
-            numberOfTimesThrown += 1;
-
-            if (numberOfTimesThrown >= 3)
+            if (index == 1)
             {
-                index = 2;
-            }
-        }
-        if (!hasBeenSeen[index])
-        {
-            hasBeenSeen[index] = true;
-            StartCoroutine(delayedNotification());
-        }
+                if (slingshotInsteadOfThrow)
+                {
+                    index = 8;
+                }
+                else
+                {
+                    numberOfTimesThrown += 1;
 
-        text.text = messages[index];
-        currentTutorial = index;
+                    if (numberOfTimesThrown >= 3)
+                    {
+                        index = 2;
+                    }
+                }
+            }
+
+            if (!hasBeenSeen[index])
+            {
+                hasBeenSeen[index] = true;
+                StartCoroutine(delayedNotification());
+            }
+            text.text = messages[index];
+            currentTutorial = index;
+        }
+        else
+        {
+            text.text = messages[7];
+            currentTutorial = 7;
+        }
     }
 
     public IEnumerator delayedNotification()
@@ -55,8 +77,14 @@ public class TutorialManager : MonoBehaviour
         SoundManager.instance.TriggerClip(11);
     }
 
+
+
     public void Update()
     {
+
+        Vector3 targetPosition = scalerPos.transform.position;
+        scaler.transform.position = Vector3.Lerp(scaler.transform.position, targetPosition, 0.3f);
+        //scaler.transform.position = targetPosition;
         if (Vector3.Angle(InputController.instance.head.transform.forward, scaler.transform.position - InputController.instance.head.transform.position) < 30)
         {
             scaler.transform.localScale = new Vector3(2.5f,2.5f,2.5f);

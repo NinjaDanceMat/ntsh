@@ -6,6 +6,7 @@ public class Checkpoint : MonoBehaviour {
 
     public bool isTutorialProgeression;
     public bool isTutorialEnd;
+    public bool slingShotOn;
 
 	// Use this for initialization
 	void Start () {

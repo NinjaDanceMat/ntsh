@@ -236,8 +236,8 @@ public class InputController : MonoBehaviour
 
                     SoundManager.instance.TriggerClip(6);
 
-
                     TutorialManager.instance.SetTutorial(1);
+
 
                 }
                 else
@@ -511,6 +511,15 @@ public class InputController : MonoBehaviour
                             TutorialManager.instance.SetTutorial(6);
                         }
                     }
+                    if (point.isTutorialEnd)
+                    {
+                        TutorialManager.instance.SetTutorial(7);
+                        TutorialManager.instance.tutorialEnd = true;
+                    }
+                    if (point.slingShotOn)
+                    {
+                        TutorialManager.instance.slingshotInsteadOfThrow = true;
+                    }
                 }
             }
         }
@@ -704,13 +713,11 @@ public class InputController : MonoBehaviour
 
                     if (controllerInArea)
                     {
-                        Vector3 fromControllerToEyeInChest = chestModel.transform.position - dominantController.transform.position;
-
-                        Vector3 openHandVector = -dominantController.transform.up;
 
                         if (!recallingEye)
                         {
                             eyeThrown = true;
+                            throwingEyeModel.GetComponent<Rigidbody>().velocity = Vector3.zero;
                             throwingEyeModel.transform.parent = null;
                             throwingEyeModel.transform.position = chestModel.transform.position;
                             onWallEyeModel.SetActive(false);
@@ -727,6 +734,8 @@ public class InputController : MonoBehaviour
                             TutorialManager.instance.SetTutorial(1);
 
                             sparksForEye.Play();
+
+                            throwingEyeModel.transform.position = chestModel.transform.position;
                         }
 
                     }
@@ -748,7 +757,7 @@ public class InputController : MonoBehaviour
 
     public void ButtonBoop()
     {
-        /*
+        
         if (!dead)
         {
             if (currentMode == CameraMode.Wall)
@@ -774,7 +783,7 @@ public class InputController : MonoBehaviour
                 }
             }
         }
-        */
+        
     }
 
     public void MoveRobot(bool canVibrate = false)
@@ -1042,6 +1051,7 @@ public class InputController : MonoBehaviour
 
     public void inSlingShot()
     {
+        TutorialManager.instance.SetTutorial(9);
         isInSlingShot = true;
         //clutchingEyeModel.transform.parent = leftController.transform;
     }

@@ -52,6 +52,8 @@ public class Enemy : MonoBehaviour {
     public Vector3 spawnPoint;
     public Quaternion spawnRot;
 
+    public Animator animator;
+
     // Use this for initialization
     void Start () {
         constantS.clip = constant;
@@ -72,6 +74,7 @@ public class Enemy : MonoBehaviour {
 
     public void Respawn()
     {
+        animator.SetBool("Alert",false);
         agent.Warp (spawnPoint);
         transform.rotation = spawnRot;
         currentAIMode = AIMode.Patroling;
@@ -103,6 +106,7 @@ public class Enemy : MonoBehaviour {
 
                         lastKnownPlayerThisFoward = transform.forward;
 
+                        animator.SetBool("Alert",true);
                         onceS.clip = alerted;
                         onceS.Play();
                     }
@@ -182,6 +186,7 @@ public class Enemy : MonoBehaviour {
                                 {
                                     onceS.clip = attack;
                                     onceS.Play();
+                                    animator.SetTrigger("Attack");
                                     InputController.instance.PlayerKilled();
                                 }
                             }
@@ -265,6 +270,7 @@ public class Enemy : MonoBehaviour {
                     }
                     else if (searchIndex == 3)
                     {
+                        animator.SetBool("Alert", false);
                         currentAIMode = AIMode.Patroling;
                         agent.destination = path[currentPathIndex].transform.position;
                     }

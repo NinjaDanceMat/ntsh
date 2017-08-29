@@ -14,27 +14,26 @@ public class LightningBoltUnity : MonoBehaviour {
 
     public Transform line;
 
-    private readonly float randomPosOffset = 0.3f;
+    public float randomPosOffset = 0.3f;
     public float randomWithOffsetMax = 2f;
     public  float randomWithOffsetMin = 1f;
 
-    private readonly WaitForSeconds customFrame = new WaitForSeconds(0.05f);
+    private readonly WaitForSeconds customFrame = new WaitForSeconds(0.001f);
+
 
     void Start () {
         lRend = GetComponent<LineRenderer>();
-        StartCoroutine(Beam());
 	}
 
-    private IEnumerator Beam()
+    void Update()
     {
-        yield return customFrame;
+
         points[point_Begin] = transform.position;
         points[point_End] = line.position;
         CalculateMiddle();
         lRend.SetPositions(points);
         lRend.startWidth = RandomWidthOffset();
         lRend.endWidth = RandomWidthOffset();
-        StartCoroutine(Beam());
     }
 
     private float RandomWidthOffset()

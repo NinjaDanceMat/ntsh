@@ -75,13 +75,13 @@ public class TutorialManager : MonoBehaviour
     {
         yield return new WaitForSeconds(1f);
         SoundManager.instance.TriggerClip(11);
+        StartCoroutine(InputController.instance.FlashTut(15));
     }
 
 
 
     public void Update()
     {
-
         Vector3 targetPosition = scalerPos.transform.position;
         scaler.transform.position = Vector3.Lerp(scaler.transform.position, targetPosition, 0.3f);
         //scaler.transform.position = targetPosition;

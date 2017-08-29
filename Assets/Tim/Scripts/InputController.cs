@@ -101,6 +101,17 @@ public class InputController : MonoBehaviour
 
     public bool newRobotDestination;
 
+    public MeshRenderer buttonRender;
+    public Material yesButton;
+    public Material noButton;
+
+    public GameObject BetweenElectric;
+
+    public GameObject eyeElectricPos;
+    public GameObject eyeElectricPos1;
+
+    public GameObject tutFlash;
+
     // Use this for initialization
     void Awake()
     {
@@ -168,6 +179,8 @@ public class InputController : MonoBehaviour
         if (isInSlingShot)
         {
             vibrate(true, 0.01f, Vector3.Distance(rightController.transform.position,leftController.transform.position));
+            eyeElectricPos.transform.position = clutchingEyeModel.transform.position;
+            eyeElectricPos1.transform.position = clutchingEyeModel.transform.position;
         }
 
         if (newRobotDestination)
@@ -559,7 +572,6 @@ public class InputController : MonoBehaviour
 
                 TutorialManager.instance.SetTutorial(3);
 
-
                 eyeFromChest = false;
                 throwingEyeModel.GetComponent<Rigidbody>().velocity = throwingEyeModel.GetComponent<Rigidbody>().velocity.normalized;
             }
@@ -588,6 +600,7 @@ public class InputController : MonoBehaviour
                     if (GameVariables.instance.canSlingShotEye && isInSlingShot)
                     {
                         isInSlingShot = false;
+                        BetweenElectric.SetActive(false);
                         throwingEyeModel.GetComponent<Rigidbody>().velocity = (slingshotPoint.transform.position - dominantController.transform.position) * GameVariables.instance.slingshotVelocity;
                     }
                     else
@@ -666,6 +679,7 @@ public class InputController : MonoBehaviour
                                 onWallEyeModel.SetActive(false);
                                 throwingEyeModel.SetActive(true);
                                 eyeOnWall = false;
+                                buttonRender.material = noButton;
                             }
                         }
                     }
@@ -707,6 +721,8 @@ public class InputController : MonoBehaviour
                             onWallEyeModel.SetActive(false);
                             clutchingEyeModel.SetActive(false);
                             throwingEyeModel.SetActive(true);
+
+                            buttonRender.material = noButton;
                             eyeOnWall = false;
                             recallingEye = true;
 
@@ -873,7 +889,6 @@ public class InputController : MonoBehaviour
 
     public void ShootToTarget(Vector3 hitPoint)
     {
-
         robotAgent.isStopped = false;
 
         currentMode = CameraMode.Wall;
@@ -906,6 +921,7 @@ public class InputController : MonoBehaviour
         {
             Debug.Log("Recall");
             eyeOnWall = false;
+            buttonRender.material = noButton;
 
             robotAgent.destination = robotAgent.transform.position;
             robotAgent.isStopped = true;// = true;
@@ -948,6 +964,8 @@ public class InputController : MonoBehaviour
             onWallEyeModel.transform.position = throwingEyeModel.transform.position;
             eyeOnWall = true;
 
+            buttonRender.material = yesButton;
+
             TutorialManager.instance.SetTutorial(4);
         }
         vibrate(true, 0.06f, 3000);
@@ -988,6 +1006,7 @@ public class InputController : MonoBehaviour
 
         onWallEyeModel.SetActive(false);
         eyeOnWall = false;
+        buttonRender.material = noButton;
     }
 
     private float _fadeDuration = 0.5f;
@@ -1049,6 +1068,7 @@ public class InputController : MonoBehaviour
     {
         TutorialManager.instance.SetTutorial(9);
         isInSlingShot = true;
+        BetweenElectric.SetActive(true);
     }
 
     public void PlayerKilled()
@@ -1083,9 +1103,10 @@ public class InputController : MonoBehaviour
         robotModel.SetActive(false);
 
         currentMode = CameraMode.Robot;
-
+        BetweenElectric.SetActive(false);
         isInSlingShot = false;
         clutchingEye = false;
+        buttonRender.material = noButton;
         eyeOnWall = false;
         eyeThrown = false;
         recallingEye = false;
@@ -1103,6 +1124,19 @@ public class InputController : MonoBehaviour
             yield return null;
         }
     }
+    public IEnumerator FlashTut(float flashes)
+    {
+        float totalFlashes = 0;
+
+        while (totalFlashes < flashes)
+        {
+            tutFlash.SetActive(!tutFlash.activeSelf);
+            totalFlashes += 1;
+            yield return new WaitForSeconds(0.1f);
+        }
+        tutFlash.SetActive(false);
+    }
+
 
     public void SetHand(bool dominantHand, string model)
     {

@@ -1,0 +1,562 @@
+fileFormatVersion: 2
+guid: 53cc9dd5eb9c1504fbd55abd25904dc7
+timeCreated: 1504002912
+licenseType: Free
+ModelImporter:
+  serializedVersion: 21
+  fileIDToRecycleName:
+    100000: armElbow_L
+    100002: armElbow_L1
+    100004: armLower_L
+    100006: armLower_L1
+    100008: armsHinge
+    100010: armUpper_L
+    100012: armUpper_L 1
+    100014: B_engineExhaust_CTRL
+    100016: B_engineHinge_BJNT
+    100018: B_L_engineExhaust
+    100020: B_L_engineVent_BJNT
+    100022: B_L_engineVent_CTRL
+    100024: B_R_engineVent_BJNT
+    100026: B_R_engineVent_CTRL
+    100028: COG_ROOT
+    100030: //RootNode
+    100032: engineBody
+    100034: engineBody1
+    100036: engineBody2
+    100038: engineBody3
+    100040: engineBody4
+    100042: engineBody5
+    100044: engineExhaust
+    100046: engineExhaust1
+    100048: engineExhaust2
+    100050: engineExhaust3
+    100052: engineExhaust4
+    100054: engineExhaust5
+    100056: engineHinge_L
+    100058: engineHinge_L1
+    100060: engineVent_010
+    100062: engineVent_011
+    100064: engineVent_011 1
+    100066: engineVent_012
+    100068: engineVent_013
+    100070: engineVent_015
+    100072: engineVent_016
+    100074: engineVent_017
+    100076: engineVent_02
+    100078: engineVent_07
+    100080: engineVent_08
+    100082: engineVent_09
+    100084: F_engineExhaust_BJNT
+    100086: F_engineHinge_BJNT
+    100088: F_L_engineVent_BJNT
+    100090: F_L_engineVent_CTRL
+    100092: F_R_engineVent_BJNT
+    100094: F_R_engineVent_CTRL
+    100096: Geo
+    100098: Global_Move_CTRL_A
+    100100: Global_Move_CTRL_B
+    100102: group66
+    100104: group66 1
+    100106: group70
+    100108: group70 1
+    100110: Head
+    100112: Head_BJNT
+    100114: Head_BJNT1
+    100116: Head_CTRL
+    100118: Head_flap
+    100120: IK_HDLs
+    100122: ikHandle2
+    100124: Joints
+    100126: L_arm
+    100128: L_Arm_IK_HDL
+    100130: L_arm_shoulder_BJNT
+    100132: L_arm_shoulder_BJNT1
+    100134: L_arm_shoulder_BJNT1 1
+    100136: L_arm_shoulder_BJNT2
+    100138: L_arm_shoulder_BJNT2 1
+    100140: L_arm_shoulder_BJNT3
+    100142: L_engine_Arm_CTRL
+    100144: L_engine_back_BJNT
+    100146: L_engine_back_CTRL
+    100148: L_engine_Front_BJNT
+    100150: L_engine_front_CTRL
+    100152: L_engine_root
+    100154: L_engine_side_BJNT
+    100156: L_engine_side_CTRL
+    100158: L_engineExhaust_Back_BJNT
+    100160: L_engineExhaust_back_BJNT
+    100162: L_engineExhaust_back_BJNT 1
+    100164: L_engineExhaust_CTRL
+    100166: L_engineExhaust_CTRL 1
+    100168: L_engineHinge_BJNT
+    100170: L_engineHinge_BJNT 1
+    100172: L_engineHinge_BJNT 2
+    100174: L_engineVent_L1_BJNT
+    100176: L_engineVent_L1_CTRL
+    100178: L_engineVent_L2_CTRL
+    100180: L_engineVent_L2_CTRL1
+    100182: L_engineVent_L2_CTRL2
+    100184: L_engineVent_L3_BJNT
+    100186: L_engineVent_L3_CTRL
+    100188: L_engineVent_L_BJNT
+    100190: L_engineVent_R1_BJNT
+    100192: L_engineVent_R1_CTRL
+    100194: L_engineVent_R3_BJNT
+    100196: L_engineVent_R3_CTRL
+    100198: L_engineVent_R_BJNT
+    100200: L_engineVent_R_CTRL1
+    100202: L_Shoulder_BJNT
+    100204: L_Shoulder_CTRL
+    100206: LOC_B_engineExhaust
+    100208: LOC_B_L_engineVent
+    100210: LOC_engine_Front
+    100212: LOC_F_engineExhaust_CTRL
+    100214: LOC_L_engine_back
+    100216: LOC_L_engine_side
+    100218: LOC_L_engineExhaust
+    100220: LOC_L_engineExhaust 1
+    100222: LOC_L_engineExhaust_CTRL
+    100224: LOC_L_engineVent_L1
+    100226: LOC_L_engineVent_L2
+    100228: LOC_L_engineVent_L3
+    100230: LOC_L_engineVent_R1
+    100232: LOC_L_engineVent_R1 1
+    100234: LOC_L_engineVent_R2
+    100236: LOC_R_engine_back_BJNT
+    100238: LOC_R_engine_side
+    100240: LOC_R_engineExhaust
+    100242: LOC_R_engineVent_L3
+    100244: LOC_R_engineVent_R1
+    100246: LOC_R_engineVent_R2
+    100248: LOC_R_engineVent_R3
+    100250: LOC_R_engineVent_R3 1
+    100252: LOC_R_Front_back
+    100254: LOC_S_L_engineVent
+    100256: LOC_S_R_engineVent
+    100258: locAlign_Head_BJNT
+    100260: locAlign_Head_BJNT 1
+    100262: locAlign_L_Shoulder_BJNT
+    100264: LOCalign_Pole_Vector
+    100266: locAlign_R_Shoulder_BJNT
+    100268: locAlign_Tail_IK_HDL
+    100270: locAlign_Tail_Tazer
+    100272: locator1
+    100274: locator1 1
+    100276: locator2
+    100278: locator2 1
+    100280: mainBody
+    100282: Neck_Lower_BJNT
+    100284: Neck_Upper_BJNT
+    100286: polySurface238
+    100288: R_arm
+    100290: R_arm_BJNT
+    100292: R_Arm_IK_HDL
+    100294: R_arm_IKJNT
+    100296: R_elbow_BJNT
+    100298: R_elbow_IKJNT
+    100300: R_engine_Arm_CTRL
+    100302: R_engine_back_BJNT
+    100304: R_engine_Back_CTRL
+    100306: R_engine_Front_BJNT
+    100308: R_engine_Front_CTRL
+    100310: R_engine_root
+    100312: R_engine_side_BJNT
+    100314: R_engine_side_CTRL
+    100316: R_engineExhaust_CTRL
+    100318: R_hand_BJNT
+    100320: R_hand_IKJNT
+    100322: R_Shoulder_BJNT
+    100324: R_Shoulder_CTRL
+    100326: S_engineExhaust_BJNT
+    100328: S_engineHinge_BJNT
+    100330: S_L_engineVent_BJNT
+    100332: S_L_engineVent_CTRL
+    100334: S_R_engineVent_BJNT
+    100336: S_R_engineVent_CTRL
+    100338: shoulder_L
+    100340: shoulder_R
+    100342: Tail_end_BJNT
+    100344: Tail_end_JBJNT
+    100346: Tail_IK_CTRl
+    100348: Tail_Lower_BJNT
+    100350: Tail_Lower_IKJNT
+    100352: Tail_Mid_BJNT
+    100354: Tail_Mid_IKJNT
+    100356: Tail_PoleV_CTRL
+    100358: Tail_Tazer_BJNT
+    100360: Tail_Tazer_IKJNT
+    100362: Tail_top
+    100364: Tail_Top_BJNT
+    100366: Tail_Top_IKJNT
+    100368: Tail_Upper
+    100370: Tail_Upper_BJNT
+    100372: Tail_Upper_IKJNT
+    100374: tailArm_gun
+    100376: tailArm_lower
+    100378: tailArm_Mid
+    100380: tailArm_upper
+    100382: tailGun_hinge
+    100384: tailMain_body
+    100386: torso_CTRL
+    400000: armElbow_L
+    400002: armElbow_L1
+    400004: armLower_L
+    400006: armLower_L1
+    400008: armsHinge
+    400010: armUpper_L
+    400012: armUpper_L 1
+    400014: B_engineExhaust_CTRL
+    400016: B_engineHinge_BJNT
+    400018: B_L_engineExhaust
+    400020: B_L_engineVent_BJNT
+    400022: B_L_engineVent_CTRL
+    400024: B_R_engineVent_BJNT
+    400026: B_R_engineVent_CTRL
+    400028: COG_ROOT
+    400030: //RootNode
+    400032: engineBody
+    400034: engineBody1
+    400036: engineBody2
+    400038: engineBody3
+    400040: engineBody4
+    400042: engineBody5
+    400044: engineExhaust
+    400046: engineExhaust1
+    400048: engineExhaust2
+    400050: engineExhaust3
+    400052: engineExhaust4
+    400054: engineExhaust5
+    400056: engineHinge_L
+    400058: engineHinge_L1
+    400060: engineVent_010
+    400062: engineVent_011
+    400064: engineVent_011 1
+    400066: engineVent_012
+    400068: engineVent_013
+    400070: engineVent_015
+    400072: engineVent_016
+    400074: engineVent_017
+    400076: engineVent_02
+    400078: engineVent_07
+    400080: engineVent_08
+    400082: engineVent_09
+    400084: F_engineExhaust_BJNT
+    400086: F_engineHinge_BJNT
+    400088: F_L_engineVent_BJNT
+    400090: F_L_engineVent_CTRL
+    400092: F_R_engineVent_BJNT
+    400094: F_R_engineVent_CTRL
+    400096: Geo
+    400098: Global_Move_CTRL_A
+    400100: Global_Move_CTRL_B
+    400102: group66
+    400104: group66 1
+    400106: group70
+    400108: group70 1
+    400110: Head
+    400112: Head_BJNT
+    400114: Head_BJNT1
+    400116: Head_CTRL
+    400118: Head_flap
+    400120: IK_HDLs
+    400122: ikHandle2
+    400124: Joints
+    400126: L_arm
+    400128: L_Arm_IK_HDL
+    400130: L_arm_shoulder_BJNT
+    400132: L_arm_shoulder_BJNT1
+    400134: L_arm_shoulder_BJNT1 1
+    400136: L_arm_shoulder_BJNT2
+    400138: L_arm_shoulder_BJNT2 1
+    400140: L_arm_shoulder_BJNT3
+    400142: L_engine_Arm_CTRL
+    400144: L_engine_back_BJNT
+    400146: L_engine_back_CTRL
+    400148: L_engine_Front_BJNT
+    400150: L_engine_front_CTRL
+    400152: L_engine_root
+    400154: L_engine_side_BJNT
+    400156: L_engine_side_CTRL
+    400158: L_engineExhaust_Back_BJNT
+    400160: L_engineExhaust_back_BJNT
+    400162: L_engineExhaust_back_BJNT 1
+    400164: L_engineExhaust_CTRL
+    400166: L_engineExhaust_CTRL 1
+    400168: L_engineHinge_BJNT
+    400170: L_engineHinge_BJNT 1
+    400172: L_engineHinge_BJNT 2
+    400174: L_engineVent_L1_BJNT
+    400176: L_engineVent_L1_CTRL
+    400178: L_engineVent_L2_CTRL
+    400180: L_engineVent_L2_CTRL1
+    400182: L_engineVent_L2_CTRL2
+    400184: L_engineVent_L3_BJNT
+    400186: L_engineVent_L3_CTRL
+    400188: L_engineVent_L_BJNT
+    400190: L_engineVent_R1_BJNT
+    400192: L_engineVent_R1_CTRL
+    400194: L_engineVent_R3_BJNT
+    400196: L_engineVent_R3_CTRL
+    400198: L_engineVent_R_BJNT
+    400200: L_engineVent_R_CTRL1
+    400202: L_Shoulder_BJNT
+    400204: L_Shoulder_CTRL
+    400206: LOC_B_engineExhaust
+    400208: LOC_B_L_engineVent
+    400210: LOC_engine_Front
+    400212: LOC_F_engineExhaust_CTRL
+    400214: LOC_L_engine_back
+    400216: LOC_L_engine_side
+    400218: LOC_L_engineExhaust
+    400220: LOC_L_engineExhaust 1
+    400222: LOC_L_engineExhaust_CTRL
+    400224: LOC_L_engineVent_L1
+    400226: LOC_L_engineVent_L2
+    400228: LOC_L_engineVent_L3
+    400230: LOC_L_engineVent_R1
+    400232: LOC_L_engineVent_R1 1
+    400234: LOC_L_engineVent_R2
+    400236: LOC_R_engine_back_BJNT
+    400238: LOC_R_engine_side
+    400240: LOC_R_engineExhaust
+    400242: LOC_R_engineVent_L3
+    400244: LOC_R_engineVent_R1
+    400246: LOC_R_engineVent_R2
+    400248: LOC_R_engineVent_R3
+    400250: LOC_R_engineVent_R3 1
+    400252: LOC_R_Front_back
+    400254: LOC_S_L_engineVent
+    400256: LOC_S_R_engineVent
+    400258: locAlign_Head_BJNT
+    400260: locAlign_Head_BJNT 1
+    400262: locAlign_L_Shoulder_BJNT
+    400264: LOCalign_Pole_Vector
+    400266: locAlign_R_Shoulder_BJNT
+    400268: locAlign_Tail_IK_HDL
+    400270: locAlign_Tail_Tazer
+    400272: locator1
+    400274: locator1 1
+    400276: locator2
+    400278: locator2 1
+    400280: mainBody
+    400282: Neck_Lower_BJNT
+    400284: Neck_Upper_BJNT
+    400286: polySurface238
+    400288: R_arm
+    400290: R_arm_BJNT
+    400292: R_Arm_IK_HDL
+    400294: R_arm_IKJNT
+    400296: R_elbow_BJNT
+    400298: R_elbow_IKJNT
+    400300: R_engine_Arm_CTRL
+    400302: R_engine_back_BJNT
+    400304: R_engine_Back_CTRL
+    400306: R_engine_Front_BJNT
+    400308: R_engine_Front_CTRL
+    400310: R_engine_root
+    400312: R_engine_side_BJNT
+    400314: R_engine_side_CTRL
+    400316: R_engineExhaust_CTRL
+    400318: R_hand_BJNT
+    400320: R_hand_IKJNT
+    400322: R_Shoulder_BJNT
+    400324: R_Shoulder_CTRL
+    400326: S_engineExhaust_BJNT
+    400328: S_engineHinge_BJNT
+    400330: S_L_engineVent_BJNT
+    400332: S_L_engineVent_CTRL
+    400334: S_R_engineVent_BJNT
+    400336: S_R_engineVent_CTRL
+    400338: shoulder_L
+    400340: shoulder_R
+    400342: Tail_end_BJNT
+    400344: Tail_end_JBJNT
+    400346: Tail_IK_CTRl
+    400348: Tail_Lower_BJNT
+    400350: Tail_Lower_IKJNT
+    400352: Tail_Mid_BJNT
+    400354: Tail_Mid_IKJNT
+    400356: Tail_PoleV_CTRL
+    400358: Tail_Tazer_BJNT
+    400360: Tail_Tazer_IKJNT
+    400362: Tail_top
+    400364: Tail_Top_BJNT
+    400366: Tail_Top_IKJNT
+    400368: Tail_Upper
+    400370: Tail_Upper_BJNT
+    400372: Tail_Upper_IKJNT
+    400374: tailArm_gun
+    400376: tailArm_lower
+    400378: tailArm_Mid
+    400380: tailArm_upper
+    400382: tailGun_hinge
+    400384: tailMain_body
+    400386: torso_CTRL
+    4300000: tailGun_hinge
+    4300002: Tail_Upper
+    4300004: Tail_top
+    4300006: shoulder_R
+    4300008: shoulder_L
+    4300010: tailMain_body
+    4300012: polySurface238
+    4300014: mainBody
+    4300016: Head
+    4300018: armsHinge
+    4300020: tailArm_Mid
+    4300022: Head_flap
+    4300024: tailArm_gun
+    4300026: tailArm_lower
+    4300028: engineBody
+    4300030: engineVent_02
+    4300032: engineVent_07
+    4300034: engineExhaust
+    4300036: engineBody1
+    4300038: engineVent_08
+    4300040: engineVent_09
+    4300042: engineExhaust1
+    4300044: engineBody2
+    4300046: engineVent_010
+    4300048: engineVent_011
+    4300050: engineExhaust2
+    4300052: armLower_L
+    4300054: armUpper_L
+    4300056: armElbow_L
+    4300058: engineVent_011
+    4300060: engineHinge_L1
+    4300062: engineBody3
+    4300064: engineVent_012
+    4300066: engineVent_013
+    4300068: engineVent_015
+    4300070: engineBody4
+    4300072: engineBody5
+    4300074: engineVent_016
+    4300076: engineVent_017
+    4300078: engineExhaust3
+    4300080: engineExhaust4
+    4300082: engineExhaust5
+    4300084: armUpper_L
+    4300086: armLower_L1
+    4300088: armElbow_L1
+    7400000: Take 001
+    9500000: //RootNode
+    13700000: armElbow_L
+    13700002: armElbow_L1
+    13700004: armLower_L
+    13700006: armLower_L1
+    13700008: armsHinge
+    13700010: armUpper_L
+    13700012: armUpper_L 1
+    13700014: engineBody
+    13700016: engineBody1
+    13700018: engineBody2
+    13700020: engineBody3
+    13700022: engineBody4
+    13700024: engineBody5
+    13700026: engineExhaust
+    13700028: engineExhaust1
+    13700030: engineExhaust2
+    13700032: engineExhaust3
+    13700034: engineExhaust4
+    13700036: engineExhaust5
+    13700038: engineHinge_L1
+    13700040: engineVent_010
+    13700042: engineVent_011
+    13700044: engineVent_011 1
+    13700046: engineVent_012
+    13700048: engineVent_013
+    13700050: engineVent_015
+    13700052: engineVent_016
+    13700054: engineVent_017
+    13700056: engineVent_02
+    13700058: engineVent_07
+    13700060: engineVent_08
+    13700062: engineVent_09
+    13700064: Head
+    13700066: Head_flap
+    13700068: mainBody
+    13700070: polySurface238
+    13700072: shoulder_L
+    13700074: shoulder_R
+    13700076: Tail_top
+    13700078: Tail_Upper
+    13700080: tailArm_gun
+    13700082: tailArm_lower
+    13700084: tailArm_Mid
+    13700086: tailGun_hinge
+    13700088: tailMain_body
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

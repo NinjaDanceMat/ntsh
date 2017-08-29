@@ -15,8 +15,8 @@ public class LightningBoltUnity : MonoBehaviour {
     public Transform line;
 
     private readonly float randomPosOffset = 0.3f;
-    private readonly float randomWithOffsetMax = 2f;
-    private readonly float randomWithOffsetMin = 1f;
+    public float randomWithOffsetMax = 2f;
+    public  float randomWithOffsetMin = 1f;
 
     private readonly WaitForSeconds customFrame = new WaitForSeconds(0.05f);
 

@@ -29,7 +29,11 @@ public class InputController : MonoBehaviour
     public GameObject weakStuff;
     public GameObject dominantStuff;
 
+    public GameObject dominantRobotHandModel;
+    public GameObject dominantEyeHandModel;
 
+    public GameObject weakRobotHandModel;
+    public GameObject weakEyeHandModel;
 
     public ParticleSystem sparksForEye;
 
@@ -136,15 +140,36 @@ public class InputController : MonoBehaviour
         weakStuff.transform.parent = weakController.transform;
         weakStuff.transform.localPosition = Vector3.zero;
         weakStuff.transform.localRotation = Quaternion.identity;
+        if (leftHand)
+        {
+            weakStuff.transform.localScale = new Vector3(-1,1,1);
+        }
+        else
+        {
+            weakStuff.transform.localScale = new Vector3(1, 1, 1);
+        }
         dominantStuff.transform.parent = dominantController.transform;
         dominantStuff.transform.localPosition = Vector3.zero;
         dominantStuff.transform.localRotation = Quaternion.identity;
-
+        if (leftHand)
+        {
+            dominantStuff.transform.localScale = new Vector3(-1, 1, 1);
+        }
+        else
+        {
+            dominantStuff.transform.localScale = new Vector3(1, 1, 1);
+        }
         oldLeftHandMode = GameVariables.instance.leftHandMode;
     }
     bool usedPointer = false;
+
     private void Update()
     {
+        if (isInSlingShot)
+        {
+            vibrate(true, 0.01f, Vector3.Distance(rightController.transform.position,leftController.transform.position));
+        }
+
         if (newRobotDestination)
         {
             if (Vector3.Distance(robotAgent.destination, robotAgent.transform.position) < 0.1f)
@@ -543,26 +568,7 @@ public class InputController : MonoBehaviour
             if (GameVariables.instance.throwEye)
             {
                 if (clutchingEye)
-                {
-                    /*
-                    bool controllerInArea = false;
-                    Collider[] colliders = Physics.OverlapCapsule(chestModel.transform.position + new Vector3(0, 0.15f, 0), chestModel.transform.position + new Vector3(0, -0.2f, 0), 0.15f);
-                    foreach (Collider collider in colliders)
-                    {
-                        if (collider.tag == "RightController")
-                        {
-                            controllerInArea = true;
-                            break;
-                        }
-                    }
-
-                    if (controllerInArea)
-                    {
-                        RecallEye();
-                    }
-                    */
-
-                    
+                {                    
                     TutorialManager.instance.SetTutorial(3);
                     
 
@@ -611,31 +617,9 @@ public class InputController : MonoBehaviour
                     ShootToWall();
                     vibrate(true, 0.06f, 750);
                 }
-                /*else
-                {
-                    if (eyeOnWall)
-                    {
-                        if (!transitioning && Vector3.Distance(dominantController.transform.position, armButton.transform.position) < 0.1f)
-                        {
-                            ShootToTarget(onWallEyeModel.transform.position);
-                            vibrate(true, 0.06f, 750);
-                            SoundManager.instance.TriggerClip(7);
-
-                            TutorialManager.instance.SetTutorial(5);
-                        }
-                    }
-                }*/
             }
             else
             {
-                /*if (Vector3.Distance(dominantController.transform.position, armButton.transform.position) < 0.1f)
-                {
-                    vibrate(true, 0.06f, 750);
-                    SoundManager.instance.TriggerClip(7);
-                    TutorialManager.instance.SetTutorial(0);
-                    Recall();
-                }
-                else*/
                 {
                     RaycastHit hit;
                     if (Physics.Raycast(dominantController.transform.position, dominantController.transform.forward, out hit, 100f, cantMoveRobotThroughLayerMask))
@@ -757,7 +741,7 @@ public class InputController : MonoBehaviour
 
     public void ButtonBoop()
     {
-        
+     /*  
         if (!dead)
         {
             if (currentMode == CameraMode.Wall)
@@ -783,7 +767,7 @@ public class InputController : MonoBehaviour
                 }
             }
         }
-        
+        */
     }
 
     public void MoveRobot(bool canVibrate = false)
@@ -1042,10 +1026,22 @@ public class InputController : MonoBehaviour
             onWallEyeModel.SetActive(false);
 
             robotModel.SetActive(true);
+
+            dominantRobotHandModel.SetActive(false);
+            dominantEyeHandModel.SetActive(true);
+
+            weakRobotHandModel.SetActive(false);
+            weakEyeHandModel.SetActive(true);
         }
         else
         {
             robotModel.SetActive(false);
+
+            dominantRobotHandModel.SetActive(true);
+            dominantEyeHandModel.SetActive(false);
+
+            weakRobotHandModel.SetActive(true);
+            weakEyeHandModel.SetActive(false);
         }
     }
 
@@ -1053,7 +1049,6 @@ public class InputController : MonoBehaviour
     {
         TutorialManager.instance.SetTutorial(9);
         isInSlingShot = true;
-        //clutchingEyeModel.transform.parent = leftController.transform;
     }
 
     public void PlayerKilled()
@@ -1112,7 +1107,7 @@ public class InputController : MonoBehaviour
     public void SetHand(bool dominantHand, string model)
     {
         Animator currentAnimator = null;
-        if (dominantHand && !GameVariables.instance.leftHandMode || !dominantHand && GameVariables.instance.leftHandMode)
+        if (dominantHand)
         {
             currentAnimator = currentRightHandAnimator;
         }

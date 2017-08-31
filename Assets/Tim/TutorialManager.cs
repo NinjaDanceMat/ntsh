@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class TutorialManager : MonoBehaviour
 {
+    public GameObject hologramStuff;
 
     public List<string> messages = new List<string>();
     public List<bool> hasBeenSeen = new List<bool>();
@@ -66,6 +67,8 @@ public class TutorialManager : MonoBehaviour
         }
         else
         {
+            hologramStuff.SetActive(false);
+            InputController.instance.tutFlash.SetActive(true);
             text.text = messages[7];
             currentTutorial = 7;
         }

@@ -48,6 +48,8 @@ public class InputController : MonoBehaviour
 
     public GameObject chestModel;
 
+    public bool gameHasEnded;
+
     //public Vector3 robotPosition;
     public Quaternion robotRotation;
 
@@ -112,6 +114,9 @@ public class InputController : MonoBehaviour
 
     public GameObject tutFlash;
 
+    public GameObject spawnPoint;
+    public GameObject endPoint;
+
     // Use this for initialization
     void Awake()
     {
@@ -126,13 +131,21 @@ public class InputController : MonoBehaviour
         rigCheckpointPos = cameraRig.transform.position;
         rigCheckpointRot = cameraRig.transform.rotation;
 
-        
+        StartCoroutine(delayedWarp(spawnPoint.transform.position, spawnPoint.transform.rotation));
+
+    }
+
+    public IEnumerator delayedWarp(Vector3 vec, Quaternion quar)
+    {
+        yield return new WaitForSeconds(8f);
+        FadeAndMove(vec, quar);
+        RecallEye();
+        TutorialManager.instance.SetTutorial(0);
     }
 
     public void Start()
     {
         ChangeHandMode(GameVariables.instance.leftHandMode);
-
     }
 
     public void ChangeHandMode(bool leftHand)
@@ -558,6 +571,22 @@ public class InputController : MonoBehaviour
                     {
                         TutorialManager.instance.slingshotInsteadOfThrow = true;
                     }
+                    if (point.gameEnd)
+                    {
+                        if (!gameHasEnded)
+                        {
+                            gameHasEnded = true;
+
+                            eyeOnWall = false;
+                            buttonRender.material = noButton;
+                            robotAgent.destination = robotAgent.transform.position;
+                            robotAgent.isStopped = true;
+                            currentMode = CameraMode.Robot;
+                            FadeAndMove(endPoint.transform.position, endPoint.transform.rotation);
+
+                            RecallEye();
+                        }
+                    }
                 }
             }
         }
@@ -924,7 +953,7 @@ public class InputController : MonoBehaviour
             buttonRender.material = noButton;
 
             robotAgent.destination = robotAgent.transform.position;
-            robotAgent.isStopped = true;// = true;
+            robotAgent.isStopped = true;
 
 
             Vector3 newRigPos = cameraRig.transform.position;
@@ -1112,6 +1141,12 @@ public class InputController : MonoBehaviour
         recallingEye = false;
         MovingToPoint = false;
         eyeFromChest = false;
+
+        dominantRobotHandModel.SetActive(true);
+        dominantEyeHandModel.SetActive(false);
+
+        weakRobotHandModel.SetActive(true);
+        weakEyeHandModel.SetActive(false);
 
         RecallEye();
     }

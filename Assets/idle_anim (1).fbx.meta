@@ -1,0 +1,1232 @@
+fileFormatVersion: 2
+guid: c25cd9d96321dd146886420c957f26e6
+timeCreated: 1504181831
+licenseType: Free
+ModelImporter:
+  serializedVersion: 21
+  fileIDToRecycleName:
+    100000: character_rig_v15:armUpprL
+    100002: character_rig_v15:armUpprR
+    100004: character_rig_v15:backTorso
+    100006: character_rig_v15:be_R_index_D01
+    100008: character_rig_v15:be_R_index_D01 1
+    100010: character_rig_v15:be_R_mid_D01
+    100012: character_rig_v15:be_R_mid_D01 1
+    100014: character_rig_v15:be_R_pinky_D01
+    100016: character_rig_v15:be_R_pinky_D01 1
+    100018: character_rig_v15:be_R_ring_D01
+    100020: character_rig_v15:be_R_ring_D01 1
+    100022: character_rig_v15:be_R_wristEnd_01
+    100024: character_rig_v15:be_R_wristEnd_01 1
+    100026: character_rig_v15:blendShapes01
+    100028: character_rig_v15:bn_R_index_A01
+    100030: character_rig_v15:bn_R_index_A01 1
+    100032: character_rig_v15:bn_R_index_B01
+    100034: character_rig_v15:bn_R_index_B01 1
+    100036: character_rig_v15:bn_R_index_C01
+    100038: character_rig_v15:bn_R_index_C01 1
+    100040: character_rig_v15:bn_R_mid_A01
+    100042: character_rig_v15:bn_R_mid_A01 1
+    100044: character_rig_v15:bn_R_mid_B01
+    100046: character_rig_v15:bn_R_mid_B01 1
+    100048: character_rig_v15:bn_R_mid_C01
+    100050: character_rig_v15:bn_R_mid_C01 1
+    100052: character_rig_v15:bn_R_pinky_A02
+    100054: character_rig_v15:bn_R_pinky_A02 1
+    100056: character_rig_v15:bn_R_pinky_B01
+    100058: character_rig_v15:bn_R_pinky_B01 1
+    100060: character_rig_v15:bn_R_pinky_C01
+    100062: character_rig_v15:bn_R_pinky_C01 1
+    100064: character_rig_v15:bn_R_ring_A01
+    100066: character_rig_v15:bn_R_ring_A01 1
+    100068: character_rig_v15:bn_R_ring_B01
+    100070: character_rig_v15:bn_R_ring_B01 1
+    100072: character_rig_v15:bn_R_ring_C01
+    100074: character_rig_v15:bn_R_ring_C01 1
+    100076: character_rig_v15:bn_R_thumb_A01
+    100078: character_rig_v15:bn_R_thumb_A01 1
+    100080: character_rig_v15:bn_R_thumb_B01
+    100082: character_rig_v15:bn_R_thumb_B01 1
+    100084: character_rig_v15:bn_R_thumb_C01
+    100086: character_rig_v15:bn_R_thumb_C01 1
+    100088: character_rig_v15:bn_R_thumb_D01
+    100090: character_rig_v15:bn_R_thumb_D01 1
+    100092: character_rig_v15:bn_R_wristHinge_01
+    100094: character_rig_v15:bn_R_wristHinge_01 1
+    100096: character_rig_v15:bn_R_wristToForeArm_01
+    100098: character_rig_v15:bn_R_wristToForeArm_01 1
+    100100: character_rig_v15:cc_R_Hand_01
+    100102: character_rig_v15:cc_R_Hand_01 1
+    100104: character_rig_v15:cc_R_index_01
+    100106: character_rig_v15:cc_R_index_01 1
+    100108: character_rig_v15:cc_R_mid_01
+    100110: character_rig_v15:cc_R_mid_01 1
+    100112: character_rig_v15:cc_R_pinky_01
+    100114: character_rig_v15:cc_R_pinky_01 1
+    100116: character_rig_v15:cc_R_ring_01
+    100118: character_rig_v15:cc_R_ring_01 1
+    100120: character_rig_v15:cc_R_thumb_01
+    100122: character_rig_v15:cc_R_thumb_01 1
+    100124: character_rig_v15:character_geo
+    100126: character_rig_v15:Chest_ANIM_CTRL
+    100128: character_rig_v15:Chest_BE
+    100130: character_rig_v15:Chest_BJNT
+    100132: character_rig_v15:chestStomach
+    100134: character_rig_v15:cloth
+    100136: character_rig_v15:clothAnkleL
+    100138: character_rig_v15:clothAnkleR
+    100140: character_rig_v15:clothElbowL
+    100142: character_rig_v15:clothElbowR
+    100144: character_rig_v15:clothGroinL
+    100146: character_rig_v15:clothGroinR
+    100148: character_rig_v15:clothKneeL
+    100150: character_rig_v15:clothKneeR
+    100152: character_rig_v15:ClothLegs_A_BJNT
+    100154: character_rig_v15:clothNeck
+    100156: character_rig_v15:clothSholderL
+    100158: character_rig_v15:clothSholderR
+    100160: character_rig_v15:clothStomach
+    100162: character_rig_v15:COG
+    100164: character_rig_v15:COG_ROOT
+    100166: character_rig_v15:controlObjects01
+    100168: character_rig_v15:Ctrl_01
+    100170: character_rig_v15:Ctrl_01 1
+    100172: character_rig_v15:Extra
+    100174: character_rig_v15:Extra 1
+    100176: character_rig_v15:extraNodes01
+    100178: character_rig_v15:Eyes_CTRL
+    100180: character_rig_v15:FK_leg_Const_GRP
+    100182: character_rig_v15:foorL
+    100184: character_rig_v15:foorL1
+    100186: character_rig_v15:foreArm_grp
+    100188: character_rig_v15:foreArm_panel
+    100190: character_rig_v15:foreArmR
+    100192: character_rig_v15:foreArmR1
+    100194: character_rig_v15:Global_01
+    100196: character_rig_v15:Global_01 1
+    100198: character_rig_v15:Global_Move_CTRL_A
+    100200: character_rig_v15:Global_Move_CTRL_B
+    100202: character_rig_v15:Global_Move_CTRL_C
+    100204: character_rig_v15:groin
+    100206: character_rig_v15:grp_drv_cc_R_Hand_01
+    100208: character_rig_v15:grp_drv_cc_R_Hand_01 1
+    100210: character_rig_v15:grp_drv_cc_R_index_01
+    100212: character_rig_v15:grp_drv_cc_R_index_01 1
+    100214: character_rig_v15:grp_drv_cc_R_mid_01
+    100216: character_rig_v15:grp_drv_cc_R_mid_01 1
+    100218: character_rig_v15:grp_drv_cc_R_pinky_01
+    100220: character_rig_v15:grp_drv_cc_R_pinky_01 1
+    100222: character_rig_v15:grp_drv_cc_R_ring_01
+    100224: character_rig_v15:grp_drv_cc_R_ring_01 1
+    100226: character_rig_v15:grp_drv_cc_R_thumb_01
+    100228: character_rig_v15:grp_drv_cc_R_thumb_01 1
+    100230: character_rig_v15:grp_fingers_01
+    100232: character_rig_v15:grp_fingers_01 1
+    100234: character_rig_v15:GRP_HandGeo_01
+    100236: character_rig_v15:GRP_HandGeo_01 1
+    100238: character_rig_v15:hand
+    100240: character_rig_v15:Head_ANIM_CTRL
+    100242: character_rig_v15:Head_geo3
+    100244: character_rig_v15:Head_geo4
+    100246: character_rig_v15:HeadTip_BE
+    100248: character_rig_v15:hips
+    100250: character_rig_v15:iks01
+    100252: character_rig_v15:IKS_01
+    100254: character_rig_v15:index1
+    100256: character_rig_v15:index1 1
+    100258: character_rig_v15:index2
+    100260: character_rig_v15:index2 1
+    100262: character_rig_v15:index3
+    100264: character_rig_v15:index3 1
+    100266: character_rig_v15:index4
+    100268: character_rig_v15:index5
+    100270: character_rig_v15:index6
+    100272: character_rig_v15:index7
+    100274: character_rig_v15:index8
+    100276: character_rig_v15:index9
+    100278: character_rig_v15:joints01
+    100280: character_rig_v15:joints01 1
+    100282: character_rig_v15:L_ankle_BE
+    100284: character_rig_v15:L_ankle_BJNT
+    100286: character_rig_v15:L_Ankle_Cloth_BJNT
+    100288: character_rig_v15:L_ankle_FK_ANIM_CTRL
+    100290: character_rig_v15:L_ankle_FK_Const_GRP
+    100292: character_rig_v15:L_ankle_FKE
+    100294: character_rig_v15:L_ankle_IKE
+    100296: character_rig_v15:L_Arm_IK_HDL
+    100298: character_rig_v15:L_Arm_IKFK_Switch
+    100300: character_rig_v15:L_arm_IKPV
+    100302: character_rig_v15:L_arm_Top
+    100304: character_rig_v15:L_Cloth_A_BJNT
+    100306: character_rig_v15:L_Cloth_BJNT_B
+    100308: character_rig_v15:L_eye_BJNT
+    100310: character_rig_v15:L_Eye_Inner
+    100312: character_rig_v15:L_Eye_inner_shutter_grp
+    100314: character_rig_v15:L_Eye_Outer
+    100316: character_rig_v15:L_eye_shutter_01
+    100318: character_rig_v15:L_eye_shutter_01 1
+    100320: character_rig_v15:L_eye_shutter_01 2
+    100322: character_rig_v15:L_eye_shutter_010
+    100324: character_rig_v15:L_eye_shutter_011
+    100326: character_rig_v15:L_eye_shutter_012
+    100328: character_rig_v15:L_eye_shutter_013
+    100330: character_rig_v15:L_eye_shutter_014
+    100332: character_rig_v15:L_eye_shutter_015
+    100334: character_rig_v15:L_eye_shutter_016
+    100336: character_rig_v15:L_eye_shutter_017
+    100338: character_rig_v15:L_eye_shutter_018
+    100340: character_rig_v15:L_eye_shutter_019
+    100342: character_rig_v15:L_eye_shutter_02
+    100344: character_rig_v15:L_eye_shutter_02 1
+    100346: character_rig_v15:L_eye_shutter_02 2
+    100348: character_rig_v15:L_eye_shutter_02 3
+    100350: character_rig_v15:L_eye_shutter_020
+    100352: character_rig_v15:L_eye_shutter_021
+    100354: character_rig_v15:L_eye_shutter_022
+    100356: character_rig_v15:L_eye_shutter_023
+    100358: character_rig_v15:L_eye_shutter_024
+    100360: character_rig_v15:L_eye_shutter_025
+    100362: character_rig_v15:L_eye_shutter_026
+    100364: character_rig_v15:L_eye_shutter_027
+    100366: character_rig_v15:L_eye_shutter_028
+    100368: character_rig_v15:L_eye_shutter_029
+    100370: character_rig_v15:L_eye_shutter_03
+    100372: character_rig_v15:L_eye_shutter_03 1
+    100374: character_rig_v15:L_eye_shutter_03 2
+    100376: character_rig_v15:L_eye_shutter_03 3
+    100378: character_rig_v15:L_eye_shutter_030
+    100380: character_rig_v15:L_eye_shutter_031
+    100382: character_rig_v15:L_eye_shutter_032
+    100384: character_rig_v15:L_eye_shutter_033
+    100386: character_rig_v15:L_eye_shutter_034
+    100388: character_rig_v15:L_eye_shutter_035
+    100390: character_rig_v15:L_eye_shutter_036
+    100392: character_rig_v15:L_eye_shutter_037
+    100394: character_rig_v15:L_eye_shutter_038
+    100396: character_rig_v15:L_eye_shutter_039
+    100398: character_rig_v15:L_eye_shutter_04
+    100400: character_rig_v15:L_eye_shutter_04 1
+    100402: character_rig_v15:L_eye_shutter_04 2
+    100404: character_rig_v15:L_eye_shutter_04 3
+    100406: character_rig_v15:L_eye_shutter_040
+    100408: character_rig_v15:L_eye_shutter_041
+    100410: character_rig_v15:L_eye_shutter_05
+    100412: character_rig_v15:L_eye_shutter_05 1
+    100414: character_rig_v15:L_eye_shutter_05 2
+    100416: character_rig_v15:L_eye_shutter_05 3
+    100418: character_rig_v15:L_eye_shutter_06
+    100420: character_rig_v15:L_eye_shutter_06 1
+    100422: character_rig_v15:L_eye_shutter_06 2
+    100424: character_rig_v15:L_eye_shutter_06 3
+    100426: character_rig_v15:L_eye_shutter_07
+    100428: character_rig_v15:L_eye_shutter_07 1
+    100430: character_rig_v15:L_eye_shutter_07 2
+    100432: character_rig_v15:L_eye_shutter_07 3
+    100434: character_rig_v15:L_eye_shutter_08
+    100436: character_rig_v15:L_eye_shutter_08 1
+    100438: character_rig_v15:L_eye_shutter_08 2
+    100440: character_rig_v15:L_eye_shutter_08 3
+    100442: character_rig_v15:L_eye_shutter_09
+    100444: character_rig_v15:L_Eye_shutter_grp
+    100446: character_rig_v15:L_foot_BJNT
+    100448: character_rig_v15:L_foot_Cloth_BJNT
+    100450: character_rig_v15:L_foot_DRV
+    100452: character_rig_v15:L_forearm_BJNT
+    100454: character_rig_v15:L_Forearm_CTRL
+    100456: character_rig_v15:L_forearm_FKJNT
+    100458: character_rig_v15:L_forearm_IKJNT
+    100460: character_rig_v15:L_hand_BJNT
+    100462: character_rig_v15:L_hand_FKJNT
+    100464: character_rig_v15:L_Hand_IK_CTRL
+    100466: character_rig_v15:L_hand_IKJNT
+    100468: character_rig_v15:L_IK_PV_CTRL
+    100470: character_rig_v15:L_leg_IK_ANIM_CTRL
+    100472: character_rig_v15:L_leg_IK_HDL
+    100474: character_rig_v15:L_leg_IKFK_Switch
+    100476: character_rig_v15:L_pupil
+    100478: character_rig_v15:L_pupil_bind1
+    100480: character_rig_v15:L_PV_FollowX
+    100482: character_rig_v15:L_PV_FollowY
+    100484: character_rig_v15:L_PV_FollowZ
+    100486: character_rig_v15:L_shin_BJNT
+    100488: character_rig_v15:L_shin_Cloth_BJNT
+    100490: character_rig_v15:L_shin_FK_ANIM_CTRL
+    100492: character_rig_v15:L_shin_FKJNT
+    100494: character_rig_v15:L_shin_IKJNT
+    100496: character_rig_v15:L_shoulder_BJNT
+    100498: character_rig_v15:L_Shoulder_CTRL
+    100500: character_rig_v15:L_shoulder_FKJNT
+    100502: character_rig_v15:L_shoulder_IKJNT
+    100504: character_rig_v15:L_shutter_inner_JNT_01
+    100506: character_rig_v15:L_shutter_inner_JNT_02
+    100508: character_rig_v15:L_shutter_inner_JNT_03
+    100510: character_rig_v15:L_shutter_Inner_JNT_04
+    100512: character_rig_v15:L_shutter_inner_JNT_05
+    100514: character_rig_v15:L_shutter_inner_JNT_06
+    100516: character_rig_v15:L_shutter_inner_JNT_07
+    100518: character_rig_v15:L_shutter_inner_JNT_08
+    100520: character_rig_v15:L_shutter_outer_JNT_01
+    100522: character_rig_v15:L_shutter_outer_JNT_02
+    100524: character_rig_v15:L_shutter_outer_JNT_03
+    100526: character_rig_v15:L_shutter_outer_JNT_04
+    100528: character_rig_v15:L_shutter_outer_JNT_05
+    100530: character_rig_v15:L_shutter_outer_JNT_06
+    100532: character_rig_v15:L_shutter_outer_JNT_07
+    100534: character_rig_v15:L_shutter_outer_JNT_08
+    100536: character_rig_v15:L_thigh_BJNT
+    100538: character_rig_v15:L_thigh_Cloth_BJNT
+    100540: character_rig_v15:L_thigh_FK_ANIM_CTRL
+    100542: character_rig_v15:L_thigh_FKJNT
+    100544: character_rig_v15:L_thigh_IKJNT
+    100546: character_rig_v15:L_thighCloth_BJNT1
+    100548: character_rig_v15:L_toe_BE
+    100550: character_rig_v15:L_toe_DRVE
+    100552: character_rig_v15:little1
+    100554: character_rig_v15:little1 1
+    100556: character_rig_v15:little2
+    100558: character_rig_v15:little2 1
+    100560: character_rig_v15:little3
+    100562: character_rig_v15:little3 1
+    100564: character_rig_v15:little4
+    100566: character_rig_v15:little5
+    100568: character_rig_v15:little6
+    100570: character_rig_v15:little7
+    100572: character_rig_v15:little8
+    100574: character_rig_v15:little9
+    100576: character_rig_v15:locAlign_Chest_BJNT
+    100578: character_rig_v15:locAlign_L_ankle_BJNT
+    100580: character_rig_v15:locAlign_L_ankle_IK_LOC
+    100582: character_rig_v15:locAlign_L_ankle_IK_ORI
+    100584: character_rig_v15:locAlign_L_foot_DRV
+    100586: character_rig_v15:locAlign_L_foot_ORI
+    100588: character_rig_v15:locAlign_L_forearm_BJNT
+    100590: character_rig_v15:locAlign_L_forearm_FKJNT
+    100592: character_rig_v15:locAlign_L_heel_DRV
+    100594: character_rig_v15:locAlign_L_heel_ORI
+    100596: character_rig_v15:locAlign_L_shin_FKJNT
+    100598: character_rig_v15:locAlign_L_shin_IKJNT
+    100600: character_rig_v15:locAlign_L_shoulder_FKJNT
+    100602: character_rig_v15:locAlign_L_thigh_FKJNT
+    100604: character_rig_v15:locAlign_L_toe_DRV
+    100606: character_rig_v15:locAlign_L_toe_ORI
+    100608: character_rig_v15:locAlign_Neck_End_BJNT
+    100610: character_rig_v15:locAlign_Pelvis_BJNT
+    100612: character_rig_v15:locAlign_R_ankle_BJNT
+    100614: character_rig_v15:locAlign_R_ankle_IK_LOC
+    100616: character_rig_v15:locAlign_R_ankle_IK_ORI
+    100618: character_rig_v15:locAlign_R_foot_DRV
+    100620: character_rig_v15:locAlign_R_foot_ORI
+    100622: character_rig_v15:locAlign_R_forearm_BJNT
+    100624: character_rig_v15:locAlign_R_forearm_FKJNT
+    100626: character_rig_v15:locAlign_R_heel_DRV
+    100628: character_rig_v15:locAlign_R_heel_ORI
+    100630: character_rig_v15:locAlign_R_shin_FKJNT
+    100632: character_rig_v15:locAlign_R_shin_IKJNT
+    100634: character_rig_v15:locAlign_R_shoulder_FKJNT
+    100636: character_rig_v15:locAlign_R_thigh_FKJNT
+    100638: character_rig_v15:locAlign_R_toe_DRV
+    100640: character_rig_v15:locAlign_R_toe_ORI
+    100642: character_rig_v15:locAlign_Waist_BJNT
+    100644: character_rig_v15:middle1
+    100646: character_rig_v15:middle1 1
+    100648: character_rig_v15:middle2
+    100650: character_rig_v15:middle2 1
+    100652: character_rig_v15:middle3
+    100654: character_rig_v15:middle3 1
+    100656: character_rig_v15:middle4
+    100658: character_rig_v15:middle5
+    100660: character_rig_v15:middle6
+    100662: character_rig_v15:middle7
+    100664: character_rig_v15:middle8
+    100666: character_rig_v15:middle9
+    100668: character_rig_v15:model01
+    100670: character_rig_v15:Model_01
+    100672: character_rig_v15:Model_01 1
+    100674: character_rig_v15:Neck_ANIM_Const_GRP
+    100676: character_rig_v15:Neck_Base_BJNT
+    100678: character_rig_v15:Neck_End_BJNT
+    100680: character_rig_v15:palm
+    100682: character_rig_v15:palm 1
+    100684: character_rig_v15:palm1
+    100686: character_rig_v15:palm2
+    100688: character_rig_v15:Pelvis_BE
+    100690: character_rig_v15:Pelvis_BJNT
+    100692: character_rig_v15:Pevlis_ANIM_CTRL
+    100694: character_rig_v15:polySurface16
+    100696: character_rig_v15:polySurface18
+    100698: character_rig_v15:polySurface19
+    100700: character_rig_v15:polySurface2
+    100702: character_rig_v15:polySurface8
+    100704: character_rig_v15:R_ankle_BE
+    100706: character_rig_v15:R_ankle_BJNT
+    100708: character_rig_v15:R_ankle_Cloth_BJNT
+    100710: character_rig_v15:R_ankle_FK_ANIM_CTRL
+    100712: character_rig_v15:R_ankle_FK_Const_GRP
+    100714: character_rig_v15:R_ankle_FKE
+    100716: character_rig_v15:R_ankle_IKE
+    100718: character_rig_v15:R_Arm_IK_HDL
+    100720: character_rig_v15:R_Arm_IKFK_Switch
+    100722: character_rig_v15:R_arm_IKPV
+    100724: character_rig_v15:R_arm_top
+    100726: character_rig_v15:R_Cloth_A_BJNT
+    100728: character_rig_v15:R_Cloth_B_BJNT
+    100730: character_rig_v15:R_eye_BJNT
+    100732: character_rig_v15:R_Eye_Inner
+    100734: character_rig_v15:R_Eye_inner_shutter_grp
+    100736: character_rig_v15:R_Eye_Outer
+    100738: character_rig_v15:R_Eye_shutter_grp
+    100740: character_rig_v15:R_foot_BJNT
+    100742: character_rig_v15:R_foot_Cloth_BJNT
+    100744: character_rig_v15:R_foot_DRV
+    100746: character_rig_v15:R_forearm_BJNT
+    100748: character_rig_v15:R_Forearm_CTRL
+    100750: character_rig_v15:R_forearm_FKJNT
+    100752: character_rig_v15:R_forearm_IKJNT
+    100754: character_rig_v15:R_hand_BJNT
+    100756: character_rig_v15:R_hand_FKJNT
+    100758: character_rig_v15:R_Hand_IK_CTRL
+    100760: character_rig_v15:R_hand_IKJNT
+    100762: character_rig_v15:R_IK_PV_CTRL
+    100764: character_rig_v15:R_leg_IK_ANIM_CTRL
+    100766: character_rig_v15:R_leg_IK_HDL
+    100768: character_rig_v15:R_leg_IKFK_Switch
+    100770: character_rig_v15:R_pupil
+    100772: character_rig_v15:R_pupil_bind
+    100774: character_rig_v15:R_PV_FollowX
+    100776: character_rig_v15:R_PV_FollowY
+    100778: character_rig_v15:R_PV_FollowZ
+    100780: character_rig_v15:R_shin_BJNT
+    100782: character_rig_v15:R_shin_Cloth_BJNT
+    100784: character_rig_v15:R_shin_FK_ANIM_CTRL
+    100786: character_rig_v15:R_shin_FKJNT
+    100788: character_rig_v15:R_shin_IKJNT
+    100790: character_rig_v15:R_shoulder_BJNT
+    100792: character_rig_v15:R_Shoulder_CTRL
+    100794: character_rig_v15:R_shoulder_FKJNT
+    100796: character_rig_v15:R_shoulder_IKJNT
+    100798: character_rig_v15:R_shutter_inner_JNT_01
+    100800: character_rig_v15:R_shutter_inner_JNT_02
+    100802: character_rig_v15:R_shutter_inner_JNT_03
+    100804: character_rig_v15:R_shutter_Inner_JNT_04
+    100806: character_rig_v15:R_shutter_inner_JNT_05
+    100808: character_rig_v15:R_shutter_inner_JNT_06
+    100810: character_rig_v15:R_shutter_inner_JNT_07
+    100812: character_rig_v15:R_shutter_inner_JNT_08
+    100814: character_rig_v15:R_shutter_outer_JNT_01
+    100816: character_rig_v15:R_shutter_outer_JNT_02
+    100818: character_rig_v15:R_shutter_outer_JNT_03
+    100820: character_rig_v15:R_shutter_outer_JNT_04
+    100822: character_rig_v15:R_shutter_outer_JNT_05
+    100824: character_rig_v15:R_shutter_outer_JNT_06
+    100826: character_rig_v15:R_shutter_outer_JNT_07
+    100828: character_rig_v15:R_shutter_outer_JNT_08
+    100830: character_rig_v15:R_thigh_BJNT
+    100832: character_rig_v15:R_thigh_Cloth_BJNT
+    100834: character_rig_v15:R_thigh_Cloth_BJNT1
+    100836: character_rig_v15:R_thigh_FK_ANIM_CTRL
+    100838: character_rig_v15:R_thigh_FKJNT
+    100840: character_rig_v15:R_thigh_IKJNT
+    100842: character_rig_v15:R_Toe
+    100844: character_rig_v15:R_toe_BE
+    100846: character_rig_v15:R_toe_DRVE
+    100848: character_rig_v15:ring1
+    100850: character_rig_v15:ring1 1
+    100852: character_rig_v15:ring2
+    100854: character_rig_v15:ring2 1
+    100856: character_rig_v15:ring3
+    100858: character_rig_v15:ring3 1
+    100860: character_rig_v15:ring4
+    100862: character_rig_v15:ring5
+    100864: character_rig_v15:ring6
+    100866: character_rig_v15:ring7
+    100868: character_rig_v15:ring8
+    100870: character_rig_v15:ring9
+    100872: character_rig_v15:Robot_01
+    100874: character_rig_v15:robot_geo
+    100876: character_rig_v15:robotHead_geo
+    100878: character_rig_v15:shinL
+    100880: character_rig_v15:shinR
+    100882: character_rig_v15:sholderBlades
+    100884: character_rig_v15:Skel_01
+    100886: character_rig_v15:Skel_01 1
+    100888: character_rig_v15:thighL
+    100890: character_rig_v15:thighR
+    100892: character_rig_v15:thumb1
+    100894: character_rig_v15:thumb1 1
+    100896: character_rig_v15:thumb2
+    100898: character_rig_v15:thumb2 1
+    100900: character_rig_v15:thumb3
+    100902: character_rig_v15:thumb3 1
+    100904: character_rig_v15:thumb4
+    100906: character_rig_v15:thumb5
+    100908: character_rig_v15:thumb6
+    100910: character_rig_v15:thumb7
+    100912: character_rig_v15:thumb8
+    100914: character_rig_v15:thumb9
+    100916: character_rig_v15:to_transform01
+    100918: character_rig_v15:transform2
+    100920: character_rig_v15:transform3
+    100922: character_rig_v15:transform4
+    100924: character_rig_v15:trns_toHide01
+    100926: character_rig_v15:trns_toShow01
+    100928: character_rig_v15:Waist_ANIM_CTRL
+    100930: character_rig_v15:Waist_BE
+    100932: character_rig_v15:Waist_BJNT
+    100934: character_rig_v15:wrist
+    100936: character_rig_v15:wrist 1
+    100938: character_rig_v15:wrist1
+    100940: character_rig_v15:wrist2
+    100942: character_rig_v15:Wrist_panel_screen
+    100944: character_rig_v15:xtra_toHide01
+    100946: character_rig_v15:xtra_toShow01
+    100948: //RootNode
+    400000: character_rig_v15:armUpprL
+    400002: character_rig_v15:armUpprR
+    400004: character_rig_v15:backTorso
+    400006: character_rig_v15:be_R_index_D01
+    400008: character_rig_v15:be_R_index_D01 1
+    400010: character_rig_v15:be_R_mid_D01
+    400012: character_rig_v15:be_R_mid_D01 1
+    400014: character_rig_v15:be_R_pinky_D01
+    400016: character_rig_v15:be_R_pinky_D01 1
+    400018: character_rig_v15:be_R_ring_D01
+    400020: character_rig_v15:be_R_ring_D01 1
+    400022: character_rig_v15:be_R_wristEnd_01
+    400024: character_rig_v15:be_R_wristEnd_01 1
+    400026: character_rig_v15:blendShapes01
+    400028: character_rig_v15:bn_R_index_A01
+    400030: character_rig_v15:bn_R_index_A01 1
+    400032: character_rig_v15:bn_R_index_B01
+    400034: character_rig_v15:bn_R_index_B01 1
+    400036: character_rig_v15:bn_R_index_C01
+    400038: character_rig_v15:bn_R_index_C01 1
+    400040: character_rig_v15:bn_R_mid_A01
+    400042: character_rig_v15:bn_R_mid_A01 1
+    400044: character_rig_v15:bn_R_mid_B01
+    400046: character_rig_v15:bn_R_mid_B01 1
+    400048: character_rig_v15:bn_R_mid_C01
+    400050: character_rig_v15:bn_R_mid_C01 1
+    400052: character_rig_v15:bn_R_pinky_A02
+    400054: character_rig_v15:bn_R_pinky_A02 1
+    400056: character_rig_v15:bn_R_pinky_B01
+    400058: character_rig_v15:bn_R_pinky_B01 1
+    400060: character_rig_v15:bn_R_pinky_C01
+    400062: character_rig_v15:bn_R_pinky_C01 1
+    400064: character_rig_v15:bn_R_ring_A01
+    400066: character_rig_v15:bn_R_ring_A01 1
+    400068: character_rig_v15:bn_R_ring_B01
+    400070: character_rig_v15:bn_R_ring_B01 1
+    400072: character_rig_v15:bn_R_ring_C01
+    400074: character_rig_v15:bn_R_ring_C01 1
+    400076: character_rig_v15:bn_R_thumb_A01
+    400078: character_rig_v15:bn_R_thumb_A01 1
+    400080: character_rig_v15:bn_R_thumb_B01
+    400082: character_rig_v15:bn_R_thumb_B01 1
+    400084: character_rig_v15:bn_R_thumb_C01
+    400086: character_rig_v15:bn_R_thumb_C01 1
+    400088: character_rig_v15:bn_R_thumb_D01
+    400090: character_rig_v15:bn_R_thumb_D01 1
+    400092: character_rig_v15:bn_R_wristHinge_01
+    400094: character_rig_v15:bn_R_wristHinge_01 1
+    400096: character_rig_v15:bn_R_wristToForeArm_01
+    400098: character_rig_v15:bn_R_wristToForeArm_01 1
+    400100: character_rig_v15:cc_R_Hand_01
+    400102: character_rig_v15:cc_R_Hand_01 1
+    400104: character_rig_v15:cc_R_index_01
+    400106: character_rig_v15:cc_R_index_01 1
+    400108: character_rig_v15:cc_R_mid_01
+    400110: character_rig_v15:cc_R_mid_01 1
+    400112: character_rig_v15:cc_R_pinky_01
+    400114: character_rig_v15:cc_R_pinky_01 1
+    400116: character_rig_v15:cc_R_ring_01
+    400118: character_rig_v15:cc_R_ring_01 1
+    400120: character_rig_v15:cc_R_thumb_01
+    400122: character_rig_v15:cc_R_thumb_01 1
+    400124: character_rig_v15:character_geo
+    400126: character_rig_v15:Chest_ANIM_CTRL
+    400128: character_rig_v15:Chest_BE
+    400130: character_rig_v15:Chest_BJNT
+    400132: character_rig_v15:chestStomach
+    400134: character_rig_v15:cloth
+    400136: character_rig_v15:clothAnkleL
+    400138: character_rig_v15:clothAnkleR
+    400140: character_rig_v15:clothElbowL
+    400142: character_rig_v15:clothElbowR
+    400144: character_rig_v15:clothGroinL
+    400146: character_rig_v15:clothGroinR
+    400148: character_rig_v15:clothKneeL
+    400150: character_rig_v15:clothKneeR
+    400152: character_rig_v15:ClothLegs_A_BJNT
+    400154: character_rig_v15:clothNeck
+    400156: character_rig_v15:clothSholderL
+    400158: character_rig_v15:clothSholderR
+    400160: character_rig_v15:clothStomach
+    400162: character_rig_v15:COG
+    400164: character_rig_v15:COG_ROOT
+    400166: character_rig_v15:controlObjects01
+    400168: character_rig_v15:Ctrl_01
+    400170: character_rig_v15:Ctrl_01 1
+    400172: character_rig_v15:Extra
+    400174: character_rig_v15:Extra 1
+    400176: character_rig_v15:extraNodes01
+    400178: character_rig_v15:Eyes_CTRL
+    400180: character_rig_v15:FK_leg_Const_GRP
+    400182: character_rig_v15:foorL
+    400184: character_rig_v15:foorL1
+    400186: character_rig_v15:foreArm_grp
+    400188: character_rig_v15:foreArm_panel
+    400190: character_rig_v15:foreArmR
+    400192: character_rig_v15:foreArmR1
+    400194: character_rig_v15:Global_01
+    400196: character_rig_v15:Global_01 1
+    400198: character_rig_v15:Global_Move_CTRL_A
+    400200: character_rig_v15:Global_Move_CTRL_B
+    400202: character_rig_v15:Global_Move_CTRL_C
+    400204: character_rig_v15:groin
+    400206: character_rig_v15:grp_drv_cc_R_Hand_01
+    400208: character_rig_v15:grp_drv_cc_R_Hand_01 1
+    400210: character_rig_v15:grp_drv_cc_R_index_01
+    400212: character_rig_v15:grp_drv_cc_R_index_01 1
+    400214: character_rig_v15:grp_drv_cc_R_mid_01
+    400216: character_rig_v15:grp_drv_cc_R_mid_01 1
+    400218: character_rig_v15:grp_drv_cc_R_pinky_01
+    400220: character_rig_v15:grp_drv_cc_R_pinky_01 1
+    400222: character_rig_v15:grp_drv_cc_R_ring_01
+    400224: character_rig_v15:grp_drv_cc_R_ring_01 1
+    400226: character_rig_v15:grp_drv_cc_R_thumb_01
+    400228: character_rig_v15:grp_drv_cc_R_thumb_01 1
+    400230: character_rig_v15:grp_fingers_01
+    400232: character_rig_v15:grp_fingers_01 1
+    400234: character_rig_v15:GRP_HandGeo_01
+    400236: character_rig_v15:GRP_HandGeo_01 1
+    400238: character_rig_v15:hand
+    400240: character_rig_v15:Head_ANIM_CTRL
+    400242: character_rig_v15:Head_geo3
+    400244: character_rig_v15:Head_geo4
+    400246: character_rig_v15:HeadTip_BE
+    400248: character_rig_v15:hips
+    400250: character_rig_v15:iks01
+    400252: character_rig_v15:IKS_01
+    400254: character_rig_v15:index1
+    400256: character_rig_v15:index1 1
+    400258: character_rig_v15:index2
+    400260: character_rig_v15:index2 1
+    400262: character_rig_v15:index3
+    400264: character_rig_v15:index3 1
+    400266: character_rig_v15:index4
+    400268: character_rig_v15:index5
+    400270: character_rig_v15:index6
+    400272: character_rig_v15:index7
+    400274: character_rig_v15:index8
+    400276: character_rig_v15:index9
+    400278: character_rig_v15:joints01
+    400280: character_rig_v15:joints01 1
+    400282: character_rig_v15:L_ankle_BE
+    400284: character_rig_v15:L_ankle_BJNT
+    400286: character_rig_v15:L_Ankle_Cloth_BJNT
+    400288: character_rig_v15:L_ankle_FK_ANIM_CTRL
+    400290: character_rig_v15:L_ankle_FK_Const_GRP
+    400292: character_rig_v15:L_ankle_FKE
+    400294: character_rig_v15:L_ankle_IKE
+    400296: character_rig_v15:L_Arm_IK_HDL
+    400298: character_rig_v15:L_Arm_IKFK_Switch
+    400300: character_rig_v15:L_arm_IKPV
+    400302: character_rig_v15:L_arm_Top
+    400304: character_rig_v15:L_Cloth_A_BJNT
+    400306: character_rig_v15:L_Cloth_BJNT_B
+    400308: character_rig_v15:L_eye_BJNT
+    400310: character_rig_v15:L_Eye_Inner
+    400312: character_rig_v15:L_Eye_inner_shutter_grp
+    400314: character_rig_v15:L_Eye_Outer
+    400316: character_rig_v15:L_eye_shutter_01
+    400318: character_rig_v15:L_eye_shutter_01 1
+    400320: character_rig_v15:L_eye_shutter_01 2
+    400322: character_rig_v15:L_eye_shutter_010
+    400324: character_rig_v15:L_eye_shutter_011
+    400326: character_rig_v15:L_eye_shutter_012
+    400328: character_rig_v15:L_eye_shutter_013
+    400330: character_rig_v15:L_eye_shutter_014
+    400332: character_rig_v15:L_eye_shutter_015
+    400334: character_rig_v15:L_eye_shutter_016
+    400336: character_rig_v15:L_eye_shutter_017
+    400338: character_rig_v15:L_eye_shutter_018
+    400340: character_rig_v15:L_eye_shutter_019
+    400342: character_rig_v15:L_eye_shutter_02
+    400344: character_rig_v15:L_eye_shutter_02 1
+    400346: character_rig_v15:L_eye_shutter_02 2
+    400348: character_rig_v15:L_eye_shutter_02 3
+    400350: character_rig_v15:L_eye_shutter_020
+    400352: character_rig_v15:L_eye_shutter_021
+    400354: character_rig_v15:L_eye_shutter_022
+    400356: character_rig_v15:L_eye_shutter_023
+    400358: character_rig_v15:L_eye_shutter_024
+    400360: character_rig_v15:L_eye_shutter_025
+    400362: character_rig_v15:L_eye_shutter_026
+    400364: character_rig_v15:L_eye_shutter_027
+    400366: character_rig_v15:L_eye_shutter_028
+    400368: character_rig_v15:L_eye_shutter_029
+    400370: character_rig_v15:L_eye_shutter_03
+    400372: character_rig_v15:L_eye_shutter_03 1
+    400374: character_rig_v15:L_eye_shutter_03 2
+    400376: character_rig_v15:L_eye_shutter_03 3
+    400378: character_rig_v15:L_eye_shutter_030
+    400380: character_rig_v15:L_eye_shutter_031
+    400382: character_rig_v15:L_eye_shutter_032
+    400384: character_rig_v15:L_eye_shutter_033
+    400386: character_rig_v15:L_eye_shutter_034
+    400388: character_rig_v15:L_eye_shutter_035
+    400390: character_rig_v15:L_eye_shutter_036
+    400392: character_rig_v15:L_eye_shutter_037
+    400394: character_rig_v15:L_eye_shutter_038
+    400396: character_rig_v15:L_eye_shutter_039
+    400398: character_rig_v15:L_eye_shutter_04
+    400400: character_rig_v15:L_eye_shutter_04 1
+    400402: character_rig_v15:L_eye_shutter_04 2
+    400404: character_rig_v15:L_eye_shutter_04 3
+    400406: character_rig_v15:L_eye_shutter_040
+    400408: character_rig_v15:L_eye_shutter_041
+    400410: character_rig_v15:L_eye_shutter_05
+    400412: character_rig_v15:L_eye_shutter_05 1
+    400414: character_rig_v15:L_eye_shutter_05 2
+    400416: character_rig_v15:L_eye_shutter_05 3
+    400418: character_rig_v15:L_eye_shutter_06
+    400420: character_rig_v15:L_eye_shutter_06 1
+    400422: character_rig_v15:L_eye_shutter_06 2
+    400424: character_rig_v15:L_eye_shutter_06 3
+    400426: character_rig_v15:L_eye_shutter_07
+    400428: character_rig_v15:L_eye_shutter_07 1
+    400430: character_rig_v15:L_eye_shutter_07 2
+    400432: character_rig_v15:L_eye_shutter_07 3
+    400434: character_rig_v15:L_eye_shutter_08
+    400436: character_rig_v15:L_eye_shutter_08 1
+    400438: character_rig_v15:L_eye_shutter_08 2
+    400440: character_rig_v15:L_eye_shutter_08 3
+    400442: character_rig_v15:L_eye_shutter_09
+    400444: character_rig_v15:L_Eye_shutter_grp
+    400446: character_rig_v15:L_foot_BJNT
+    400448: character_rig_v15:L_foot_Cloth_BJNT
+    400450: character_rig_v15:L_foot_DRV
+    400452: character_rig_v15:L_forearm_BJNT
+    400454: character_rig_v15:L_Forearm_CTRL
+    400456: character_rig_v15:L_forearm_FKJNT
+    400458: character_rig_v15:L_forearm_IKJNT
+    400460: character_rig_v15:L_hand_BJNT
+    400462: character_rig_v15:L_hand_FKJNT
+    400464: character_rig_v15:L_Hand_IK_CTRL
+    400466: character_rig_v15:L_hand_IKJNT
+    400468: character_rig_v15:L_IK_PV_CTRL
+    400470: character_rig_v15:L_leg_IK_ANIM_CTRL
+    400472: character_rig_v15:L_leg_IK_HDL
+    400474: character_rig_v15:L_leg_IKFK_Switch
+    400476: character_rig_v15:L_pupil
+    400478: character_rig_v15:L_pupil_bind1
+    400480: character_rig_v15:L_PV_FollowX
+    400482: character_rig_v15:L_PV_FollowY
+    400484: character_rig_v15:L_PV_FollowZ
+    400486: character_rig_v15:L_shin_BJNT
+    400488: character_rig_v15:L_shin_Cloth_BJNT
+    400490: character_rig_v15:L_shin_FK_ANIM_CTRL
+    400492: character_rig_v15:L_shin_FKJNT
+    400494: character_rig_v15:L_shin_IKJNT
+    400496: character_rig_v15:L_shoulder_BJNT
+    400498: character_rig_v15:L_Shoulder_CTRL
+    400500: character_rig_v15:L_shoulder_FKJNT
+    400502: character_rig_v15:L_shoulder_IKJNT
+    400504: character_rig_v15:L_shutter_inner_JNT_01
+    400506: character_rig_v15:L_shutter_inner_JNT_02
+    400508: character_rig_v15:L_shutter_inner_JNT_03
+    400510: character_rig_v15:L_shutter_Inner_JNT_04
+    400512: character_rig_v15:L_shutter_inner_JNT_05
+    400514: character_rig_v15:L_shutter_inner_JNT_06
+    400516: character_rig_v15:L_shutter_inner_JNT_07
+    400518: character_rig_v15:L_shutter_inner_JNT_08
+    400520: character_rig_v15:L_shutter_outer_JNT_01
+    400522: character_rig_v15:L_shutter_outer_JNT_02
+    400524: character_rig_v15:L_shutter_outer_JNT_03
+    400526: character_rig_v15:L_shutter_outer_JNT_04
+    400528: character_rig_v15:L_shutter_outer_JNT_05
+    400530: character_rig_v15:L_shutter_outer_JNT_06
+    400532: character_rig_v15:L_shutter_outer_JNT_07
+    400534: character_rig_v15:L_shutter_outer_JNT_08
+    400536: character_rig_v15:L_thigh_BJNT
+    400538: character_rig_v15:L_thigh_Cloth_BJNT
+    400540: character_rig_v15:L_thigh_FK_ANIM_CTRL
+    400542: character_rig_v15:L_thigh_FKJNT
+    400544: character_rig_v15:L_thigh_IKJNT
+    400546: character_rig_v15:L_thighCloth_BJNT1
+    400548: character_rig_v15:L_toe_BE
+    400550: character_rig_v15:L_toe_DRVE
+    400552: character_rig_v15:little1
+    400554: character_rig_v15:little1 1
+    400556: character_rig_v15:little2
+    400558: character_rig_v15:little2 1
+    400560: character_rig_v15:little3
+    400562: character_rig_v15:little3 1
+    400564: character_rig_v15:little4
+    400566: character_rig_v15:little5
+    400568: character_rig_v15:little6
+    400570: character_rig_v15:little7
+    400572: character_rig_v15:little8
+    400574: character_rig_v15:little9
+    400576: character_rig_v15:locAlign_Chest_BJNT
+    400578: character_rig_v15:locAlign_L_ankle_BJNT
+    400580: character_rig_v15:locAlign_L_ankle_IK_LOC
+    400582: character_rig_v15:locAlign_L_ankle_IK_ORI
+    400584: character_rig_v15:locAlign_L_foot_DRV
+    400586: character_rig_v15:locAlign_L_foot_ORI
+    400588: character_rig_v15:locAlign_L_forearm_BJNT
+    400590: character_rig_v15:locAlign_L_forearm_FKJNT
+    400592: character_rig_v15:locAlign_L_heel_DRV
+    400594: character_rig_v15:locAlign_L_heel_ORI
+    400596: character_rig_v15:locAlign_L_shin_FKJNT
+    400598: character_rig_v15:locAlign_L_shin_IKJNT
+    400600: character_rig_v15:locAlign_L_shoulder_FKJNT
+    400602: character_rig_v15:locAlign_L_thigh_FKJNT
+    400604: character_rig_v15:locAlign_L_toe_DRV
+    400606: character_rig_v15:locAlign_L_toe_ORI
+    400608: character_rig_v15:locAlign_Neck_End_BJNT
+    400610: character_rig_v15:locAlign_Pelvis_BJNT
+    400612: character_rig_v15:locAlign_R_ankle_BJNT
+    400614: character_rig_v15:locAlign_R_ankle_IK_LOC
+    400616: character_rig_v15:locAlign_R_ankle_IK_ORI
+    400618: character_rig_v15:locAlign_R_foot_DRV
+    400620: character_rig_v15:locAlign_R_foot_ORI
+    400622: character_rig_v15:locAlign_R_forearm_BJNT
+    400624: character_rig_v15:locAlign_R_forearm_FKJNT
+    400626: character_rig_v15:locAlign_R_heel_DRV
+    400628: character_rig_v15:locAlign_R_heel_ORI
+    400630: character_rig_v15:locAlign_R_shin_FKJNT
+    400632: character_rig_v15:locAlign_R_shin_IKJNT
+    400634: character_rig_v15:locAlign_R_shoulder_FKJNT
+    400636: character_rig_v15:locAlign_R_thigh_FKJNT
+    400638: character_rig_v15:locAlign_R_toe_DRV
+    400640: character_rig_v15:locAlign_R_toe_ORI
+    400642: character_rig_v15:locAlign_Waist_BJNT
+    400644: character_rig_v15:middle1
+    400646: character_rig_v15:middle1 1
+    400648: character_rig_v15:middle2
+    400650: character_rig_v15:middle2 1
+    400652: character_rig_v15:middle3
+    400654: character_rig_v15:middle3 1
+    400656: character_rig_v15:middle4
+    400658: character_rig_v15:middle5
+    400660: character_rig_v15:middle6
+    400662: character_rig_v15:middle7
+    400664: character_rig_v15:middle8
+    400666: character_rig_v15:middle9
+    400668: character_rig_v15:model01
+    400670: character_rig_v15:Model_01
+    400672: character_rig_v15:Model_01 1
+    400674: character_rig_v15:Neck_ANIM_Const_GRP
+    400676: character_rig_v15:Neck_Base_BJNT
+    400678: character_rig_v15:Neck_End_BJNT
+    400680: character_rig_v15:palm
+    400682: character_rig_v15:palm 1
+    400684: character_rig_v15:palm1
+    400686: character_rig_v15:palm2
+    400688: character_rig_v15:Pelvis_BE
+    400690: character_rig_v15:Pelvis_BJNT
+    400692: character_rig_v15:Pevlis_ANIM_CTRL
+    400694: character_rig_v15:polySurface16
+    400696: character_rig_v15:polySurface18
+    400698: character_rig_v15:polySurface19
+    400700: character_rig_v15:polySurface2
+    400702: character_rig_v15:polySurface8
+    400704: character_rig_v15:R_ankle_BE
+    400706: character_rig_v15:R_ankle_BJNT
+    400708: character_rig_v15:R_ankle_Cloth_BJNT
+    400710: character_rig_v15:R_ankle_FK_ANIM_CTRL
+    400712: character_rig_v15:R_ankle_FK_Const_GRP
+    400714: character_rig_v15:R_ankle_FKE
+    400716: character_rig_v15:R_ankle_IKE
+    400718: character_rig_v15:R_Arm_IK_HDL
+    400720: character_rig_v15:R_Arm_IKFK_Switch
+    400722: character_rig_v15:R_arm_IKPV
+    400724: character_rig_v15:R_arm_top
+    400726: character_rig_v15:R_Cloth_A_BJNT
+    400728: character_rig_v15:R_Cloth_B_BJNT
+    400730: character_rig_v15:R_eye_BJNT
+    400732: character_rig_v15:R_Eye_Inner
+    400734: character_rig_v15:R_Eye_inner_shutter_grp
+    400736: character_rig_v15:R_Eye_Outer
+    400738: character_rig_v15:R_Eye_shutter_grp
+    400740: character_rig_v15:R_foot_BJNT
+    400742: character_rig_v15:R_foot_Cloth_BJNT
+    400744: character_rig_v15:R_foot_DRV
+    400746: character_rig_v15:R_forearm_BJNT
+    400748: character_rig_v15:R_Forearm_CTRL
+    400750: character_rig_v15:R_forearm_FKJNT
+    400752: character_rig_v15:R_forearm_IKJNT
+    400754: character_rig_v15:R_hand_BJNT
+    400756: character_rig_v15:R_hand_FKJNT
+    400758: character_rig_v15:R_Hand_IK_CTRL
+    400760: character_rig_v15:R_hand_IKJNT
+    400762: character_rig_v15:R_IK_PV_CTRL
+    400764: character_rig_v15:R_leg_IK_ANIM_CTRL
+    400766: character_rig_v15:R_leg_IK_HDL
+    400768: character_rig_v15:R_leg_IKFK_Switch
+    400770: character_rig_v15:R_pupil
+    400772: character_rig_v15:R_pupil_bind
+    400774: character_rig_v15:R_PV_FollowX
+    400776: character_rig_v15:R_PV_FollowY
+    400778: character_rig_v15:R_PV_FollowZ
+    400780: character_rig_v15:R_shin_BJNT
+    400782: character_rig_v15:R_shin_Cloth_BJNT
+    400784: character_rig_v15:R_shin_FK_ANIM_CTRL
+    400786: character_rig_v15:R_shin_FKJNT
+    400788: character_rig_v15:R_shin_IKJNT
+    400790: character_rig_v15:R_shoulder_BJNT
+    400792: character_rig_v15:R_Shoulder_CTRL
+    400794: character_rig_v15:R_shoulder_FKJNT
+    400796: character_rig_v15:R_shoulder_IKJNT
+    400798: character_rig_v15:R_shutter_inner_JNT_01
+    400800: character_rig_v15:R_shutter_inner_JNT_02
+    400802: character_rig_v15:R_shutter_inner_JNT_03
+    400804: character_rig_v15:R_shutter_Inner_JNT_04
+    400806: character_rig_v15:R_shutter_inner_JNT_05
+    400808: character_rig_v15:R_shutter_inner_JNT_06
+    400810: character_rig_v15:R_shutter_inner_JNT_07
+    400812: character_rig_v15:R_shutter_inner_JNT_08
+    400814: character_rig_v15:R_shutter_outer_JNT_01
+    400816: character_rig_v15:R_shutter_outer_JNT_02
+    400818: character_rig_v15:R_shutter_outer_JNT_03
+    400820: character_rig_v15:R_shutter_outer_JNT_04
+    400822: character_rig_v15:R_shutter_outer_JNT_05
+    400824: character_rig_v15:R_shutter_outer_JNT_06
+    400826: character_rig_v15:R_shutter_outer_JNT_07
+    400828: character_rig_v15:R_shutter_outer_JNT_08
+    400830: character_rig_v15:R_thigh_BJNT
+    400832: character_rig_v15:R_thigh_Cloth_BJNT
+    400834: character_rig_v15:R_thigh_Cloth_BJNT1
+    400836: character_rig_v15:R_thigh_FK_ANIM_CTRL
+    400838: character_rig_v15:R_thigh_FKJNT
+    400840: character_rig_v15:R_thigh_IKJNT
+    400842: character_rig_v15:R_Toe
+    400844: character_rig_v15:R_toe_BE
+    400846: character_rig_v15:R_toe_DRVE
+    400848: character_rig_v15:ring1
+    400850: character_rig_v15:ring1 1
+    400852: character_rig_v15:ring2
+    400854: character_rig_v15:ring2 1
+    400856: character_rig_v15:ring3
+    400858: character_rig_v15:ring3 1
+    400860: character_rig_v15:ring4
+    400862: character_rig_v15:ring5
+    400864: character_rig_v15:ring6
+    400866: character_rig_v15:ring7
+    400868: character_rig_v15:ring8
+    400870: character_rig_v15:ring9
+    400872: character_rig_v15:Robot_01
+    400874: character_rig_v15:robot_geo
+    400876: character_rig_v15:robotHead_geo
+    400878: character_rig_v15:shinL
+    400880: character_rig_v15:shinR
+    400882: character_rig_v15:sholderBlades
+    400884: character_rig_v15:Skel_01
+    400886: character_rig_v15:Skel_01 1
+    400888: character_rig_v15:thighL
+    400890: character_rig_v15:thighR
+    400892: character_rig_v15:thumb1
+    400894: character_rig_v15:thumb1 1
+    400896: character_rig_v15:thumb2
+    400898: character_rig_v15:thumb2 1
+    400900: character_rig_v15:thumb3
+    400902: character_rig_v15:thumb3 1
+    400904: character_rig_v15:thumb4
+    400906: character_rig_v15:thumb5
+    400908: character_rig_v15:thumb6
+    400910: character_rig_v15:thumb7
+    400912: character_rig_v15:thumb8
+    400914: character_rig_v15:thumb9
+    400916: character_rig_v15:to_transform01
+    400918: character_rig_v15:transform2
+    400920: character_rig_v15:transform3
+    400922: character_rig_v15:transform4
+    400924: character_rig_v15:trns_toHide01
+    400926: character_rig_v15:trns_toShow01
+    400928: character_rig_v15:Waist_ANIM_CTRL
+    400930: character_rig_v15:Waist_BE
+    400932: character_rig_v15:Waist_BJNT
+    400934: character_rig_v15:wrist
+    400936: character_rig_v15:wrist 1
+    400938: character_rig_v15:wrist1
+    400940: character_rig_v15:wrist2
+    400942: character_rig_v15:Wrist_panel_screen
+    400944: character_rig_v15:xtra_toHide01
+    400946: character_rig_v15:xtra_toShow01
+    400948: //RootNode
+    4300000: character_rig_v15:L_eye_shutter_02
+    4300002: character_rig_v15:L_eye_shutter_03
+    4300004: character_rig_v15:L_eye_shutter_04
+    4300006: character_rig_v15:L_eye_shutter_05
+    4300008: character_rig_v15:L_eye_shutter_06
+    4300010: character_rig_v15:L_eye_shutter_07
+    4300012: character_rig_v15:L_eye_shutter_08
+    4300014: character_rig_v15:L_eye_shutter_09
+    4300016: character_rig_v15:L_eye_shutter_01
+    4300018: character_rig_v15:L_eye_shutter_02
+    4300020: character_rig_v15:L_eye_shutter_03
+    4300022: character_rig_v15:L_eye_shutter_04
+    4300024: character_rig_v15:L_eye_shutter_05
+    4300026: character_rig_v15:L_eye_shutter_06
+    4300028: character_rig_v15:L_eye_shutter_07
+    4300030: character_rig_v15:L_eye_shutter_08
+    4300032: character_rig_v15:L_eye_shutter_01
+    4300034: character_rig_v15:L_eye_shutter_02
+    4300036: character_rig_v15:L_eye_shutter_03
+    4300038: character_rig_v15:L_eye_shutter_04
+    4300040: character_rig_v15:L_eye_shutter_05
+    4300042: character_rig_v15:L_eye_shutter_06
+    4300044: character_rig_v15:L_eye_shutter_07
+    4300046: character_rig_v15:L_eye_shutter_08
+    4300048: character_rig_v15:L_eye_shutter_01
+    4300050: character_rig_v15:L_eye_shutter_02
+    4300052: character_rig_v15:L_eye_shutter_03
+    4300054: character_rig_v15:L_eye_shutter_04
+    4300056: character_rig_v15:L_eye_shutter_05
+    4300058: character_rig_v15:L_eye_shutter_06
+    4300060: character_rig_v15:L_eye_shutter_07
+    4300062: character_rig_v15:L_eye_shutter_08
+    4300064: character_rig_v15:Head_geo3
+    4300066: character_rig_v15:thumb1
+    4300068: character_rig_v15:thumb2
+    4300070: character_rig_v15:index2
+    4300072: character_rig_v15:wrist
+    4300074: character_rig_v15:ring3
+    4300076: character_rig_v15:ring1
+    4300078: character_rig_v15:index3
+    4300080: character_rig_v15:palm
+    4300082: character_rig_v15:little3
+    4300084: character_rig_v15:little2
+    4300086: character_rig_v15:little1
+    4300088: character_rig_v15:middle2
+    4300090: character_rig_v15:middle1
+    4300092: character_rig_v15:index1
+    4300094: character_rig_v15:ring2
+    4300096: character_rig_v15:middle3
+    4300098: character_rig_v15:thumb3
+    4300100: character_rig_v15:groin
+    4300102: character_rig_v15:hips
+    4300104: character_rig_v15:backTorso
+    4300106: character_rig_v15:chestStomach
+    4300108: character_rig_v15:sholderBlades
+    4300110: character_rig_v15:L_pupil
+    4300112: character_rig_v15:R_pupil
+    4300114: character_rig_v15:clothElbowR
+    4300116: character_rig_v15:foreArmR
+    4300118: character_rig_v15:clothElbowL
+    4300120: character_rig_v15:armUpprL
+    4300122: character_rig_v15:armUpprR
+    4300124: character_rig_v15:shinL
+    4300126: character_rig_v15:polySurface2
+    4300128: character_rig_v15:foreArmR1
+    4300130: character_rig_v15:R_Toe
+    4300132: character_rig_v15:thighR
+    4300134: character_rig_v15:shinR
+    4300136: character_rig_v15:polySurface8
+    4300138: character_rig_v15:thighL
+    4300140: character_rig_v15:clothNeck
+    4300142: character_rig_v15:clothStomach
+    4300144: character_rig_v15:clothSholderR
+    4300146: character_rig_v15:clothSholderL
+    4300148: character_rig_v15:clothGroinL
+    4300150: character_rig_v15:clothKneeL
+    4300152: character_rig_v15:clothAnkleL
+    4300154: character_rig_v15:clothGroinR
+    4300156: character_rig_v15:clothKneeR
+    4300158: character_rig_v15:clothAnkleR
+    4300160: character_rig_v15:polySurface16
+    4300162: character_rig_v15:thumb1
+    4300164: character_rig_v15:thumb2
+    4300166: character_rig_v15:index2
+    4300168: character_rig_v15:wrist
+    4300170: character_rig_v15:ring3
+    4300172: character_rig_v15:ring1
+    4300174: character_rig_v15:index3
+    4300176: character_rig_v15:palm
+    4300178: character_rig_v15:little3
+    4300180: character_rig_v15:little2
+    4300182: character_rig_v15:little1
+    4300184: character_rig_v15:middle2
+    4300186: character_rig_v15:middle1
+    4300188: character_rig_v15:index1
+    4300190: character_rig_v15:ring2
+    4300192: character_rig_v15:middle3
+    4300194: character_rig_v15:thumb3
+    4300196: character_rig_v15:foreArm_panel
+    7400000: Take 001
+    9500000: //RootNode
+    13700000: character_rig_v15:armUpprL
+    13700002: character_rig_v15:armUpprR
+    13700004: character_rig_v15:backTorso
+    13700006: character_rig_v15:chestStomach
+    13700008: character_rig_v15:clothAnkleL
+    13700010: character_rig_v15:clothAnkleR
+    13700012: character_rig_v15:clothElbowL
+    13700014: character_rig_v15:clothElbowR
+    13700016: character_rig_v15:clothGroinL
+    13700018: character_rig_v15:clothGroinR
+    13700020: character_rig_v15:clothKneeL
+    13700022: character_rig_v15:clothKneeR
+    13700024: character_rig_v15:clothNeck
+    13700026: character_rig_v15:clothSholderL
+    13700028: character_rig_v15:clothSholderR
+    13700030: character_rig_v15:clothStomach
+    13700032: character_rig_v15:foreArm_panel
+    13700034: character_rig_v15:foreArmR
+    13700036: character_rig_v15:foreArmR1
+    13700038: character_rig_v15:groin
+    13700040: character_rig_v15:Head_geo3
+    13700042: character_rig_v15:hips
+    13700044: character_rig_v15:index1
+    13700046: character_rig_v15:index1 1
+    13700048: character_rig_v15:index2
+    13700050: character_rig_v15:index2 1
+    13700052: character_rig_v15:index3
+    13700054: character_rig_v15:index3 1
+    13700056: character_rig_v15:L_eye_shutter_01
+    13700058: character_rig_v15:L_eye_shutter_01 1
+    13700060: character_rig_v15:L_eye_shutter_01 2
+    13700062: character_rig_v15:L_eye_shutter_02
+    13700064: character_rig_v15:L_eye_shutter_02 1
+    13700066: character_rig_v15:L_eye_shutter_02 2
+    13700068: character_rig_v15:L_eye_shutter_02 3
+    13700070: character_rig_v15:L_eye_shutter_03
+    13700072: character_rig_v15:L_eye_shutter_03 1
+    13700074: character_rig_v15:L_eye_shutter_03 2
+    13700076: character_rig_v15:L_eye_shutter_03 3
+    13700078: character_rig_v15:L_eye_shutter_04
+    13700080: character_rig_v15:L_eye_shutter_04 1
+    13700082: character_rig_v15:L_eye_shutter_04 2
+    13700084: character_rig_v15:L_eye_shutter_04 3
+    13700086: character_rig_v15:L_eye_shutter_05
+    13700088: character_rig_v15:L_eye_shutter_05 1
+    13700090: character_rig_v15:L_eye_shutter_05 2
+    13700092: character_rig_v15:L_eye_shutter_05 3
+    13700094: character_rig_v15:L_eye_shutter_06
+    13700096: character_rig_v15:L_eye_shutter_06 1
+    13700098: character_rig_v15:L_eye_shutter_06 2
+    13700100: character_rig_v15:L_eye_shutter_06 3
+    13700102: character_rig_v15:L_eye_shutter_07
+    13700104: character_rig_v15:L_eye_shutter_07 1
+    13700106: character_rig_v15:L_eye_shutter_07 2
+    13700108: character_rig_v15:L_eye_shutter_07 3
+    13700110: character_rig_v15:L_eye_shutter_08
+    13700112: character_rig_v15:L_eye_shutter_08 1
+    13700114: character_rig_v15:L_eye_shutter_08 2
+    13700116: character_rig_v15:L_eye_shutter_08 3
+    13700118: character_rig_v15:L_eye_shutter_09
+    13700120: character_rig_v15:L_pupil
+    13700122: character_rig_v15:little1
+    13700124: character_rig_v15:little1 1
+    13700126: character_rig_v15:little2
+    13700128: character_rig_v15:little2 1
+    13700130: character_rig_v15:little3
+    13700132: character_rig_v15:little3 1
+    13700134: character_rig_v15:middle1
+    13700136: character_rig_v15:middle1 1
+    13700138: character_rig_v15:middle2
+    13700140: character_rig_v15:middle2 1
+    13700142: character_rig_v15:middle3
+    13700144: character_rig_v15:middle3 1
+    13700146: character_rig_v15:palm
+    13700148: character_rig_v15:palm 1
+    13700150: character_rig_v15:polySurface16
+    13700152: character_rig_v15:polySurface2
+    13700154: character_rig_v15:polySurface8
+    13700156: character_rig_v15:R_pupil
+    13700158: character_rig_v15:R_Toe
+    13700160: character_rig_v15:ring1
+    13700162: character_rig_v15:ring1 1
+    13700164: character_rig_v15:ring2
+    13700166: character_rig_v15:ring2 1
+    13700168: character_rig_v15:ring3
+    13700170: character_rig_v15:ring3 1
+    13700172: character_rig_v15:shinL
+    13700174: character_rig_v15:shinR
+    13700176: character_rig_v15:sholderBlades
+    13700178: character_rig_v15:thighL
+    13700180: character_rig_v15:thighR
+    13700182: character_rig_v15:thumb1
+    13700184: character_rig_v15:thumb1 1
+    13700186: character_rig_v15:thumb2
+    13700188: character_rig_v15:thumb2 1
+    13700190: character_rig_v15:thumb3
+    13700192: character_rig_v15:thumb3 1
+    13700194: character_rig_v15:wrist
+    13700196: character_rig_v15:wrist 1
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

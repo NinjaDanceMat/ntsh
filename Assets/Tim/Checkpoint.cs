@@ -8,6 +8,8 @@ public class Checkpoint : MonoBehaviour {
     public bool isTutorialEnd;
     public bool slingShotOn;
 
+    public bool gameEnd;
+
 	// Use this for initialization
 	void Start () {
         InputController.instance.checkpoints.Add(this);
